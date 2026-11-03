@@ -53,7 +53,8 @@ void main() {
 
   test('colaborador no accede a rutas solo de dueño', () {
     expect(resolveRedirect(collaborator, Routes.collaborators), Routes.home);
-    expect(resolveRedirect(collaborator, Routes.reports), Routes.home);
+    // Reportes muestra un aviso en pantalla en vez de redirigir.
+    expect(resolveRedirect(collaborator, Routes.reports), isNull);
     expect(resolveRedirect(collaborator, Routes.cashRegister), isNull);
     expect(resolveRedirect(owner, Routes.collaborators), isNull);
   });

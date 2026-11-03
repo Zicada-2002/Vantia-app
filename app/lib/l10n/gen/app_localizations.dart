@@ -1563,6 +1563,144 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cuadra'**
   String get cashExact;
+
+  /// No description provided for @reportWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana'**
+  String get reportWeek;
+
+  /// No description provided for @reportMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Mes'**
+  String get reportMonth;
+
+  /// No description provided for @reportYear.
+  ///
+  /// In es, this message translates to:
+  /// **'Año'**
+  String get reportYear;
+
+  /// No description provided for @reportThisWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta semana'**
+  String get reportThisWeek;
+
+  /// No description provided for @reportThisMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Este mes'**
+  String get reportThisMonth;
+
+  /// No description provided for @reportThisYear.
+  ///
+  /// In es, this message translates to:
+  /// **'Este año'**
+  String get reportThisYear;
+
+  /// No description provided for @reportVsPrevious.
+  ///
+  /// In es, this message translates to:
+  /// **'{percent} vs. periodo anterior'**
+  String reportVsPrevious(String percent);
+
+  /// No description provided for @reportIncome.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresos'**
+  String get reportIncome;
+
+  /// No description provided for @reportCash.
+  ///
+  /// In es, this message translates to:
+  /// **'EFECTIVO'**
+  String get reportCash;
+
+  /// No description provided for @reportDigital.
+  ///
+  /// In es, this message translates to:
+  /// **'DIGITALES'**
+  String get reportDigital;
+
+  /// No description provided for @reportBest.
+  ///
+  /// In es, this message translates to:
+  /// **'MEJOR'**
+  String get reportBest;
+
+  /// No description provided for @reportAvgTicket.
+  ///
+  /// In es, this message translates to:
+  /// **'Ticket promedio'**
+  String get reportAvgTicket;
+
+  /// No description provided for @reportMethods.
+  ///
+  /// In es, this message translates to:
+  /// **'Métodos de pago'**
+  String get reportMethods;
+
+  /// No description provided for @reportNoData.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay ventas en este periodo'**
+  String get reportNoData;
+
+  /// No description provided for @reportOwnerOnly.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo el dueño del negocio puede ver los reportes.'**
+  String get reportOwnerOnly;
+
+  /// No description provided for @exportTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona rango de fechas'**
+  String get exportTitle;
+
+  /// No description provided for @exportButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar'**
+  String get exportButton;
+
+  /// No description provided for @exportFormat.
+  ///
+  /// In es, this message translates to:
+  /// **'¿En qué formato?'**
+  String get exportFormat;
+
+  /// No description provided for @exportExcel.
+  ///
+  /// In es, this message translates to:
+  /// **'Excel (.xlsx)'**
+  String get exportExcel;
+
+  /// No description provided for @exportPdf.
+  ///
+  /// In es, this message translates to:
+  /// **'PDF'**
+  String get exportPdf;
+
+  /// No description provided for @exportEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay pagos en ese rango'**
+  String get exportEmpty;
+
+  /// No description provided for @exportTooLong.
+  ///
+  /// In es, this message translates to:
+  /// **'El rango máximo es de 1 año'**
+  String get exportTooLong;
+
+  /// No description provided for @exportSubject.
+  ///
+  /// In es, this message translates to:
+  /// **'Pagos {range}'**
+  String exportSubject(String range);
 }
 
 class _AppLocalizationsDelegate

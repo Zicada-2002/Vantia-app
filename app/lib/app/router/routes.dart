@@ -33,5 +33,5 @@ abstract final class Routes {
   };
 
   /// Rutas a las que un colaborador no tiene acceso.
-  static const Set<String> ownerOnly = {collaborators, reports};
+  static const Set<String> ownerOnly = {collaborators};
 }

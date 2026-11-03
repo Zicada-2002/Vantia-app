@@ -806,4 +806,78 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cashExact => 'Cuadra';
+
+  @override
+  String get reportWeek => 'Semana';
+
+  @override
+  String get reportMonth => 'Mes';
+
+  @override
+  String get reportYear => 'Año';
+
+  @override
+  String get reportThisWeek => 'Esta semana';
+
+  @override
+  String get reportThisMonth => 'Este mes';
+
+  @override
+  String get reportThisYear => 'Este año';
+
+  @override
+  String reportVsPrevious(String percent) {
+    return '$percent vs. periodo anterior';
+  }
+
+  @override
+  String get reportIncome => 'Ingresos';
+
+  @override
+  String get reportCash => 'EFECTIVO';
+
+  @override
+  String get reportDigital => 'DIGITALES';
+
+  @override
+  String get reportBest => 'MEJOR';
+
+  @override
+  String get reportAvgTicket => 'Ticket promedio';
+
+  @override
+  String get reportMethods => 'Métodos de pago';
+
+  @override
+  String get reportNoData => 'Aún no hay ventas en este periodo';
+
+  @override
+  String get reportOwnerOnly =>
+      'Solo el dueño del negocio puede ver los reportes.';
+
+  @override
+  String get exportTitle => 'Selecciona rango de fechas';
+
+  @override
+  String get exportButton => 'Exportar';
+
+  @override
+  String get exportFormat => '¿En qué formato?';
+
+  @override
+  String get exportExcel => 'Excel (.xlsx)';
+
+  @override
+  String get exportPdf => 'PDF';
+
+  @override
+  String get exportEmpty => 'No hay pagos en ese rango';
+
+  @override
+  String get exportTooLong => 'El rango máximo es de 1 año';
+
+  @override
+  String exportSubject(String range) {
+    return 'Pagos $range';
+  }
 }

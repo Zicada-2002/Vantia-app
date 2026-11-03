@@ -383,5 +383,42 @@
   "cashTeam": "Cajas del equipo",
   "cashOver": "Sobra",
   "cashShort": "Falta",
-  "cashExact": "Cuadra"
+  "cashExact": "Cuadra",
+  "reportWeek": "Semana",
+  "reportMonth": "Mes",
+  "reportYear": "Año",
+  "reportThisWeek": "Esta semana",
+  "reportThisMonth": "Este mes",
+  "reportThisYear": "Este año",
+  "reportVsPrevious": "{percent} vs. periodo anterior",
+  "@reportVsPrevious": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "reportIncome": "Ingresos",
+  "reportCash": "EFECTIVO",
+  "reportDigital": "DIGITALES",
+  "reportBest": "MEJOR",
+  "reportAvgTicket": "Ticket promedio",
+  "reportMethods": "Métodos de pago",
+  "reportNoData": "Aún no hay ventas en este periodo",
+  "reportOwnerOnly": "Solo el dueño del negocio puede ver los reportes.",
+  "exportTitle": "Selecciona rango de fechas",
+  "exportButton": "Exportar",
+  "exportFormat": "¿En qué formato?",
+  "exportExcel": "Excel (.xlsx)",
+  "exportPdf": "PDF",
+  "exportEmpty": "No hay pagos en ese rango",
+  "exportTooLong": "El rango máximo es de 1 año",
+  "exportSubject": "Pagos {range}",
+  "@exportSubject": {
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  }
 }

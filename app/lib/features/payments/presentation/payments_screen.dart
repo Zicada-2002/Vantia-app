@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vantia/app/providers.dart';
+import 'package:vantia/app/router/session.dart';
 import 'package:vantia/app/theme/tokens.dart';
 import 'package:vantia/core/time/clock.dart';
 import 'package:vantia/core/time/lima_time.dart';
 import 'package:vantia/core/widgets/money_text.dart';
 import 'package:vantia/core/widgets/v_card.dart';
+import 'package:vantia/features/export/export_flow.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/presentation/widgets/payment_tile.dart';
@@ -216,6 +219,20 @@ class _DayHeader extends StatelessWidget {
           MoneyText(group.summary.total, style: context.text.titleSmall),
         ],
       ),
+    );
+  }
+}
+
+/// Pestaña Pagos con exportación para el dueño (F-54).
+class PaymentsScreenWithExport extends ConsumerWidget {
+  const PaymentsScreenWithExport({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final session = ref.watch(sessionProvider);
+    final isOwner = session is SessionReady && session.isOwner;
+    return PaymentsScreen(
+      onExport: isOwner ? () => runExportFlow(context, ref) : null,
     );
   }
 }

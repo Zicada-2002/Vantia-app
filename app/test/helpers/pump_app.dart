@@ -17,6 +17,8 @@ import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/notifications/push_service.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment_repository.dart';
+import 'package:vantia/features/reports/application/report_providers.dart';
+import 'package:vantia/features/reports/data/reports_repository.dart';
 
 import 'fakes.dart';
 
@@ -29,6 +31,7 @@ extension PumpApp on WidgetTester {
     PaymentRepository? payments,
     CollaboratorRepository? collaborators,
     CashRepository? cash,
+    ReportsRepository? reports,
     DateTime? now,
     Map<String, Object> prefs = const {},
     List<Override> extraOverrides = const [],
@@ -61,6 +64,9 @@ extension PumpApp on WidgetTester {
         pushServiceProvider.overrideWithValue(const NoopPushService()),
         collaboratorRepositoryProvider.overrideWithValue(
           collaborators ?? FakeCollaboratorRepository(),
+        ),
+        reportsRepositoryProvider.overrideWithValue(
+          reports ?? FakeReportsRepository(),
         ),
         ...extraOverrides,
       ],

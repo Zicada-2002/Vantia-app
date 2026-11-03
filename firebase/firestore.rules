@@ -165,8 +165,13 @@ service cloud.firestore {
         allow write: if false;
       }
 
-      // Colecciones de M5+ (products, dailyStats) se habilitan en sus
-      // milestones; hasta entonces, denegadas.
+      // ---------- Reportes (M5) ----------
+      match /dailyStats/{dayKey} {
+        allow read: if isOwner(bid);
+        allow write: if false;
+      }
+
+      // products (M6) se habilita en su milestone.
     }
 
     // Índice global de códigos: solo Functions.

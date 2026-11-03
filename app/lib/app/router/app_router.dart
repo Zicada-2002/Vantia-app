@@ -84,7 +84,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.payments,
-                builder: (_, _) => const PaymentsScreen(),
+                builder: (_, _) => const PaymentsScreenWithExport(),
                 routes: [
                   GoRoute(
                     path: ':id',

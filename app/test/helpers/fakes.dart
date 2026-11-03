@@ -14,6 +14,8 @@ import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
 import 'package:vantia/features/payments/domain/payment_repository.dart';
+import 'package:vantia/features/reports/data/reports_repository.dart';
+import 'package:vantia/features/reports/domain/report.dart';
 
 /// Auth en memoria con el mismo contrato que Firebase.
 class FakeAuthRepository implements AuthRepository {
@@ -524,4 +526,41 @@ class FakeCashRepository implements CashRepository {
     );
     return const Ok(null);
   }
+}
+
+FakeAuthRepository collaboratorAuth() => FakeAuthRepository(
+  initial: const AuthUser(
+    uid: 'uid-ana',
+    email: 'ana@vantia.pe',
+    emailVerified: true,
+  ),
+);
+
+FakeBusinessRepository collaboratorBusiness() => FakeBusinessRepository()
+  ..currentUid = 'uid-ana'
+  ..seedBusiness(demoBusiness)
+  ..seedProfile(
+    const UserProfile(
+      uid: 'uid-ana',
+      displayName: 'Ana',
+      email: 'ana@vantia.pe',
+      activeBusinessId: 'biz-demo',
+      role: MemberRole.collaborator,
+    ),
+  );
+
+class FakeReportsRepository implements ReportsRepository {
+  FakeReportsRepository([this.stats = const []]);
+
+  final List<DailyStat> stats;
+
+  @override
+  Stream<List<DailyStat>> watchDailyStats(
+    String businessId, {
+    required String fromKey,
+    required String toKey,
+  }) => Stream.value([
+    for (final s in stats)
+      if (s.dayKey.compareTo(fromKey) >= 0 && s.dayKey.compareTo(toKey) < 0) s,
+  ]);
 }
