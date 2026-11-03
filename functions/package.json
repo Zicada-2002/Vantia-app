@@ -1,0 +1,27 @@
+{
+  "name": "vantia-functions",
+  "private": true,
+  "description": "Cloud Functions de Vantia",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test \"lib/test/**/*.test.js\"",
+    "test:emulator": "firebase emulators:exec --config ../firebase/firebase.json --only auth,firestore,functions --project demo-vantia 'npm run build && node --test lib/test-emulator/*.test.js'",
+    "serve": "npm run build && firebase emulators:start --config ../firebase/firebase.json --project demo-vantia"
+  },
+  "dependencies": {
+    "firebase-admin": "^14.5.0",
+    "firebase-functions": "^7.4.0"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "@types/node": "^26.6.6",
+    "firebase": "^12.19.0",
+    "firebase-tools": "^15.34.2",
+    "typescript": "^7.0.2"
+  }
+}

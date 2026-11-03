@@ -1,8 +1,7 @@
 # Vantia — Informe de avance
 
-**Fecha:** 3 de noviembre de 2026
-**Rama de trabajo:** `ccr-e89000a1-3kvjkg`
-**Commits:** `7c583e0` (plan y base del repo) · `623153b` (M0 en código) · `b004f87` (README)
+**Última actualización:** 3 de noviembre de 2026
+**Rama de trabajo:** `ccr-e89000a1-3kvjkg` → PR [#66](https://github.com/Zicada-2002/Vantia-app/pull/66) hacia `main`
 
 ---
 
@@ -11,37 +10,27 @@
 | Indicador | Estado |
 |---|---|
 | Plan de features y arquitectura | ✅ Completo |
-| Organización en GitHub (épicos y features) | ✅ 65 issues (#1–#65) |
-| Base del repositorio (README, .gitignore, plantillas, CI) | ✅ Completo |
-| **M0 — Fundaciones** | 🟡 ~90 % (5 de 6 features completas, F-06 parcial) |
-| M1 a M9 | ⬜ Pendientes |
-| Calidad del código | `flutter analyze`: 0 avisos · `flutter test`: **36/36 tests en verde** |
-| Avance estimado del proyecto | **≈ 7 %** (≈ 4 de 55 días-dev estimados) |
+| Organización en GitHub | ✅ 65 issues (#1–#65), rama `main` creada, PR #66 abierto |
+| **M0 — Fundaciones** | 🟡 ~90 %: falta conectar Analytics/Crashlytics, que requiere el proyecto real |
+| **M1 — Autenticación y onboarding** | ✅ 8 de 9 features. F-14 (Google, opcional) pendiente |
+| Backend (reglas + Cloud Functions) | ✅ Base lista: 3 funciones y reglas de seguridad testeadas |
+| M2 a M9 | ⬜ Pendientes |
+| Tests | **App:** 50 · **Functions:** 4 unitarios + 12 de integración contra emuladores. Todos en verde |
+| Análisis estático | `flutter analyze` y `tsc`: 0 avisos |
+| Avance estimado del proyecto | **≈ 18 %** (≈ 10 de 55 días-dev) |
 
-> La app compila y pasa los tests, pero **todavía no tiene funciones de negocio reales**: no hay login, no se registran pagos y no hay conexión a una base de datos. Lo construido es la base sobre la que se desarrollan todas las demás funcionalidades.
+> **Ya se puede usar de punta a punta en local:** crear cuenta → verificar el correo → elegir rol → crear negocio o unirse con código → entrar a la app → cerrar sesión. Funciona contra los emuladores de Firebase sin necesitar un proyecto real. Todavía no se registran pagos (eso es M2).
 
 ---
 
 ## 2. Avances realizados
 
-### 2.1 Planificación y documentación
+### 2.1 Planificación, documentación y GitHub
 
-| Archivo | Contenido |
-|---|---|
-| `docs/PLAN.md` | Alcance, funciones de cada pantalla de la referencia, roles y permisos (Dueño/Colaborador), roadmap M0–M9 con 55 features y sus criterios de aceptación, navegación, eventos de analítica y riesgos |
-| `docs/ARQUITECTURA.md` | Stack (Flutter + Firebase), estructura de carpetas, modelo de datos de Firestore, Cloud Functions, reglas de seguridad, flujo de verificación de correo y captura de Yape/Plin |
-| `README.md`, `app/README.md` | Descripción, requisitos, cómo ejecutar el proyecto, estructura |
-| `CONTRIBUTING.md` | Ramas, Conventional Commits, PRs y Definition of Done |
+- `docs/PLAN.md` (alcance, roles, 55 features), `docs/ARQUITECTURA.md` (stack, datos, seguridad, desarrollo local), README, CONTRIBUTING, `.gitignore`, plantillas y CI.
+- **Issues:** 10 épicos con 55 features como sub-issues.
 
-### 2.2 Repositorio y GitHub
-
-- `.gitignore` en la raíz, en `app/` y en `functions/`. Excluyen claves de firma, archivos de configuración de Firebase (`google-services.json`, `firebase_options*.dart`), compilados y secretos.
-- `.gitattributes`, `.editorconfig` y `.env.example`.
-- Plantillas de issue (Feature y Bug) y de Pull Request.
-- **CI (GitHub Actions):** formato, análisis y tests en cada PR, con Flutter 3.47.9 fijado. Compila el APK `dev` en `main` y lo deja como artifact. Tiene un job para Cloud Functions que se activa cuando exista `functions/package.json`.
-- **Issues:** 10 épicos (uno por etapa) y 55 features como sub-issues, con el tipo `Feature` y sus criterios de aceptación.
-
-| Épico | Issue | Features (sub-issues) |
+| Épico | Issue | Features |
 |---|---|---|
 | M0 Fundaciones | #1 | #11–#16 |
 | M1 Autenticación y onboarding | #2 | #17–#25 |
@@ -54,110 +43,123 @@
 | M8 Usuario, ajustes y suscripción | #9 | #57–#62 |
 | M9 Calidad y lanzamiento | #10 | #63–#65 |
 
-### 2.3 M0 — Fundaciones (código en `app/`)
+- **Rama `main`** creada desde el commit del plan (`7c583e0`). El **PR #66** lleva M0 y M1.
+- **CI:** formato, análisis y tests de la app; build y tests de Functions; tests de integración con emuladores (Java 21); APK `dev` en `main`.
+
+### 2.2 M0 — Fundaciones
+
+| ID | Feature | Estado |
+|---|---|:-:|
+| F-01 | Proyecto Flutter + flavors `dev`/`prod` (`pe.vantia.app`) | ✅ |
+| F-02 | Arquitectura por funcionalidad, Riverpod 3, go_router con guards, `Result`/`Failure` | ✅ |
+| F-03 | Design system (tema claro/oscuro/sistema, Poppins, componentes) | ✅ |
+| F-04 | es-PE, `Money` en céntimos, `LimaTime` | ✅ |
+| F-05 | CI/CD | ✅ (falta proteger `main`, ver §4) |
+| F-06 | Observabilidad | 🟡 Interfaz y eventos listos. Falta Firebase Analytics/Crashlytics |
+
+### 2.3 M1 — Autenticación y onboarding
 
 | ID | Feature | Estado | Detalle |
 |---|---|:-:|---|
-| F-01 | Proyecto Flutter + flavors | ✅ | Package `pe.vantia.app`. Flavors `dev` (`pe.vantia.app.dev`, "Vantia Dev") y `prod`. Entrypoints `main_dev.dart` y `main_prod.dart` |
-| F-02 | Arquitectura base | ✅ | Estructura por funcionalidad, Riverpod 3 y go_router. Guards de acceso en una función pura testeada: sesión → correo verificado → negocio → rol. Shell con 4 pestañas, FAB central y menú lateral. Tipos `Result`/`Failure` |
-| F-03 | Design system | ✅ | Tokens de la referencia, tema claro/oscuro/sistema guardado en el dispositivo, fuente Poppins incluida en la app (licencia OFL). Componentes `VCard`, `VButton`, `VTextField`, `MoneyText`, `EmptyState`, `PaymentMethodIcon` y `PaymentMethodTile` |
-| F-04 | i18n, dinero y zona horaria | ✅ | Textos en `app_es.arb`. `Money` en céntimos, con formato `S/ 1,234.50` y parseo de lo que escribe el usuario (`10,50`, `1.234,50`…). `LimaTime`: `dayKey`, inicio de día, semana (lunes) y mes, y formatos "2 nov. 2026" |
-| F-05 | CI/CD | ✅ | Ver §2.2. Falta proteger la rama `main` (ver §4) |
-| F-06 | Observabilidad | 🟡 | Catálogo de eventos y una interfaz `Analytics` (por ahora solo escribe en la consola de depuración). Se capturan los errores globales. **Falta** conectar Firebase Analytics y Crashlytics |
+| F-10 | Registro con correo | ✅ | Nombre, correo, contraseña (mín. 8 caracteres y 1 número), confirmación y términos obligatorios. Envía el correo de verificación en español |
+| F-11 | **Verificación de correo** | ✅ | Pantalla "Revisa tu correo" con el correo enmascarado. Reenvío con cooldown de 60 s. "Ya verifiqué" y revisión automática al volver a la app. **Bloqueada en tres niveles:** router, reglas de Firestore y Cloud Functions |
+| F-12 | Login | ✅ | Errores de Firebase traducidos al español, mostrar/ocultar contraseña, sesión persistente |
+| F-13 | Recuperar contraseña | ✅ | Mensaje genérico que no revela si la cuenta existe |
+| F-14 | Login con Google | ⬜ | Opcional; requiere el proyecto real (SHA-1) |
+| F-15 | Selección de rol | ✅ | Tarjetas Dueño/Colaborador. "Continuar" deshabilitado hasta elegir |
+| F-16 | Crear negocio | ✅ | Nombre, celular (+51, 9 dígitos), departamento (los 25) y provincia. Function `createBusiness` con **7 días de prueba** |
+| F-17 | Unirse con código | ✅ | Código de 6 caracteres sin ambiguos. Function `redeemInvite` transaccional: vigente, un solo uso, no vencido |
+| F-18 | Menú lateral y cerrar sesión | ✅ | Datos reales del negocio (iniciales, teléfono, ubicación). "Colaboradores" solo para el dueño. Confirmación al salir |
 
-**Pantallas disponibles hoy:**
-- Navegación entre las 4 pestañas.
-- Menú lateral (con datos de ejemplo).
-- Selector "¿Cómo pagó el cliente?" (solo la interfaz).
-- Productos con su estado vacío.
-- Ajustes con el selector de tema, que ya funciona.
+### 2.4 Backend
 
-El resto muestra "Disponible pronto (F-xx)".
+| Componente | Contenido |
+|---|---|
+| `functions/` | `createBusiness`, `generateInvite` (adelanto de F-30) y `redeemInvite`. Exigen el correo verificado y devuelven códigos de error estables que la app traduce |
+| `firebase/firestore.rules` | Se deniega todo por defecto. Los datos del negocio exigen el correo verificado y ser miembro activo. Solo el dueño lee invitaciones y edita el negocio. El usuario no puede asignarse rol ni negocio |
+| `firebase/firebase.json` | Emuladores Auth, Firestore, Functions y Storage, con la UI en `:4000` |
+| Tests de integración (12) | Usuario no verificado rechazado, datos inválidos, prueba de 7 días, un negocio por usuario, invitaciones solo del dueño, código de un solo uso, vencido o inexistente, y 4 grupos de pruebas de reglas |
 
-**Correcciones respecto a la app de referencia que ya están aplicadas:**
-- Todo el idioma en es-PE (sin "Home", "Products" ni "By me").
-- El teléfono del menú lleva el ícono correcto.
-- Hay un margen inferior reservado para que el FAB no tape contenido.
+### 2.5 Correcciones encontradas durante el desarrollo
 
-**Tests (36):** dinero (formato, parseo, aritmética), fechas de Lima (cambios de día, semana y mes), guards del router (los 5 estados de sesión y los permisos por rol), y pruebas de widget del shell (pestañas, FAB, menú y persistencia del tema).
+- La fila "¿No tienes cuenta? Crear cuenta" se desbordaba en pantallas angostas o con letra grande. Se cambió por un `Wrap`.
+- El aviso "Tu correo aún no está verificado" seguía visible después de verificar y tapaba el botón de la siguiente pantalla. Ahora se oculta.
 
 ---
 
 ## 3. Pendiente por realizar
 
-### 3.1 Para cerrar M0
+### 3.1 Para cerrar M0/M1
 
-- [ ] **F-06:** integrar Firebase Analytics y Crashlytics. Requiere el proyecto de Firebase.
-- [ ] **F-05:** proteger la rama `main`: PR obligatorio, CI en verde y 1 aprobación.
-- [ ] Validar la compilación del APK en el CI y probarlo en un dispositivo real. Este entorno no tiene SDK de Android.
+- [ ] **F-06:** Firebase Analytics y Crashlytics (requieren `google-services.json` del proyecto real).
+- [ ] **F-14:** login con Google (opcional).
+- [ ] Proteger la rama `main`. Se configura en GitHub; no se puede hacer desde esta sesión.
+- [ ] Probar en un dispositivo real. Este entorno no tiene SDK de Android, así que el APK se compila en el CI.
 
-### 3.2 Etapas siguientes
+### 3.2 Siguientes etapas
 
-| Etapa | Contenido principal | Estimación | Depende de |
-|---|---|:-:|---|
-| **M1** Autenticación y onboarding | Registro, **verificación de correo**, login, recuperar contraseña, rol, crear negocio / unirse con código, cerrar sesión | 6 d | Firebase |
-| **M2** Pagos | Registro en efectivo y digital, Inicio con el resumen del día, lista semanal, anulación, modo offline | 8 d | M1 |
-| **M3** Colaboradores | Códigos de invitación, gestión de colaboradores, push al dueño | 4 d | M2 |
-| **M4** Cuadre de caja | Mi caja, caja física, diferencia, cerrar/reabrir, resumen general | 5 d | M2 |
-| **M5** Reportes | Agregados diarios, Semana/Mes/Año, KPIs, exportar a Excel o PDF | 5 d | M2 |
-| **M6** Productos | Código de barras, producto sin código, venta con productos | 5 d | M2 |
-| **M7** Automatización | OCR de comprobantes, captura de Yape/Plin (Android), anuncio por voz | 8 d | M2 |
-| **M8** Usuario y suscripción | **Pestaña Usuario → Info**, perfil, eliminar cuenta, ajustes, plan y pagos in-app | 5 d | M1 |
-| **M9** Calidad y lanzamiento | Tests E2E, accesibilidad, publicación en Google Play | 5 d | Todas |
+| Etapa | Contenido | Estimación | Estado |
+|---|---|:-:|:-:|
+| **M2** Pagos | Registro en efectivo y digital, Inicio con el resumen del día, lista semanal, anulación, offline | 8 d | ⬜ **Siguiente** |
+| M3 Colaboradores | UI de invitaciones (el backend ya existe), gestión, push | 3 d | ⬜ |
+| M4 Cuadre de caja | Mi caja, caja física, diferencia, cerrar/reabrir | 5 d | ⬜ |
+| M5 Reportes | Agregados, Semana/Mes/Año, KPIs, exportar | 5 d | ⬜ |
+| M6 Productos | Código de barras, sin código, venta con productos | 5 d | ⬜ |
+| M7 Automatización | OCR, Yape/Plin (Android), voz | 8 d | ⬜ |
+| M8 Usuario y suscripción | **Usuario → Info**, perfil, eliminar cuenta, ajustes, plan | 5 d | ⬜ |
+| M9 Calidad y lanzamiento | E2E, accesibilidad, Google Play | 5 d | ⬜ |
 
-**Restante:** ≈ 51 días-dev para 1 desarrollador, o ≈ 6 semanas con 2 desarrolladores en paralelo. Con 2 personas, una toma M3/M4 y la otra M5/M6 después de M2.
-
-### 3.3 Componentes aún no creados
-
-- `functions/`: Cloud Functions en TypeScript (`createBusiness`, `redeemInvite`, `onPaymentWrite`, `closeCashSession`, etc.).
-- `firebase/`: `firestore.rules`, `storage.rules`, índices y configuración de emuladores.
-- Código nativo de Android (Kotlin) para leer las notificaciones de Yape y Plin.
-- Logos oficiales de los medios de pago. Hoy se usan distintivos con iniciales y colores.
+**Restante:** ≈ 45 días-dev para 1 desarrollador.
 
 ---
 
 ## 4. Acciones requeridas del dueño del proyecto
 
-| # | Acción | Por qué | Bloquea |
-|:-:|---|---|---|
-| 1 | **Crear la rama `main`** desde el commit `7c583e0`, o autorizar que la cree yo | Sin `main` no se puede abrir el PR de M0 ni proteger la rama, y los enlaces a `docs/` en los issues no funcionan | PR de M0 |
-| 2 | **Crear los proyectos de Firebase** `vantia-dev` y `vantia-prod` (plan Blaze para las Functions), con Authentication por correo/contraseña activado | Login, verificación de correo, base de datos | M1 en adelante |
-| 3 | Ejecutar `flutterfire configure --project=vantia-dev` dentro de `app/` | Genera la configuración de Firebase, que no se sube al repo por seguridad | M1 |
-| 4 | Revisar y aprobar el PR de M0 | Para hacer merge a `main` | — |
-| 5 | Definir los precios del plan Pro y crear la cuenta de Google Play Console | Suscripción y publicación | M8, M9 |
-| 6 | Revisar el uso permitido de los logos de Yape, Plin y los bancos | Son marcas registradas | M2 (íconos finales) |
-| 7 | Confirmar la regla del pago en efectivo: **venta = monto recibido − cambio** | Afecta el cuadre de caja | M2, M4 |
+| # | Acción | Bloquea |
+|:-:|---|---|
+| 1 | Revisar y hacer merge del **PR #66** | Base estable en `main` |
+| 2 | Proteger `main` en *Settings → Branches*: PR obligatorio, CI en verde, 1 aprobación | Calidad |
+| 3 | Probar en tu PC con los emuladores (ver README, "Puesta en marcha") y reportar lo que veas | Validación |
+| 4 | Crear los proyectos de Firebase `vantia-dev` y `vantia-prod` (plan Blaze), con Authentication por correo, y llenar `app/env/dev.json` | F-06, F-14, pruebas con correos reales |
+| 5 | Confirmar la regla del efectivo: **venta = monto recibido − cambio** | M2, M4 |
+| 6 | Crear las etiquetas `area:*` y `priority:*` en GitHub (opcional) | Organización |
 
 ---
 
 ## 5. Recomendaciones para continuar
 
-1. **Cerrar M0 con un PR a `main`** antes de empezar M1. Así el CI corre sobre una base estable y se activa la protección de la rama.
-2. **Empezar M1 con el emulador de Firebase** (Auth y Firestore) mientras se crea el proyecto real. El código es el mismo, solo cambia la configuración. Las reglas de seguridad se escriben y testean desde el primer día con `@firebase/rules-unit-testing`.
-3. **Un PR por feature** (`feat/F-10-registro`, `feat/F-11-verificacion-correo`, …), con `Closes #n` para que los issues se cierren solos.
-4. **Prioridad sugerida dentro de M1:**
-   1. F-10 Registro
-   2. F-11 Verificación de correo
-   3. F-12 Login
-   4. F-13 Recuperar contraseña
-   5. F-15 Selección de rol, F-16 Crear negocio y F-17 Unirse con código
-   6. F-18 Cerrar sesión
-
-   F-14 (Google) es opcional y se puede dejar para el final.
-5. **Adelantar F-80 (Usuario → Info)** justo después de M1. Solo depende de la sesión y del negocio, y es una de las funciones pedidas.
-6. **Probar la captura de Yape/Plin (M7) cuanto antes** con un prototipo en un dispositivo real. Es la función de mayor riesgo técnico: depende de los permisos de Android, de la optimización de batería de cada fabricante y de la revisión de Google Play. Conviene validarla durante M2, no al final.
-7. **Recolectar ejemplos reales anonimizados** de notificaciones y capturas de comprobantes de Yape, Plin y cada banco. Son necesarios para los parsers de OCR y de notificaciones, y para sus tests.
-8. **Mantener las reglas del proyecto:** montos siempre en céntimos (`Money`), fechas agrupadas en hora de Lima (`LimaTime`), textos en `app_es.arb` y ningún acceso a Firestore desde los widgets.
-9. **Crear las etiquetas `area:*` y `priority:*`** desde la configuración del repo. Así se pueden filtrar los issues por área; no se pudieron crear desde esta sesión.
+1. **Hacer merge del PR #66** y trabajar M2 en ramas `feat/F-xx`, un PR por feature.
+2. **M2 es la base del resto.** Caja, reportes, productos y automatización dependen del modelo `payments` y de su agregación diaria. Conviene definir y testear bien las reglas de `payments` desde el inicio.
+3. **Hacer F-80 (Usuario → Info) al cerrar M2.** Solo depende de la sesión y del negocio, que ya existen.
+4. **Prototipar pronto la lectura de Yape/Plin en un celular real.** Es el mayor riesgo técnico: permisos de Android, ahorro de batería de cada fabricante y revisión de Google Play.
+5. **Juntar ejemplos reales anonimizados** de notificaciones y capturas de Yape, Plin y los bancos, para el OCR y sus tests.
+6. **Mantener las convenciones:** dinero como `Money`, fechas con `LimaTime`, textos en `app_es.arb`, permisos validados en reglas y Functions, y no solo en la UI.
 
 ---
 
-## 6. Cómo verificar lo construido
+## 6. Cómo probar lo construido
 
 ```bash
-cd app
-flutter pub get
-flutter analyze                                   # 0 avisos
-flutter test                                      # 36 tests en verde
-flutter run --flavor dev -t lib/main_dev.dart     # requiere emulador o dispositivo Android
+# Backend local (terminal 1)
+cd functions && npm ci && npm run serve          # UI de emuladores: http://localhost:4000
+
+# App (terminal 2), con un emulador de Android abierto
+cd app && flutter pub get
+flutter run --flavor dev -t lib/main_dev.dart --dart-define-from-file=env/emulator.json
+```
+
+**Flujo para probar:**
+1. Crear una cuenta.
+2. Copiar el enlace de verificación que aparece en la terminal 1 y abrirlo en el navegador.
+3. Tocar "Ya verifiqué mi correo".
+4. Elegir Dueño y crear el negocio.
+5. Entrar a la app.
+
+Para probar el rol de colaborador, genera un código desde la UI de emuladores o con `generateInvite`. La pantalla para el dueño llega en M3.
+
+**Tests:**
+```bash
+cd app && flutter analyze && flutter test        # 50 tests
+cd functions && npm test                          # 4 unit tests
+cd functions && npm run test:emulator             # 12 tests de integración + reglas
 ```

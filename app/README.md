@@ -4,8 +4,12 @@
 
 ```bash
 flutter pub get
-flutter run --flavor dev -t lib/main_dev.dart      # Vantia Dev (pe.vantia.app.dev)
-flutter run --flavor prod -t lib/main_prod.dart    # Vantia (pe.vantia.app)
+# Contra emuladores locales (levantar antes: cd ../functions && npm run serve)
+flutter run --flavor dev -t lib/main_dev.dart --dart-define-from-file=env/emulator.json
+
+# Contra un proyecto real (env/dev.json no se versiona; ver env/dev.json.example)
+flutter run --flavor dev -t lib/main_dev.dart --dart-define-from-file=env/dev.json
+flutter run --flavor prod -t lib/main_prod.dart --dart-define-from-file=env/prod.json
 ```
 
 ## Calidad

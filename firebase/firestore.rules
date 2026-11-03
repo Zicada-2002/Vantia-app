@@ -1,0 +1,73 @@
+rules_version = '2';
+
+// Reglas de Vantia (ver docs/ARQUITECTURA.md §5).
+// Principios:
+//  - Todo exige sesión; los datos del negocio exigen correo verificado.
+//  - La pertenencia y el rol se leen de businesses/{bid}/members/{uid},
+//    que solo escriben las Cloud Functions (Admin SDK ignora estas reglas).
+//  - Denegar por defecto: lo que no está explícito, no se permite.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function verified() {
+      return signedIn() && request.auth.token.email_verified == true;
+    }
+
+    function member(bid) {
+      return get(/databases/$(database)/documents/businesses/$(bid)/members/$(request.auth.uid)).data;
+    }
+
+    function isMember(bid) {
+      return verified()
+        && exists(/databases/$(database)/documents/businesses/$(bid)/members/$(request.auth.uid))
+        && member(bid).active == true;
+    }
+
+    function isOwner(bid) {
+      return isMember(bid) && member(bid).role == 'owner';
+    }
+
+    function onlyChanges(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    // Perfil propio. Se puede leer sin verificar (lo necesita el arranque);
+    // negocio y rol solo los asignan las Functions.
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow update: if verified()
+        && request.auth.uid == uid
+        && onlyChanges(['displayName', 'phone', 'prefs', 'updatedAt']);
+      allow create, delete: if false;
+    }
+
+    match /businesses/{bid} {
+      allow read: if isMember(bid);
+      allow update: if isOwner(bid)
+        && onlyChanges(['name', 'phone', 'department', 'province', 'ruc', 'updatedAt']);
+      allow create, delete: if false;
+
+      match /members/{uid} {
+        allow read: if isMember(bid);
+        allow write: if false;
+      }
+
+      match /invites/{code} {
+        allow read: if isOwner(bid);
+        allow write: if false;
+      }
+
+      // Colecciones de M2+ (payments, cashSessions, products, dailyStats,
+      // audit) se habilitan en sus milestones; hasta entonces, denegadas.
+    }
+
+    // Índice global de códigos: solo Functions.
+    match /inviteCodes/{code} {
+      allow read, write: if false;
+    }
+  }
+}
