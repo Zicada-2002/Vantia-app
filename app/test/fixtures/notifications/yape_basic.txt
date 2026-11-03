@@ -1,0 +1,3 @@
+com.bcp.innovacxion.yapeapp
+Confirmación de Pago
+Yape! Juan Pérez te envió un pago por S/ 10. El cód. de seguridad es: 123

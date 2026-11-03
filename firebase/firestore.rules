@@ -40,11 +40,11 @@ service cloud.firestore {
       return exists(path) && get(path).data.status == 'closed';
     }
 
-    function validNewPayment(d) {
+    function validNewPayment(bid, d) {
       return d.keys().hasOnly([
           'method', 'amountCents', 'receivedCents', 'changeCents', 'description',
           'operationNumber', 'payerName', 'occurredAt', 'dayKey', 'createdBy',
-          'createdByName', 'source', 'verified', 'status', 'items', 'createdAt'])
+          'createdByName', 'source', 'verified', 'status', 'items', 'receiptPath', 'createdAt'])
         && d.method in ['yape', 'plin', 'bcp', 'interbank', 'bbva', 'scotiabank', 'cash']
         && d.amountCents is int && d.amountCents > 0 && d.amountCents <= 100000000
         && d.occurredAt is timestamp
@@ -60,6 +60,8 @@ service cloud.firestore {
         && (!('operationNumber' in d) || (d.operationNumber is string && d.operationNumber.size() <= 40))
         && (!('payerName' in d) || (d.payerName is string && d.payerName.size() <= 80))
         && (!('items' in d) || (d.items is list && d.items.size() <= 100))
+        && (!('receiptPath' in d) || (d.receiptPath is string
+            && d.receiptPath.matches('^receipts/' + bid + '/[A-Za-z0-9_-]+[.]jpg$')))
         && (d.method != 'cash'
             || (d.receivedCents is int && d.changeCents is int
                 && d.changeCents >= 0
@@ -134,7 +136,7 @@ service cloud.firestore {
           || (isMember(bid) && resource.data.createdBy == request.auth.uid);
 
         allow create: if isMember(bid)
-          && validNewPayment(request.resource.data)
+          && validNewPayment(bid, request.resource.data)
           && !cashClosed(bid, request.resource.data.dayKey, request.auth.uid);
 
         // Única edición permitida: anulación lógica.

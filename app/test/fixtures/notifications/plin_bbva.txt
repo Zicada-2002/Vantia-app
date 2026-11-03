@@ -1,0 +1,3 @@
+com.bbva.nxt_peru
+Recibiste un plin
+Ana Torres te envió un plin por S/ 35.90

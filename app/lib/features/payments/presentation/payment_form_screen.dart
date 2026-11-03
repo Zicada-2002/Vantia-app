@@ -14,6 +14,7 @@ import 'package:vantia/core/widgets/money_text.dart';
 import 'package:vantia/core/widgets/payment_method_icon.dart';
 import 'package:vantia/core/widgets/v_button.dart';
 import 'package:vantia/core/widgets/v_text_field.dart';
+import 'package:vantia/features/automation/application/receipt_providers.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
@@ -29,9 +30,13 @@ class PaymentPrefill {
     this.description,
     this.items = const [],
     this.source = PaymentSource.manual,
+    this.receiptFilePath,
+    this.detectedMethod,
   });
 
   final Money? amount;
+  final String? receiptFilePath;
+  final PaymentMethod? detectedMethod;
   final DateTime? occurredAt;
   final String? operationNumber;
   final String? payerName;
@@ -69,6 +74,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
   late DateTime _limaWall; // hora de pared en Lima
   late PaymentSource _source;
   late List<PaymentItem> _items;
+  String? _receiptFile;
   bool _saving = false;
 
   bool get _isCash => widget.method == PaymentMethod.cash;
@@ -88,12 +94,9 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
     if (p.operationNumber != null) _operation.text = p.operationNumber!;
     if (p.payerName != null) _payer.text = p.payerName!;
     if (p.description != null) _description.text = p.description!;
-    if (initial) {
-      _items = p.items;
-      _source = p.source;
-    } else {
-      _source = p.source;
-    }
+    if (initial) _items = p.items;
+    _source = p.source;
+    if (p.receiptFilePath != null) _receiptFile = p.receiptFilePath;
   }
 
   @override
@@ -171,8 +174,20 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
   }
 
   Future<void> _scan() async {
-    final result = await widget.onScanReceipt?.call(context);
-    if (result != null && mounted) setState(() => _applyPrefill(result));
+    final scan = widget.onScanReceipt ?? ref.read(receiptScannerProvider).scan;
+    final result = await scan(context);
+    if (result == null || !mounted) return;
+    setState(() => _applyPrefill(result));
+    final l10n = context.l10n;
+    if (result.amount == null) {
+      showSnack(context, l10n.ocrNoAmount);
+    } else if (result.detectedMethod != null &&
+        result.detectedMethod != widget.method) {
+      showSnack(context, l10n.ocrOtherMethod(result.detectedMethod!.label));
+    }
+    ref.read(analyticsProvider).log(AnalyticsEvent.ocrScan, {
+      'success': result.amount != null,
+    }).ignore();
   }
 
   Future<void> _submit() async {
@@ -218,11 +233,27 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
 
     setState(() => _saving = true);
 
+    final receiptPath = _receiptFile == null
+        ? null
+        : await ref
+              .read(receiptStorageProvider)
+              .upload(session.businessId, _receiptFile!);
     final result = await repo.create(
       businessId: session.businessId,
       userId: session.uid,
       userName: ref.read(currentUserNameProvider),
-      draft: draft,
+      draft: PaymentDraft(
+        method: draft.method,
+        received: draft.received,
+        change: draft.change,
+        occurredAt: draft.occurredAt,
+        description: draft.description,
+        operationNumber: draft.operationNumber,
+        payerName: draft.payerName,
+        source: draft.source,
+        items: draft.items,
+        receiptPath: receiptPath,
+      ),
     );
     if (!mounted) return;
     setState(() => _saving = false);
@@ -277,7 +308,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
                 child: PaymentMethodIcon(widget.method, size: 64),
               ),
             ),
-            if (!_isCash && widget.onScanReceipt != null) ...[
+            if (!_isCash) ...[
               const SizedBox(height: VantiaSpacing.md),
               VButton(
                 variant: VButtonVariant.outlined,

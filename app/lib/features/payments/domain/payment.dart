@@ -61,6 +61,7 @@ class Payment {
     this.items = const [],
     this.createdAt,
     this.pendingSync = false,
+    this.receiptPath,
   });
 
   final String id;
@@ -84,6 +85,9 @@ class Payment {
   /// Escrito localmente pero aún no confirmado por el servidor (offline).
   final bool pendingSync;
 
+  /// Imagen del comprobante en Storage (`receipts/{bid}/{archivo}`).
+  final String? receiptPath;
+
   bool get isActive => status == PaymentStatus.active;
   bool get isCash => method == PaymentMethod.cash;
   String get dayKey => LimaTime.dayKey(occurredAt);
@@ -103,9 +107,11 @@ class PaymentDraft {
     this.source = PaymentSource.manual,
     this.verified = false,
     this.items = const [],
+    this.receiptPath,
   });
 
   final PaymentMethod method;
+  final String? receiptPath;
 
   /// Monto que entregó/transfirió el cliente.
   final Money received;

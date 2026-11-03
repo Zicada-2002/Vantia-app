@@ -34,11 +34,13 @@ abstract interface class PaymentRepository {
   Stream<Payment?> watch(String businessId, String paymentId);
 
   /// Registra el pago. Funciona offline: devuelve el id de inmediato.
+  /// [id] permite ids deterministas (deduplicación de notificaciones).
   Future<Result<String>> create({
     required String businessId,
     required String userId,
     required String userName,
     required PaymentDraft draft,
+    String? id,
   });
 
   Future<Result<void>> voidPayment({

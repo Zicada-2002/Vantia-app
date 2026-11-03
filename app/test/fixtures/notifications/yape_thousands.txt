@@ -1,0 +1,3 @@
+com.bcp.innovacxion.yapeapp
+Confirmación de Pago
+Yape! MARIA L. ROJAS te envió un pago por S/ 1,250.50.

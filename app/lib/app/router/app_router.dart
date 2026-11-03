@@ -11,6 +11,7 @@ import 'package:vantia/features/auth/presentation/login_screen.dart';
 import 'package:vantia/features/auth/presentation/register_screen.dart';
 import 'package:vantia/features/auth/presentation/splash_screen.dart';
 import 'package:vantia/features/auth/presentation/verify_email_screen.dart';
+import 'package:vantia/features/automation/presentation/automation_setup_screen.dart';
 import 'package:vantia/features/cash_register/presentation/cash_register_screen.dart';
 import 'package:vantia/features/collaborators/presentation/collaborators_screen.dart';
 import 'package:vantia/features/home/presentation/home_screen.dart';
@@ -170,6 +171,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.settings,
         parentNavigatorKey: _rootKey,
         builder: (_, _) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: Routes.automation,
+        parentNavigatorKey: _rootKey,
+        builder: (_, _) => const AutomationSetupScreen(),
       ),
       GoRoute(
         path: Routes.user,

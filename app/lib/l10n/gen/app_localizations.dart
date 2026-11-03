@@ -1881,6 +1881,138 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sin stock suficiente de {name}'**
   String cartOutOfStock(String name);
+
+  /// No description provided for @ocrCamera.
+  ///
+  /// In es, this message translates to:
+  /// **'Tomar foto'**
+  String get ocrCamera;
+
+  /// No description provided for @ocrGallery.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir de la galería'**
+  String get ocrGallery;
+
+  /// No description provided for @ocrNoAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos leer el monto. Ingrésalo manualmente.'**
+  String get ocrNoAmount;
+
+  /// No description provided for @ocrOtherMethod.
+  ///
+  /// In es, this message translates to:
+  /// **'El comprobante parece de {method}. Revisa el medio de pago.'**
+  String ocrOtherMethod(String method);
+
+  /// No description provided for @autoTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificación automática'**
+  String get autoTitle;
+
+  /// No description provided for @autoIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Vantia puede leer las notificaciones de Yape y de los bancos con Plin para registrar cada cobro automáticamente y anunciarlo por voz.'**
+  String get autoIntro;
+
+  /// No description provided for @autoPrivacy.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo se leen las notificaciones de esas apps. El texto no sale de tu celular salvo el pago detectado.'**
+  String get autoPrivacy;
+
+  /// No description provided for @autoStepPermission.
+  ///
+  /// In es, this message translates to:
+  /// **'1. Permitir acceso a notificaciones'**
+  String get autoStepPermission;
+
+  /// No description provided for @autoStepBattery.
+  ///
+  /// In es, this message translates to:
+  /// **'2. Quitar restricciones de batería'**
+  String get autoStepBattery;
+
+  /// No description provided for @autoGranted.
+  ///
+  /// In es, this message translates to:
+  /// **'Concedido'**
+  String get autoGranted;
+
+  /// No description provided for @autoPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get autoPending;
+
+  /// No description provided for @autoOpenSettings.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir ajustes'**
+  String get autoOpenSettings;
+
+  /// No description provided for @autoBatteryHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'En Xiaomi, Huawei, Oppo o Samsung activa además \"Inicio automático\" y elige \"Sin restricciones\" en Batería para Vantia.'**
+  String get autoBatteryHelp;
+
+  /// No description provided for @autoEnable.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar cobros automáticamente'**
+  String get autoEnable;
+
+  /// No description provided for @autoVoice.
+  ///
+  /// In es, this message translates to:
+  /// **'Anunciar cada cobro por voz'**
+  String get autoVoice;
+
+  /// No description provided for @autoUnsupported.
+  ///
+  /// In es, this message translates to:
+  /// **'La verificación automática solo está disponible en Android.'**
+  String get autoUnsupported;
+
+  /// No description provided for @autoNeedsPermission.
+  ///
+  /// In es, this message translates to:
+  /// **'Primero concede el acceso a notificaciones'**
+  String get autoNeedsPermission;
+
+  /// No description provided for @settingsSound.
+  ///
+  /// In es, this message translates to:
+  /// **'SONIDO'**
+  String get settingsSound;
+
+  /// No description provided for @settingsPayNotifications.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificaciones de pago'**
+  String get settingsPayNotifications;
+
+  /// No description provided for @settingsPayNotificationsSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Anunciar cada cobro'**
+  String get settingsPayNotificationsSub;
+
+  /// No description provided for @settingsAutoVerify.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificación automática'**
+  String get settingsAutoVerify;
+
+  /// No description provided for @settingsAutoVerifySub.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificado Yape/Plin'**
+  String get settingsAutoVerifySub;
 }
 
 class _AppLocalizationsDelegate

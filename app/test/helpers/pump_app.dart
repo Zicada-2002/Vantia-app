@@ -9,6 +9,10 @@ import 'package:vantia/app/providers.dart';
 import 'package:vantia/app/theme/theme_mode_controller.dart';
 import 'package:vantia/core/time/clock.dart';
 import 'package:vantia/features/auth/domain/auth_repository.dart';
+import 'package:vantia/features/automation/application/automation_providers.dart';
+import 'package:vantia/features/automation/application/receipt_providers.dart';
+import 'package:vantia/features/automation/data/automation_channel.dart';
+import 'package:vantia/features/automation/data/receipt_scanner.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
 import 'package:vantia/features/cash_register/application/cash_providers.dart';
 import 'package:vantia/features/cash_register/domain/cash_session.dart';
@@ -36,6 +40,8 @@ extension PumpApp on WidgetTester {
     ReportsRepository? reports,
     ProductRepository? products,
     Future<String?> Function()? scan,
+    AutomationChannel? automation,
+    ReceiptStorage? receipts,
     DateTime? now,
     Map<String, Object> prefs = const {},
     List<Override> extraOverrides = const [],
@@ -77,6 +83,12 @@ extension PumpApp on WidgetTester {
         ),
         barcodeScannerProvider.overrideWithValue(
           (_) async => scan == null ? null : await scan(),
+        ),
+        automationChannelProvider.overrideWithValue(
+          automation ?? FakeAutomationChannel(supported: false),
+        ),
+        receiptStorageProvider.overrideWithValue(
+          receipts ?? FakeReceiptStorage(),
         ),
         ...extraOverrides,
       ],

@@ -976,4 +976,77 @@ class AppLocalizationsEs extends AppLocalizations {
   String cartOutOfStock(String name) {
     return 'Sin stock suficiente de $name';
   }
+
+  @override
+  String get ocrCamera => 'Tomar foto';
+
+  @override
+  String get ocrGallery => 'Elegir de la galería';
+
+  @override
+  String get ocrNoAmount => 'No pudimos leer el monto. Ingrésalo manualmente.';
+
+  @override
+  String ocrOtherMethod(String method) {
+    return 'El comprobante parece de $method. Revisa el medio de pago.';
+  }
+
+  @override
+  String get autoTitle => 'Verificación automática';
+
+  @override
+  String get autoIntro =>
+      'Vantia puede leer las notificaciones de Yape y de los bancos con Plin para registrar cada cobro automáticamente y anunciarlo por voz.';
+
+  @override
+  String get autoPrivacy =>
+      'Solo se leen las notificaciones de esas apps. El texto no sale de tu celular salvo el pago detectado.';
+
+  @override
+  String get autoStepPermission => '1. Permitir acceso a notificaciones';
+
+  @override
+  String get autoStepBattery => '2. Quitar restricciones de batería';
+
+  @override
+  String get autoGranted => 'Concedido';
+
+  @override
+  String get autoPending => 'Pendiente';
+
+  @override
+  String get autoOpenSettings => 'Abrir ajustes';
+
+  @override
+  String get autoBatteryHelp =>
+      'En Xiaomi, Huawei, Oppo o Samsung activa además \"Inicio automático\" y elige \"Sin restricciones\" en Batería para Vantia.';
+
+  @override
+  String get autoEnable => 'Registrar cobros automáticamente';
+
+  @override
+  String get autoVoice => 'Anunciar cada cobro por voz';
+
+  @override
+  String get autoUnsupported =>
+      'La verificación automática solo está disponible en Android.';
+
+  @override
+  String get autoNeedsPermission =>
+      'Primero concede el acceso a notificaciones';
+
+  @override
+  String get settingsSound => 'SONIDO';
+
+  @override
+  String get settingsPayNotifications => 'Notificaciones de pago';
+
+  @override
+  String get settingsPayNotificationsSub => 'Anunciar cada cobro';
+
+  @override
+  String get settingsAutoVerify => 'Verificación automática';
+
+  @override
+  String get settingsAutoVerifySub => 'Verificado Yape/Plin';
 }

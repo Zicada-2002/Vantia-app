@@ -117,3 +117,19 @@ describe("reglas de payments", () => {
     await assertSucceeds(setDoc(payRef(ANA, "other-day"), cashPayment(ANA, { dayKey: "2026-11-03" })));
   });
 });
+
+describe("comprobantes en pagos", () => {
+  test("receiptPath debe apuntar a receipts/{bid}/", async () => {
+    await assertSucceeds(
+      setDoc(payRef(ANA, "r1"), cashPayment(ANA, { dayKey: "2026-11-04", receiptPath: `receipts/${BID}/abc_123.jpg` })),
+    );
+    await assertFails(
+      setDoc(payRef(ANA, "r2"), cashPayment(ANA, { dayKey: "2026-11-04", receiptPath: "receipts/otro/abc.jpg" })),
+    );
+  });
+
+  test("un id determinista no se puede reescribir (dedupe de notificaciones)", async () => {
+    await assertSucceeds(setDoc(payRef(ANA, "n_dup"), cashPayment(ANA, { dayKey: "2026-11-04" })));
+    await assertFails(setDoc(payRef(ANA, "n_dup"), cashPayment(ANA, { dayKey: "2026-11-04" })));
+  });
+});

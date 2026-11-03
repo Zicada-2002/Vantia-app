@@ -56,8 +56,9 @@ class FirestorePaymentRepository implements PaymentRepository {
     required String userId,
     required String userName,
     required PaymentDraft draft,
+    String? id,
   }) async {
-    final ref = _col(businessId).doc();
+    final ref = id == null ? _col(businessId).doc() : _col(businessId).doc(id);
     final data = <String, Object?>{
       'method': draft.method.id,
       'amountCents': draft.net.cents,
@@ -76,6 +77,7 @@ class FirestorePaymentRepository implements PaymentRepository {
       'verified': draft.verified,
       'status': PaymentStatus.active.name,
       'items': draft.items.map((i) => i.toJson()).toList(),
+      'receiptPath': draft.receiptPath,
       'createdAt': FieldValue.serverTimestamp(),
     }..removeWhere((_, v) => v == null);
     // Sin await al servidor: offline-first. El set queda en la cola local.
@@ -164,5 +166,6 @@ Payment paymentFromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
     ],
     createdAt: (d['createdAt'] as Timestamp?)?.toDate(),
     pendingSync: doc.metadata.hasPendingWrites,
+    receiptPath: d['receiptPath'] as String?,
   );
 }

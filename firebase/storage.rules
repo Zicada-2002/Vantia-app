@@ -1,8 +1,25 @@
 rules_version = '2';
 
-// Comprobantes de pago (M7). Hasta entonces, todo denegado.
+// Comprobantes de pago (F-70): receipts/{bid}/{archivo}.jpg
+// Solo miembros activos del negocio, con correo verificado; imágenes < 5 MB.
 service firebase.storage {
   match /b/{bucket}/o {
+    function isMember(bid) {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && firestore.exists(/databases/(default)/documents/businesses/$(bid)/members/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/businesses/$(bid)/members/$(request.auth.uid)).data.active == true;
+    }
+
+    match /receipts/{bid}/{file} {
+      allow read: if isMember(bid);
+      allow create: if isMember(bid)
+        && file.matches('^[A-Za-z0-9_-]+[.]jpg$')
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow update, delete: if false;
+    }
+
     match /{allPaths=**} {
       allow read, write: if false;
     }

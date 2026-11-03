@@ -2,10 +2,14 @@ import 'dart:async';
 
 import 'package:vantia/app/router/session.dart';
 import 'package:vantia/core/money/money.dart';
+import 'package:vantia/core/result/failure.dart';
 import 'package:vantia/core/result/result.dart';
 import 'package:vantia/features/auth/domain/auth_failure.dart';
 import 'package:vantia/features/auth/domain/auth_repository.dart';
 import 'package:vantia/features/auth/domain/auth_user.dart';
+import 'package:vantia/features/automation/data/automation_channel.dart';
+import 'package:vantia/features/automation/data/receipt_scanner.dart';
+import 'package:vantia/features/automation/domain/parsers.dart';
 import 'package:vantia/features/business/domain/business.dart';
 import 'package:vantia/features/business/domain/business_failure.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
@@ -279,13 +283,19 @@ class FakePaymentRepository implements PaymentRepository {
     required String userId,
     required String userName,
     required PaymentDraft draft,
+    String? id,
   }) async {
-    final id = 'pay-${++_seq}';
+    if (id != null && payments.containsKey(id)) {
+      return const Err(PermissionFailure('ya existe'));
+    }
+    final pid = id ?? 'pay-${++_seq}';
     seed(
       Payment(
-        id: id,
+        id: pid,
         method: draft.method,
         amount: draft.net,
+        payerName: draft.payerName,
+        receiptPath: draft.receiptPath,
         received: draft.method == PaymentMethod.cash ? draft.received : null,
         change: draft.method == PaymentMethod.cash ? draft.change : null,
         description: draft.description?.trim().isEmpty ?? true
@@ -303,7 +313,7 @@ class FakePaymentRepository implements PaymentRepository {
         createdAt: _clock(),
       ),
     );
-    return Ok(id);
+    return Ok(pid);
   }
 
   @override
@@ -617,3 +627,57 @@ class FakeProductRepository implements ProductRepository {
     return const Ok(null);
   }
 }
+
+class FakeAutomationChannel implements AutomationChannel {
+  FakeAutomationChannel({this.permission = false, this.supported = true});
+
+  bool permission;
+  final bool supported;
+  final queue = <RawNotification>[];
+  final _events = StreamController<RawNotification>.broadcast();
+  ({bool enabled, bool voice})? lastConfig;
+  int permissionOpened = 0;
+
+  void emit(RawNotification n) => _events.add(n);
+
+  @override
+  bool get isSupported => supported;
+  @override
+  Future<bool> isPermissionGranted() async => permission;
+  @override
+  Future<void> openPermissionSettings() async => permissionOpened++;
+  @override
+  Future<bool> isIgnoringBatteryOptimizations() async => false;
+  @override
+  Future<void> openBatterySettings() async {}
+  @override
+  Future<void> setConfig({required bool enabled, required bool voice}) async =>
+      lastConfig = (enabled: enabled, voice: voice);
+  @override
+  Future<List<RawNotification>> drainQueue() async {
+    final out = List.of(queue);
+    queue.clear();
+    return out;
+  }
+
+  @override
+  Stream<RawNotification> get events => _events.stream;
+}
+
+class FakeReceiptStorage implements ReceiptStorage {
+  final uploads = <String>[];
+
+  @override
+  Future<String?> upload(String businessId, String localPath) async {
+    uploads.add(localPath);
+    return 'receipts/$businessId/test.jpg';
+  }
+}
+
+RawNotification yapeNotification({int soles = 10, DateTime? at}) =>
+    RawNotification(
+      packageName: KnownPackages.yape,
+      title: 'Confirmación de Pago',
+      text: 'Yape! Juan Pérez te envió un pago por S/ $soles.',
+      postedAt: at ?? fixedNow,
+    );

@@ -28,6 +28,7 @@ abstract final class Routes {
   static const cashRegister = '/cash-register';
   static const settings = '/settings';
   static const user = '/user';
+  static const automation = '/automation';
 
   static const Set<String> authRoutes = {login, register, forgotPassword};
   static const Set<String> onboardingRoutes = {

@@ -471,5 +471,34 @@
         "type": "String"
       }
     }
-  }
+  },
+  "ocrCamera": "Tomar foto",
+  "ocrGallery": "Elegir de la galería",
+  "ocrNoAmount": "No pudimos leer el monto. Ingrésalo manualmente.",
+  "ocrOtherMethod": "El comprobante parece de {method}. Revisa el medio de pago.",
+  "@ocrOtherMethod": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "autoTitle": "Verificación automática",
+  "autoIntro": "Vantia puede leer las notificaciones de Yape y de los bancos con Plin para registrar cada cobro automáticamente y anunciarlo por voz.",
+  "autoPrivacy": "Solo se leen las notificaciones de esas apps. El texto no sale de tu celular salvo el pago detectado.",
+  "autoStepPermission": "1. Permitir acceso a notificaciones",
+  "autoStepBattery": "2. Quitar restricciones de batería",
+  "autoGranted": "Concedido",
+  "autoPending": "Pendiente",
+  "autoOpenSettings": "Abrir ajustes",
+  "autoBatteryHelp": "En Xiaomi, Huawei, Oppo o Samsung activa además \"Inicio automático\" y elige \"Sin restricciones\" en Batería para Vantia.",
+  "autoEnable": "Registrar cobros automáticamente",
+  "autoVoice": "Anunciar cada cobro por voz",
+  "autoUnsupported": "La verificación automática solo está disponible en Android.",
+  "autoNeedsPermission": "Primero concede el acceso a notificaciones",
+  "settingsSound": "SONIDO",
+  "settingsPayNotifications": "Notificaciones de pago",
+  "settingsPayNotificationsSub": "Anunciar cada cobro",
+  "settingsAutoVerify": "Verificación automática",
+  "settingsAutoVerifySub": "Verificado Yape/Plin"
 }
