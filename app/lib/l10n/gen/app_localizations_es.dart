@@ -1049,4 +1049,213 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsAutoVerifySub => 'Verificado Yape/Plin';
+
+  @override
+  String get userInfoPersonal => 'Información personal';
+
+  @override
+  String get userInfoBusiness => 'Información del negocio';
+
+  @override
+  String get userInfoAccount => 'Cuenta';
+
+  @override
+  String get userInfoSupport => 'Soporte';
+
+  @override
+  String get userName => 'Nombre';
+
+  @override
+  String get userEmail => 'Correo';
+
+  @override
+  String get userEmailVerified => 'Verificado';
+
+  @override
+  String get userPhone => 'Celular';
+
+  @override
+  String get userNoPhone => 'Sin registrar';
+
+  @override
+  String get userBusinessName => 'Negocio';
+
+  @override
+  String get userLocation => 'Ubicación';
+
+  @override
+  String get userRuc => 'RUC';
+
+  @override
+  String get userRole => 'Rol';
+
+  @override
+  String get userPlan => 'Plan';
+
+  @override
+  String get userMemberSince => 'Miembro desde';
+
+  @override
+  String get userWhatsapp => 'Escríbenos por WhatsApp';
+
+  @override
+  String get userFaq => 'Preguntas frecuentes';
+
+  @override
+  String get userReport => 'Reportar un problema';
+
+  @override
+  String userVersion(String version, String build) {
+    return 'Versión $version ($build)';
+  }
+
+  @override
+  String get userEdit => 'Editar perfil';
+
+  @override
+  String get userChangePassword => 'Cambiar contraseña';
+
+  @override
+  String get userChangeEmail => 'Cambiar correo';
+
+  @override
+  String get userDeleteAccount => 'Eliminar cuenta';
+
+  @override
+  String get roleOwner => 'Dueño';
+
+  @override
+  String get roleCollaborator => 'Colaborador';
+
+  @override
+  String get editProfileTitle => 'Editar perfil';
+
+  @override
+  String get editSaved => 'Perfil actualizado';
+
+  @override
+  String get fieldCurrentPassword => 'Contraseña actual';
+
+  @override
+  String get fieldNewPassword => 'Nueva contraseña';
+
+  @override
+  String get fieldNewEmail => 'Nuevo correo';
+
+  @override
+  String get passwordChanged => 'Contraseña actualizada';
+
+  @override
+  String emailChangeSent(String email) {
+    return 'Te enviamos un enlace a $email. El cambio se aplica al confirmarlo.';
+  }
+
+  @override
+  String get deleteTitle => 'Eliminar cuenta';
+
+  @override
+  String get deleteBody =>
+      'Se borrarán tu perfil y tu acceso. Los pagos que registraste se conservan para el negocio, sin tu nombre. Esta acción no se puede deshacer.';
+
+  @override
+  String get deleteOwnerWarning =>
+      'Eres el dueño: el negocio se cerrará y todo tu equipo perderá el acceso.';
+
+  @override
+  String get deleteTypeConfirm => 'Escribe ELIMINAR para confirmar';
+
+  @override
+  String get deleteConfirm => 'Eliminar definitivamente';
+
+  @override
+  String get planFree => 'Plan: Free';
+
+  @override
+  String get planTrial => 'Plan: Prueba Pro';
+
+  @override
+  String get planPro => 'Plan: Pro';
+
+  @override
+  String planTrialDays(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Tu prueba gratis termina en $days días.',
+      one: 'Tu prueba gratis termina en 1 día.',
+      zero: 'Tu prueba gratis termina hoy.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFreeBody => 'Mejora a Pro para activar todas las funciones.';
+
+  @override
+  String get planProBody => 'Tienes todas las funciones activas.';
+
+  @override
+  String get planBenefit1 => 'Registro automático de pagos de transferencias';
+
+  @override
+  String get planBenefit2 => 'Anuncio por voz de cada cobro al instante';
+
+  @override
+  String get planBenefit3 => 'Lectura de capturas de pago con un toque';
+
+  @override
+  String get planBenefit4 => 'Colaboradores ilimitados en tu negocio';
+
+  @override
+  String get planUpgrade => 'Mejorar ahora';
+
+  @override
+  String get paywallTitle => 'Vantia Pro';
+
+  @override
+  String get paywallMonthly => 'Mensual';
+
+  @override
+  String get paywallAnnual => 'Anual';
+
+  @override
+  String get paywallRestore => 'Restaurar compras';
+
+  @override
+  String get paywallUnavailable =>
+      'Las suscripciones aún no están disponibles en esta versión. Escríbenos por WhatsApp para activar Pro.';
+
+  @override
+  String get paywallSuccess => '¡Listo! Ya tienes Vantia Pro';
+
+  @override
+  String get paywallOwnerOnly => 'Solo el dueño puede gestionar el plan.';
+
+  @override
+  String get proRequired => 'Función disponible en Vantia Pro';
+
+  @override
+  String get settingsAppearance => 'APARIENCIA';
+
+  @override
+  String get settingsInfo => 'INFORMACIÓN';
+
+  @override
+  String get settingsTerms => 'Términos y condiciones';
+
+  @override
+  String get settingsPrivacy => 'Política de privacidad';
+
+  @override
+  String get settingsRate => 'Valorar Vantia';
+
+  @override
+  String get settingsVersion => 'Versión de la app';
+
+  @override
+  String get settingsCollabPush => 'Avisarme cuando mi equipo cobre';
+
+  @override
+  String get collabLimit =>
+      'El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados.';
 }

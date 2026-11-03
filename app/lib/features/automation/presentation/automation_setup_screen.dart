@@ -6,6 +6,7 @@ import 'package:vantia/app/theme/tokens.dart';
 import 'package:vantia/core/widgets/error_messages.dart';
 import 'package:vantia/core/widgets/v_card.dart';
 import 'package:vantia/features/automation/application/automation_providers.dart';
+import 'package:vantia/features/subscription/presentation/plan_card.dart';
 import 'package:vantia/l10n/l10n.dart';
 
 /// F-71 / F-73: permisos guiados para leer notificaciones.
@@ -142,7 +143,10 @@ class _AutomationSetupScreenState extends ConsumerState<AutomationSetupScreen>
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.autoVoice),
                 value: settings.voice,
-                onChanged: (v) => controller.setVoice(value: v),
+                onChanged: (v) {
+                  if (v && !requirePro(context, ref)) return;
+                  unawaited(controller.setVoice(value: v));
+                },
               ),
             ],
           ],

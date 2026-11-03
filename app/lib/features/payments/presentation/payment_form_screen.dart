@@ -18,6 +18,7 @@ import 'package:vantia/features/automation/application/receipt_providers.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
+import 'package:vantia/features/subscription/presentation/plan_card.dart';
 import 'package:vantia/l10n/l10n.dart';
 
 /// Datos que pueden llegar prellenados (OCR, carrito de productos).
@@ -174,6 +175,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
   }
 
   Future<void> _scan() async {
+    if (!requirePro(context, ref)) return;
     final scan = widget.onScanReceipt ?? ref.read(receiptScannerProvider).scan;
     final result = await scan(context);
     if (result == null || !mounted) return;

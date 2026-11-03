@@ -500,5 +500,93 @@
   "settingsPayNotifications": "Notificaciones de pago",
   "settingsPayNotificationsSub": "Anunciar cada cobro",
   "settingsAutoVerify": "Verificación automática",
-  "settingsAutoVerifySub": "Verificado Yape/Plin"
+  "settingsAutoVerifySub": "Verificado Yape/Plin",
+  "userInfoPersonal": "Información personal",
+  "userInfoBusiness": "Información del negocio",
+  "userInfoAccount": "Cuenta",
+  "userInfoSupport": "Soporte",
+  "userName": "Nombre",
+  "userEmail": "Correo",
+  "userEmailVerified": "Verificado",
+  "userPhone": "Celular",
+  "userNoPhone": "Sin registrar",
+  "userBusinessName": "Negocio",
+  "userLocation": "Ubicación",
+  "userRuc": "RUC",
+  "userRole": "Rol",
+  "userPlan": "Plan",
+  "userMemberSince": "Miembro desde",
+  "userWhatsapp": "Escríbenos por WhatsApp",
+  "userFaq": "Preguntas frecuentes",
+  "userReport": "Reportar un problema",
+  "userVersion": "Versión {version} ({build})",
+  "@userVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "userEdit": "Editar perfil",
+  "userChangePassword": "Cambiar contraseña",
+  "userChangeEmail": "Cambiar correo",
+  "userDeleteAccount": "Eliminar cuenta",
+  "roleOwner": "Dueño",
+  "roleCollaborator": "Colaborador",
+  "editProfileTitle": "Editar perfil",
+  "editSaved": "Perfil actualizado",
+  "fieldCurrentPassword": "Contraseña actual",
+  "fieldNewPassword": "Nueva contraseña",
+  "fieldNewEmail": "Nuevo correo",
+  "passwordChanged": "Contraseña actualizada",
+  "emailChangeSent": "Te enviamos un enlace a {email}. El cambio se aplica al confirmarlo.",
+  "@emailChangeSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteTitle": "Eliminar cuenta",
+  "deleteBody": "Se borrarán tu perfil y tu acceso. Los pagos que registraste se conservan para el negocio, sin tu nombre. Esta acción no se puede deshacer.",
+  "deleteOwnerWarning": "Eres el dueño: el negocio se cerrará y todo tu equipo perderá el acceso.",
+  "deleteTypeConfirm": "Escribe ELIMINAR para confirmar",
+  "deleteConfirm": "Eliminar definitivamente",
+  "planFree": "Plan: Free",
+  "planTrial": "Plan: Prueba Pro",
+  "planPro": "Plan: Pro",
+  "planTrialDays": "{days, plural, =0{Tu prueba gratis termina hoy.} =1{Tu prueba gratis termina en 1 día.} other{Tu prueba gratis termina en {days} días.}}",
+  "@planTrialDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "planFreeBody": "Mejora a Pro para activar todas las funciones.",
+  "planProBody": "Tienes todas las funciones activas.",
+  "planBenefit1": "Registro automático de pagos de transferencias",
+  "planBenefit2": "Anuncio por voz de cada cobro al instante",
+  "planBenefit3": "Lectura de capturas de pago con un toque",
+  "planBenefit4": "Colaboradores ilimitados en tu negocio",
+  "planUpgrade": "Mejorar ahora",
+  "paywallTitle": "Vantia Pro",
+  "paywallMonthly": "Mensual",
+  "paywallAnnual": "Anual",
+  "paywallRestore": "Restaurar compras",
+  "paywallUnavailable": "Las suscripciones aún no están disponibles en esta versión. Escríbenos por WhatsApp para activar Pro.",
+  "paywallSuccess": "¡Listo! Ya tienes Vantia Pro",
+  "paywallOwnerOnly": "Solo el dueño puede gestionar el plan.",
+  "proRequired": "Función disponible en Vantia Pro",
+  "settingsAppearance": "APARIENCIA",
+  "settingsInfo": "INFORMACIÓN",
+  "settingsTerms": "Términos y condiciones",
+  "settingsPrivacy": "Política de privacidad",
+  "settingsRate": "Valorar Vantia",
+  "settingsVersion": "Versión de la app",
+  "settingsCollabPush": "Avisarme cuando mi equipo cobre",
+  "collabLimit": "El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados."
 }

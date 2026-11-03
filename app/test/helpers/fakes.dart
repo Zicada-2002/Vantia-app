@@ -21,6 +21,7 @@ import 'package:vantia/features/payments/domain/payment_repository.dart';
 import 'package:vantia/features/products/domain/product.dart';
 import 'package:vantia/features/reports/data/reports_repository.dart';
 import 'package:vantia/features/reports/domain/report.dart';
+import 'package:vantia/features/subscription/data/subscription_service.dart';
 
 /// Auth en memoria con el mismo contrato que Firebase.
 class FakeAuthRepository implements AuthRepository {
@@ -115,6 +116,47 @@ class FakeAuthRepository implements AuthRepository {
 
   @override
   Future<void> signOut() async => _emit(null);
+
+  final passwordChanges = <String>[];
+  final emailChanges = <String>[];
+
+  bool _checkPassword(String p) =>
+      accounts.isEmpty ||
+      accounts[_user?.email] == null ||
+      accounts[_user!.email] == p;
+
+  @override
+  Future<Result<void>> reauthenticate(String password) async =>
+      _checkPassword(password)
+      ? const Ok(null)
+      : const Err(AuthFailure(AuthErrorCode.invalidCredentials));
+
+  @override
+  Future<Result<void>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (!_checkPassword(currentPassword)) {
+      return const Err(AuthFailure(AuthErrorCode.invalidCredentials));
+    }
+    passwordChanges.add(newPassword);
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> changeEmail({
+    required String currentPassword,
+    required String newEmail,
+  }) async {
+    if (!_checkPassword(currentPassword)) {
+      return const Err(AuthFailure(AuthErrorCode.invalidCredentials));
+    }
+    emailChanges.add(newEmail);
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> updateDisplayName(String name) async => const Ok(null);
 }
 
 class FakeBusinessRepository implements BusinessRepository {
@@ -177,6 +219,47 @@ class FakeBusinessRepository implements BusinessRepository {
     return Ok(id);
   }
 
+  final profileUpdates = <(String, String?)>[];
+  final prefsUpdates = <Map<String, Object>>[];
+  bool deleted = false;
+
+  @override
+  Future<Result<void>> updateProfile(
+    String uid, {
+    required String displayName,
+    String? phone,
+  }) async {
+    profileUpdates.add((displayName, phone));
+    final p = _profiles[uid]!;
+    seedProfile(
+      UserProfile(
+        uid: uid,
+        displayName: displayName,
+        email: p.email,
+        phone: phone,
+        activeBusinessId: p.activeBusinessId,
+        role: p.role,
+        createdAt: p.createdAt,
+      ),
+    );
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> updatePrefs(
+    String uid,
+    Map<String, Object> prefs,
+  ) async {
+    prefsUpdates.add(prefs);
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> deleteAccount() async {
+    deleted = true;
+    return const Ok(null);
+  }
+
   @override
   Future<Result<String>> redeemInvite(String code) async {
     final bid = invites.remove(code);
@@ -196,7 +279,19 @@ class FakeBusinessRepository implements BusinessRepository {
   }
 }
 
-const demoBusiness = Business(
+/// Negocio de ejemplo en prueba Pro (vence en 7 días desde [fixedNow]).
+final demoBusiness = Business(
+  id: 'biz-demo',
+  name: 'Vantia Peru',
+  ownerUid: 'uid-owner',
+  phone: '917926826',
+  department: 'Lima',
+  province: 'Lima',
+  planTier: 'trial',
+  trialEndsAt: fixedNow.add(const Duration(days: 7)),
+);
+
+const freeBusiness = Business(
   id: 'biz-demo',
   name: 'Vantia Peru',
   ownerUid: 'uid-owner',
@@ -681,3 +776,28 @@ RawNotification yapeNotification({int soles = 10, DateTime? at}) =>
       text: 'Yape! Juan Pérez te envió un pago por S/ $soles.',
       postedAt: at ?? fixedNow,
     );
+
+class FakeSubscriptionService implements SubscriptionService {
+  FakeSubscriptionService({this.available = true});
+
+  final bool available;
+  final purchased = <String>[];
+
+  @override
+  bool get isAvailable => available;
+  @override
+  Future<void> identify(String businessId) async {}
+  @override
+  Future<List<SubscriptionOption>> options() async => const [
+    SubscriptionOption(id: 'monthly', title: 'Mensual', price: 'S/ 19.90'),
+    SubscriptionOption(id: 'annual', title: 'Anual', price: 'S/ 199.00'),
+  ];
+  @override
+  Future<bool> purchase(SubscriptionOption option) async {
+    purchased.add(option.id);
+    return true;
+  }
+
+  @override
+  Future<bool> restore() async => false;
+}

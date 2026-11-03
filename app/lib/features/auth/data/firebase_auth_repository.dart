@@ -96,6 +96,43 @@ class FirebaseAuthRepository implements AuthRepository {
   @override
   Future<void> signOut() => _auth.signOut();
 
+  @override
+  Future<Result<void>> reauthenticate(String password) => _guard(() async {
+    final u = _auth.currentUser!;
+    await u.reauthenticateWithCredential(
+      fb.EmailAuthProvider.credential(email: u.email!, password: password),
+    );
+  });
+
+  @override
+  Future<Result<void>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    final r = await reauthenticate(currentPassword);
+    if (r case Err()) return r;
+    return await _guard(() => _auth.currentUser!.updatePassword(newPassword));
+  }
+
+  @override
+  Future<Result<void>> changeEmail({
+    required String currentPassword,
+    required String newEmail,
+  }) async {
+    final r = await reauthenticate(currentPassword);
+    if (r case Err()) return r;
+    return await _guard(() async {
+      await _auth.setLanguageCode('es');
+      await _auth.currentUser!.verifyBeforeUpdateEmail(newEmail.trim());
+    });
+  }
+
+  @override
+  Future<Result<void>> updateDisplayName(String name) => _guard(() async {
+    await _auth.currentUser?.updateDisplayName(name.trim());
+    await _auth.currentUser?.reload();
+  });
+
   Future<Result<void>> _guard(Future<void> Function() action) async {
     try {
       await action();

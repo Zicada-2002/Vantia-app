@@ -11,7 +11,9 @@
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test \"lib/test/**/*.test.js\"",
     "test:emulator": "firebase emulators:exec --config ../firebase/firebase.json --only auth,firestore,functions --project demo-vantia 'npm run build && node --test lib/test-emulator/*.test.js'",
-    "serve": "npm run build && firebase emulators:start --config ../firebase/firebase.json --project demo-vantia"
+    "serve": "npm run build && firebase emulators:start --config ../firebase/firebase.json --project demo-vantia",
+    "pretest:emulator": "node -e \"const f=require('fs');f.existsSync('.secret.local')||f.writeFileSync('.secret.local','REVENUECAT_WEBHOOK_SECRET=emulator-secret\\n')\"",
+    "preserve": "node -e \"const f=require('fs');f.existsSync('.secret.local')||f.writeFileSync('.secret.local','REVENUECAT_WEBHOOK_SECRET=emulator-secret\\n')\""
   },
   "dependencies": {
     "firebase-admin": "^14.5.0",

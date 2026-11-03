@@ -1,0 +1,16 @@
+POLÍTICA DE PRIVACIDAD DE VANTIA
+(Borrador para revisión legal — Ley N.º 29733 de Protección de Datos Personales y su reglamento)
+
+1. Datos que recopilamos: nombre, correo, celular, datos del negocio (nombre, ubicación, RUC opcional) y los registros de cobros que el negocio crea (montos, medio de pago, fecha, descripción, nombre del cliente si se ingresa, imagen del comprobante si se escanea).
+
+2. Notificaciones: con la verificación automática activa, la app lee en el dispositivo solo las notificaciones de Yape y de las apps bancarias compatibles. El texto de la notificación no se envía a nuestros servidores; solo el pago detectado (monto, medio, nombre del pagador y hora).
+
+3. Finalidad: prestar el servicio (registro, cuadre de caja, reportes), seguridad de la cuenta y soporte. No vendemos datos personales.
+
+4. Encargados: usamos Google Firebase (autenticación, base de datos, almacenamiento y funciones) y, para suscripciones, Google Play y RevenueCat.
+
+5. Conservación: mientras la cuenta esté activa. Al eliminar la cuenta se borran el perfil y el acceso; los registros de cobro del negocio se conservan sin el nombre del usuario eliminado.
+
+6. Derechos ARCO: puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición escribiendo al canal de soporte indicado en la app.
+
+7. Seguridad: el acceso a los datos del negocio exige sesión con correo verificado y está restringido por rol.

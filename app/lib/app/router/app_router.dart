@@ -28,6 +28,7 @@ import 'package:vantia/features/products/presentation/product_form_screen.dart';
 import 'package:vantia/features/products/presentation/products_screen.dart';
 import 'package:vantia/features/reports/presentation/reports_screen.dart';
 import 'package:vantia/features/settings/presentation/settings_screen.dart';
+import 'package:vantia/features/subscription/presentation/paywall_screen.dart';
 import 'package:vantia/features/user/presentation/user_screen.dart';
 
 final _rootKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -181,6 +182,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.user,
         parentNavigatorKey: _rootKey,
         builder: (_, _) => const UserScreen(),
+        routes: [
+          GoRoute(
+            path: 'edit',
+            parentNavigatorKey: _rootKey,
+            builder: (_, _) => const EditProfileScreen(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: Routes.paywall,
+        parentNavigatorKey: _rootKey,
+        builder: (_, _) => const PaywallScreen(),
       ),
     ],
   );

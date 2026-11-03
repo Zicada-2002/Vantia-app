@@ -1,0 +1,18 @@
+TÉRMINOS Y CONDICIONES DE USO DE VANTIA
+(Borrador para revisión legal — no publicar sin validación de un abogado)
+
+1. Objeto. Vantia es una herramienta para que negocios registren sus cobros, cuadren su caja y consulten reportes. Vantia no procesa pagos ni mueve dinero: solo registra información que el negocio ingresa o que la app detecta en el dispositivo del usuario.
+
+2. Cuentas. Para usar Vantia se requiere una cuenta con correo verificado. El usuario es responsable de la confidencialidad de su contraseña y de la información que registra.
+
+3. Roles. El dueño del negocio administra colaboradores, reportes y el plan. Los colaboradores registran cobros y cierran su caja según los permisos que el dueño otorga.
+
+4. Verificación automática. Si el usuario la activa, Vantia lee en su dispositivo Android las notificaciones de las apps de pago compatibles para registrar los cobros. El usuario puede desactivarla en cualquier momento desde Ajustes o desde la configuración de Android.
+
+5. Planes. Vantia ofrece un plan gratuito y un plan Pro de pago. El periodo de prueba y los precios vigentes se informan en la app antes de la compra. Las suscripciones se gestionan a través de Google Play.
+
+6. Limitación de responsabilidad. Vantia no garantiza la exactitud de los datos leídos automáticamente (notificaciones o comprobantes); el usuario debe revisarlos. Vantia no reemplaza la contabilidad ni los comprobantes electrónicos exigidos por SUNAT.
+
+7. Eliminación. El usuario puede eliminar su cuenta desde la app (Mi cuenta → Eliminar cuenta).
+
+8. Ley aplicable. Estos términos se rigen por las leyes de la República del Perú.

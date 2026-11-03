@@ -18,6 +18,8 @@ import 'package:vantia/features/collaborators/application/collaborator_providers
 import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
+import 'package:vantia/features/subscription/application/plan_providers.dart';
+import 'package:vantia/features/subscription/domain/plan.dart';
 import 'package:vantia/l10n/l10n.dart';
 
 /// M3: invitaciones (F-30, F-31) y equipo (F-32).
@@ -33,6 +35,15 @@ class _CollaboratorsScreenState extends ConsumerState<CollaboratorsScreen> {
   bool _generating = false;
 
   Future<void> _generate() async {
+    final members = ref.read(membersProvider).value ?? const <Member>[];
+    final collaborators = members
+        .where((m) => m.role == MemberRole.collaborator && m.active)
+        .length;
+    if (!ref.read(planProvider).isPro &&
+        collaborators >= freeCollaboratorLimit) {
+      showSnack(context, context.l10n.collabLimit);
+      return;
+    }
     setState(() => _generating = true);
     final result = await ref
         .read(collaboratorRepositoryProvider)

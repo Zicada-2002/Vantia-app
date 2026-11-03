@@ -29,6 +29,11 @@ class FirestoreBusinessRepository implements BusinessRepository {
             _ => null,
           },
           createdAt: (d['createdAt'] as Timestamp?)?.toDate(),
+          notifyCollaboratorPayments:
+              (d['prefs']
+                      as Map<String, dynamic>?)?['notifyCollaboratorPayments']
+                  as bool? ??
+              true,
         );
       });
 
@@ -57,6 +62,44 @@ class FirestoreBusinessRepository implements BusinessRepository {
   @override
   Future<Result<String>> redeemInvite(String code) =>
       _call('redeemInvite', {'code': code.trim().toUpperCase()});
+
+  @override
+  Future<Result<void>> updateProfile(
+    String uid, {
+    required String displayName,
+    String? phone,
+  }) async {
+    _db.doc('users/$uid').update({
+      'displayName': displayName.trim(),
+      'phone': phone,
+      'updatedAt': FieldValue.serverTimestamp(),
+    }).ignore();
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> updatePrefs(
+    String uid,
+    Map<String, Object> prefs,
+  ) async {
+    _db.doc('users/$uid').update({
+      for (final e in prefs.entries) 'prefs.${e.key}': e.value,
+      'updatedAt': FieldValue.serverTimestamp(),
+    }).ignore();
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> deleteAccount() async {
+    try {
+      await _functions
+          .httpsCallable('deleteAccount')
+          .call<Map<String, dynamic>>({'confirm': 'ELIMINAR'});
+      return const Ok(null);
+    } on FirebaseFunctionsException catch (e) {
+      return Err(mapFunctionsException(e));
+    }
+  }
 
   Future<Result<String>> _call(String name, Map<String, Object> data) async {
     try {

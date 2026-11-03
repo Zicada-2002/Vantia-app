@@ -25,6 +25,10 @@ import 'package:vantia/features/products/application/product_providers.dart';
 import 'package:vantia/features/products/domain/product.dart';
 import 'package:vantia/features/reports/application/report_providers.dart';
 import 'package:vantia/features/reports/data/reports_repository.dart';
+import 'package:vantia/features/settings/presentation/settings_screen.dart';
+import 'package:vantia/features/subscription/application/plan_providers.dart';
+import 'package:vantia/features/subscription/data/subscription_service.dart';
+import 'package:vantia/features/user/application/app_info.dart';
 
 import 'fakes.dart';
 
@@ -42,6 +46,7 @@ extension PumpApp on WidgetTester {
     Future<String?> Function()? scan,
     AutomationChannel? automation,
     ReceiptStorage? receipts,
+    SubscriptionService? subscriptions,
     DateTime? now,
     Map<String, Object> prefs = const {},
     List<Override> extraOverrides = const [],
@@ -90,6 +95,13 @@ extension PumpApp on WidgetTester {
         receiptStorageProvider.overrideWithValue(
           receipts ?? FakeReceiptStorage(),
         ),
+        subscriptionServiceProvider.overrideWithValue(
+          subscriptions ?? FakeSubscriptionService(),
+        ),
+        appInfoProvider.overrideWith(
+          (ref) async => (version: '1.0.0', build: '1'),
+        ),
+        rateAppProvider.overrideWithValue(() async {}),
         ...extraOverrides,
       ],
     );

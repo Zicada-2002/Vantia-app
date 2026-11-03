@@ -30,4 +30,21 @@ abstract interface class AuthRepository {
   Future<Result<void>> sendPasswordReset(String email);
 
   Future<void> signOut();
+
+  /// F-81: requieren re-autenticación con la contraseña actual.
+  Future<Result<void>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  });
+
+  /// Envía un enlace al nuevo correo; el cambio aplica al confirmarlo.
+  Future<Result<void>> changeEmail({
+    required String currentPassword,
+    required String newEmail,
+  });
+
+  Future<Result<void>> updateDisplayName(String name);
+
+  /// Re-autentica (requerido antes de eliminar la cuenta).
+  Future<Result<void>> reauthenticate(String password);
 }

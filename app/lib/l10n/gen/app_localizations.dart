@@ -2013,6 +2013,390 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Verificado Yape/Plin'**
   String get settingsAutoVerifySub;
+
+  /// No description provided for @userInfoPersonal.
+  ///
+  /// In es, this message translates to:
+  /// **'Información personal'**
+  String get userInfoPersonal;
+
+  /// No description provided for @userInfoBusiness.
+  ///
+  /// In es, this message translates to:
+  /// **'Información del negocio'**
+  String get userInfoBusiness;
+
+  /// No description provided for @userInfoAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta'**
+  String get userInfoAccount;
+
+  /// No description provided for @userInfoSupport.
+  ///
+  /// In es, this message translates to:
+  /// **'Soporte'**
+  String get userInfoSupport;
+
+  /// No description provided for @userName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get userName;
+
+  /// No description provided for @userEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo'**
+  String get userEmail;
+
+  /// No description provided for @userEmailVerified.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificado'**
+  String get userEmailVerified;
+
+  /// No description provided for @userPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'Celular'**
+  String get userPhone;
+
+  /// No description provided for @userNoPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin registrar'**
+  String get userNoPhone;
+
+  /// No description provided for @userBusinessName.
+  ///
+  /// In es, this message translates to:
+  /// **'Negocio'**
+  String get userBusinessName;
+
+  /// No description provided for @userLocation.
+  ///
+  /// In es, this message translates to:
+  /// **'Ubicación'**
+  String get userLocation;
+
+  /// No description provided for @userRuc.
+  ///
+  /// In es, this message translates to:
+  /// **'RUC'**
+  String get userRuc;
+
+  /// No description provided for @userRole.
+  ///
+  /// In es, this message translates to:
+  /// **'Rol'**
+  String get userRole;
+
+  /// No description provided for @userPlan.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan'**
+  String get userPlan;
+
+  /// No description provided for @userMemberSince.
+  ///
+  /// In es, this message translates to:
+  /// **'Miembro desde'**
+  String get userMemberSince;
+
+  /// No description provided for @userWhatsapp.
+  ///
+  /// In es, this message translates to:
+  /// **'Escríbenos por WhatsApp'**
+  String get userWhatsapp;
+
+  /// No description provided for @userFaq.
+  ///
+  /// In es, this message translates to:
+  /// **'Preguntas frecuentes'**
+  String get userFaq;
+
+  /// No description provided for @userReport.
+  ///
+  /// In es, this message translates to:
+  /// **'Reportar un problema'**
+  String get userReport;
+
+  /// No description provided for @userVersion.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión {version} ({build})'**
+  String userVersion(String version, String build);
+
+  /// No description provided for @userEdit.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar perfil'**
+  String get userEdit;
+
+  /// No description provided for @userChangePassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar contraseña'**
+  String get userChangePassword;
+
+  /// No description provided for @userChangeEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar correo'**
+  String get userChangeEmail;
+
+  /// No description provided for @userDeleteAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar cuenta'**
+  String get userDeleteAccount;
+
+  /// No description provided for @roleOwner.
+  ///
+  /// In es, this message translates to:
+  /// **'Dueño'**
+  String get roleOwner;
+
+  /// No description provided for @roleCollaborator.
+  ///
+  /// In es, this message translates to:
+  /// **'Colaborador'**
+  String get roleCollaborator;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar perfil'**
+  String get editProfileTitle;
+
+  /// No description provided for @editSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil actualizado'**
+  String get editSaved;
+
+  /// No description provided for @fieldCurrentPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña actual'**
+  String get fieldCurrentPassword;
+
+  /// No description provided for @fieldNewPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva contraseña'**
+  String get fieldNewPassword;
+
+  /// No description provided for @fieldNewEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo correo'**
+  String get fieldNewEmail;
+
+  /// No description provided for @passwordChanged.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña actualizada'**
+  String get passwordChanged;
+
+  /// No description provided for @emailChangeSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Te enviamos un enlace a {email}. El cambio se aplica al confirmarlo.'**
+  String emailChangeSent(String email);
+
+  /// No description provided for @deleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar cuenta'**
+  String get deleteTitle;
+
+  /// No description provided for @deleteBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Se borrarán tu perfil y tu acceso. Los pagos que registraste se conservan para el negocio, sin tu nombre. Esta acción no se puede deshacer.'**
+  String get deleteBody;
+
+  /// No description provided for @deleteOwnerWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Eres el dueño: el negocio se cerrará y todo tu equipo perderá el acceso.'**
+  String get deleteOwnerWarning;
+
+  /// No description provided for @deleteTypeConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe ELIMINAR para confirmar'**
+  String get deleteTypeConfirm;
+
+  /// No description provided for @deleteConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar definitivamente'**
+  String get deleteConfirm;
+
+  /// No description provided for @planFree.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan: Free'**
+  String get planFree;
+
+  /// No description provided for @planTrial.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan: Prueba Pro'**
+  String get planTrial;
+
+  /// No description provided for @planPro.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan: Pro'**
+  String get planPro;
+
+  /// No description provided for @planTrialDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{days, plural, =0{Tu prueba gratis termina hoy.} =1{Tu prueba gratis termina en 1 día.} other{Tu prueba gratis termina en {days} días.}}'**
+  String planTrialDays(int days);
+
+  /// No description provided for @planFreeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejora a Pro para activar todas las funciones.'**
+  String get planFreeBody;
+
+  /// No description provided for @planProBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes todas las funciones activas.'**
+  String get planProBody;
+
+  /// No description provided for @planBenefit1.
+  ///
+  /// In es, this message translates to:
+  /// **'Registro automático de pagos de transferencias'**
+  String get planBenefit1;
+
+  /// No description provided for @planBenefit2.
+  ///
+  /// In es, this message translates to:
+  /// **'Anuncio por voz de cada cobro al instante'**
+  String get planBenefit2;
+
+  /// No description provided for @planBenefit3.
+  ///
+  /// In es, this message translates to:
+  /// **'Lectura de capturas de pago con un toque'**
+  String get planBenefit3;
+
+  /// No description provided for @planBenefit4.
+  ///
+  /// In es, this message translates to:
+  /// **'Colaboradores ilimitados en tu negocio'**
+  String get planBenefit4;
+
+  /// No description provided for @planUpgrade.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejorar ahora'**
+  String get planUpgrade;
+
+  /// No description provided for @paywallTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vantia Pro'**
+  String get paywallTitle;
+
+  /// No description provided for @paywallMonthly.
+  ///
+  /// In es, this message translates to:
+  /// **'Mensual'**
+  String get paywallMonthly;
+
+  /// No description provided for @paywallAnnual.
+  ///
+  /// In es, this message translates to:
+  /// **'Anual'**
+  String get paywallAnnual;
+
+  /// No description provided for @paywallRestore.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar compras'**
+  String get paywallRestore;
+
+  /// No description provided for @paywallUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Las suscripciones aún no están disponibles en esta versión. Escríbenos por WhatsApp para activar Pro.'**
+  String get paywallUnavailable;
+
+  /// No description provided for @paywallSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Listo! Ya tienes Vantia Pro'**
+  String get paywallSuccess;
+
+  /// No description provided for @paywallOwnerOnly.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo el dueño puede gestionar el plan.'**
+  String get paywallOwnerOnly;
+
+  /// No description provided for @proRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Función disponible en Vantia Pro'**
+  String get proRequired;
+
+  /// No description provided for @settingsAppearance.
+  ///
+  /// In es, this message translates to:
+  /// **'APARIENCIA'**
+  String get settingsAppearance;
+
+  /// No description provided for @settingsInfo.
+  ///
+  /// In es, this message translates to:
+  /// **'INFORMACIÓN'**
+  String get settingsInfo;
+
+  /// No description provided for @settingsTerms.
+  ///
+  /// In es, this message translates to:
+  /// **'Términos y condiciones'**
+  String get settingsTerms;
+
+  /// No description provided for @settingsPrivacy.
+  ///
+  /// In es, this message translates to:
+  /// **'Política de privacidad'**
+  String get settingsPrivacy;
+
+  /// No description provided for @settingsRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Valorar Vantia'**
+  String get settingsRate;
+
+  /// No description provided for @settingsVersion.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión de la app'**
+  String get settingsVersion;
+
+  /// No description provided for @settingsCollabPush.
+  ///
+  /// In es, this message translates to:
+  /// **'Avisarme cuando mi equipo cobre'**
+  String get settingsCollabPush;
+
+  /// No description provided for @collabLimit.
+  ///
+  /// In es, this message translates to:
+  /// **'El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados.'**
+  String get collabLimit;
 }
 
 class _AppLocalizationsDelegate

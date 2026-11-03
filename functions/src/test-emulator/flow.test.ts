@@ -238,3 +238,24 @@ describe("onboarding con Cloud Functions", () => {
     });
   });
 });
+
+describe("eliminar cuenta (F-82)", () => {
+  test("colaborador: anonimiza sus pagos, sale del negocio y se borra", async () => {
+    const run = Date.now();
+    const owner = await createAccount(`del-owner-${run}@vantia.pe`, "Dueño", true);
+    const col = await createAccount(`del-col-${run}@vantia.pe`, "Col", true);
+    const biz = await call("createBusiness", owner, businessInput);
+    const bid = biz.result!.businessId as string;
+    const code = (await call("generateInvite", owner, {})).result!.code as string;
+    await call("redeemInvite", col, { code });
+    const db = getFirestore(admin);
+    await db.doc(`businesses/${bid}/payments/p1`).set({ createdBy: col.uid, createdByName: "Col", amountCents: 100, status: "active", dayKey: "2026-11-02" });
+
+    assert.equal((await call("deleteAccount", col, {})).error?.details?.reason, "invalid-data");
+    assert.ok((await call("deleteAccount", col, { confirm: "ELIMINAR" })).result);
+    assert.equal((await db.doc(`businesses/${bid}/payments/p1`).get()).get("createdByName"), "Usuario eliminado");
+    assert.equal((await db.doc(`businesses/${bid}/members/${col.uid}`).get()).get("active"), false);
+    assert.equal((await db.doc(`users/${col.uid}`).get()).exists, false);
+    await assert.rejects(getAuth(admin).getUser(col.uid));
+  });
+});

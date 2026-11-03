@@ -12,6 +12,7 @@ class UserProfile {
     this.activeBusinessId,
     this.role,
     this.createdAt,
+    this.notifyCollaboratorPayments = true,
   });
 
   final String uid;
@@ -21,6 +22,7 @@ class UserProfile {
   final String? activeBusinessId;
   final MemberRole? role;
   final DateTime? createdAt;
+  final bool notifyCollaboratorPayments;
 
   bool get hasBusiness => activeBusinessId != null && role != null;
 }
