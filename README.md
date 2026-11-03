@@ -2,7 +2,7 @@
 
 App móvil para negocios en Perú que registra cobros por **Yape, Plin, transferencias bancarias y efectivo**, cuadra la caja diaria, gestiona colaboradores y productos, y genera reportes.
 
-> Estado: **en planificación**. Alcance y roadmap en [`docs/PLAN.md`](docs/PLAN.md). Decisiones técnicas en [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md).
+> Estado: **M0 (Fundaciones) en curso**. Seguimiento en los [issues](https://github.com/Zicada-2002/Vantia-app/issues) (épicos #1–#10). Alcance y roadmap en [`docs/PLAN.md`](docs/PLAN.md). Decisiones técnicas en [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md).
 
 ## Funcionalidades
 
@@ -24,7 +24,7 @@ Flutter 3 · Riverpod · go_router · Firebase (Auth, Firestore, Functions, Stor
 ## Estructura
 
 ```
-app/        Proyecto Flutter (se crea en F-01)
+app/        Proyecto Flutter (ver app/README.md)
 functions/  Cloud Functions en TypeScript
 firebase/   Reglas, índices y configuración de emuladores
 docs/       Plan, arquitectura y convenciones
