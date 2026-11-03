@@ -380,4 +380,222 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errInvalidData => 'Revisa los datos ingresados';
+
+  @override
+  String get homeSummary => 'Resumen del día';
+
+  @override
+  String get homeIncomeToday => 'INGRESOS DE HOY';
+
+  @override
+  String get homePaymentsCount => 'PAGOS';
+
+  @override
+  String get homeCash => 'EFECTIVO';
+
+  @override
+  String get homeDigital => 'DIGITAL';
+
+  @override
+  String get homeLatest => 'Últimos pagos';
+
+  @override
+  String get homeNoPayments =>
+      'Aún no hay pagos hoy. Toca + para registrar el primero.';
+
+  @override
+  String get homeMyIncomeToday => 'MIS INGRESOS DE HOY';
+
+  @override
+  String paymentBy(String method) {
+    return 'Pago por $method';
+  }
+
+  @override
+  String get paymentByMe => 'Tú';
+
+  @override
+  String get paymentPending => 'Pendiente de sincronizar';
+
+  @override
+  String get paymentVoided => 'Anulado';
+
+  @override
+  String get paymentVerified => 'Verificado';
+
+  @override
+  String get offlineBanner =>
+      'Sin conexión. Tus cobros se guardan y se sincronizarán al volver.';
+
+  @override
+  String get paymentsWeekIncome => 'Ingreso semanal';
+
+  @override
+  String paymentsToday(String date) {
+    return 'HOY, $date';
+  }
+
+  @override
+  String paymentsYesterday(String date) {
+    return 'AYER, $date';
+  }
+
+  @override
+  String get paymentsEmptyWeek => 'No hay pagos en esta semana';
+
+  @override
+  String get paymentsPrevWeek => 'Semana anterior';
+
+  @override
+  String get paymentsNextWeek => 'Semana siguiente';
+
+  @override
+  String get paymentsExport => 'Exportar';
+
+  @override
+  String get confirmPaymentTitle => 'Confirmar pago';
+
+  @override
+  String get fieldDate => 'Fecha';
+
+  @override
+  String get fieldTime => 'Hora';
+
+  @override
+  String get fieldAmount => 'Monto';
+
+  @override
+  String get fieldAmountReceived => 'Monto recibido';
+
+  @override
+  String get hintAmount => 'Ingresa el monto';
+
+  @override
+  String get fieldChange => 'Cambio';
+
+  @override
+  String get hintChange => 'Vuelto entregado';
+
+  @override
+  String get fieldDescription => 'Descripción';
+
+  @override
+  String get hintDescription => 'Opcional';
+
+  @override
+  String get fieldOperation => 'Nº de operación';
+
+  @override
+  String get fieldPayer => 'Nombre del cliente';
+
+  @override
+  String get hintOptional => 'Opcional';
+
+  @override
+  String get netSale => 'Venta registrada';
+
+  @override
+  String get registerPayment => 'Registrar pago';
+
+  @override
+  String paymentRegistered(String amount) {
+    return 'Pago registrado: $amount';
+  }
+
+  @override
+  String get errAmountRequired => 'Ingresa un monto mayor a 0';
+
+  @override
+  String get errChangeInvalid => 'El cambio no es válido';
+
+  @override
+  String get errChangeTooBig => 'El cambio debe ser menor al monto recibido';
+
+  @override
+  String get errFutureDate => 'La fecha no puede ser futura';
+
+  @override
+  String get errInvalidAmount => 'Monto no válido (máx. 2 decimales)';
+
+  @override
+  String get duplicateTitle => '¿Pago duplicado?';
+
+  @override
+  String duplicateBody(String method, String number) {
+    return 'Ya existe un pago por $method con el nº de operación $number. ¿Registrarlo de todos modos?';
+  }
+
+  @override
+  String get registerAnyway => 'Registrar igual';
+
+  @override
+  String get scanReceipt => 'Escanear comprobante';
+
+  @override
+  String get paymentDetail => 'Detalle del pago';
+
+  @override
+  String get detailMethod => 'Medio de pago';
+
+  @override
+  String get detailDate => 'Fecha y hora';
+
+  @override
+  String get detailRegisteredBy => 'Registrado por';
+
+  @override
+  String get detailReceived => 'Recibido';
+
+  @override
+  String get detailChange => 'Cambio';
+
+  @override
+  String get detailSource => 'Origen';
+
+  @override
+  String get sourceManual => 'Manual';
+
+  @override
+  String get sourceOcr => 'Comprobante escaneado';
+
+  @override
+  String get sourceNotification => 'Notificación automática';
+
+  @override
+  String get detailProducts => 'Productos';
+
+  @override
+  String get detailVoidReason => 'Motivo de anulación';
+
+  @override
+  String get voidPayment => 'Anular pago';
+
+  @override
+  String get voidTitle => 'Anular pago';
+
+  @override
+  String get voidBody =>
+      'El pago no se borra: queda registrado como anulado y no suma en los totales.';
+
+  @override
+  String get voidReasonLabel => 'Motivo';
+
+  @override
+  String get voidReasonHint => 'Ej. Registrado por error';
+
+  @override
+  String get voidConfirm => 'Anular';
+
+  @override
+  String get voidDone => 'Pago anulado';
+
+  @override
+  String get voidNotAllowed => 'No tienes permiso para anular este pago';
+
+  @override
+  String get voidWindowExpired =>
+      'Solo puedes anular tus pagos durante los primeros 15 minutos';
+
+  @override
+  String get notFound => 'No encontramos este pago';
 }

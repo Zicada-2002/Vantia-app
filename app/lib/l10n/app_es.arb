@@ -136,5 +136,111 @@
   "errInviteUsed": "Este código ya fue usado",
   "errAlreadyMember": "Tu cuenta ya pertenece a un negocio",
   "errEmailNotVerified": "Primero verifica tu correo",
-  "errInvalidData": "Revisa los datos ingresados"
+  "errInvalidData": "Revisa los datos ingresados",
+  "homeSummary": "Resumen del día",
+  "homeIncomeToday": "INGRESOS DE HOY",
+  "homePaymentsCount": "PAGOS",
+  "homeCash": "EFECTIVO",
+  "homeDigital": "DIGITAL",
+  "homeLatest": "Últimos pagos",
+  "homeNoPayments": "Aún no hay pagos hoy. Toca + para registrar el primero.",
+  "homeMyIncomeToday": "MIS INGRESOS DE HOY",
+  "paymentBy": "Pago por {method}",
+  "@paymentBy": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentByMe": "Tú",
+  "paymentPending": "Pendiente de sincronizar",
+  "paymentVoided": "Anulado",
+  "paymentVerified": "Verificado",
+  "offlineBanner": "Sin conexión. Tus cobros se guardan y se sincronizarán al volver.",
+  "paymentsWeekIncome": "Ingreso semanal",
+  "paymentsToday": "HOY, {date}",
+  "@paymentsToday": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentsYesterday": "AYER, {date}",
+  "@paymentsYesterday": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentsEmptyWeek": "No hay pagos en esta semana",
+  "paymentsPrevWeek": "Semana anterior",
+  "paymentsNextWeek": "Semana siguiente",
+  "paymentsExport": "Exportar",
+  "confirmPaymentTitle": "Confirmar pago",
+  "fieldDate": "Fecha",
+  "fieldTime": "Hora",
+  "fieldAmount": "Monto",
+  "fieldAmountReceived": "Monto recibido",
+  "hintAmount": "Ingresa el monto",
+  "fieldChange": "Cambio",
+  "hintChange": "Vuelto entregado",
+  "fieldDescription": "Descripción",
+  "hintDescription": "Opcional",
+  "fieldOperation": "Nº de operación",
+  "fieldPayer": "Nombre del cliente",
+  "hintOptional": "Opcional",
+  "netSale": "Venta registrada",
+  "registerPayment": "Registrar pago",
+  "paymentRegistered": "Pago registrado: {amount}",
+  "@paymentRegistered": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "errAmountRequired": "Ingresa un monto mayor a 0",
+  "errChangeInvalid": "El cambio no es válido",
+  "errChangeTooBig": "El cambio debe ser menor al monto recibido",
+  "errFutureDate": "La fecha no puede ser futura",
+  "errInvalidAmount": "Monto no válido (máx. 2 decimales)",
+  "duplicateTitle": "¿Pago duplicado?",
+  "duplicateBody": "Ya existe un pago por {method} con el nº de operación {number}. ¿Registrarlo de todos modos?",
+  "@duplicateBody": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "registerAnyway": "Registrar igual",
+  "scanReceipt": "Escanear comprobante",
+  "paymentDetail": "Detalle del pago",
+  "detailMethod": "Medio de pago",
+  "detailDate": "Fecha y hora",
+  "detailRegisteredBy": "Registrado por",
+  "detailReceived": "Recibido",
+  "detailChange": "Cambio",
+  "detailSource": "Origen",
+  "sourceManual": "Manual",
+  "sourceOcr": "Comprobante escaneado",
+  "sourceNotification": "Notificación automática",
+  "detailProducts": "Productos",
+  "detailVoidReason": "Motivo de anulación",
+  "voidPayment": "Anular pago",
+  "voidTitle": "Anular pago",
+  "voidBody": "El pago no se borra: queda registrado como anulado y no suma en los totales.",
+  "voidReasonLabel": "Motivo",
+  "voidReasonHint": "Ej. Registrado por error",
+  "voidConfirm": "Anular",
+  "voidDone": "Pago anulado",
+  "voidNotAllowed": "No tienes permiso para anular este pago",
+  "voidWindowExpired": "Solo puedes anular tus pagos durante los primeros 15 minutos",
+  "notFound": "No encontramos este pago"
 }

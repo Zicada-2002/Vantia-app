@@ -48,7 +48,7 @@ jobs:
 
   apk-dev:
     needs: [detect, flutter]
-    if: needs.detect.outputs.app == 'true' && github.ref == 'refs/heads/main'
+    if: needs.detect.outputs.app == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:

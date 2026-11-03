@@ -5,6 +5,7 @@ import 'package:vantia/app/providers.dart';
 import 'package:vantia/app/router/routes.dart';
 import 'package:vantia/app/shell/app_drawer.dart';
 import 'package:vantia/app/theme/tokens.dart';
+import 'package:vantia/core/widgets/offline_banner.dart';
 import 'package:vantia/l10n/l10n.dart';
 
 /// Shell principal: menú lateral, AppBar por pestaña, barra inferior con
@@ -35,7 +36,12 @@ class HomeShell extends StatelessWidget {
           const SizedBox(width: VantiaSpacing.sm),
         ],
       ),
-      body: shell,
+      body: Column(
+        children: [
+          const OfflineBanner(),
+          Expanded(child: shell),
+        ],
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox.square(
         dimension: 72,

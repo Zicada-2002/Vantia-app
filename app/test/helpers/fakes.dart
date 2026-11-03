@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:vantia/app/router/session.dart';
+import 'package:vantia/core/money/money.dart';
 import 'package:vantia/core/result/result.dart';
 import 'package:vantia/features/auth/domain/auth_failure.dart';
 import 'package:vantia/features/auth/domain/auth_repository.dart';
@@ -8,6 +9,9 @@ import 'package:vantia/features/auth/domain/auth_user.dart';
 import 'package:vantia/features/business/domain/business.dart';
 import 'package:vantia/features/business/domain/business_failure.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
+import 'package:vantia/features/payments/domain/payment.dart';
+import 'package:vantia/features/payments/domain/payment_method.dart';
+import 'package:vantia/features/payments/domain/payment_repository.dart';
 
 /// Auth en memoria con el mismo contrato que Firebase.
 class FakeAuthRepository implements AuthRepository {
@@ -215,3 +219,144 @@ const demoBusiness = Business(
     );
   return (auth: auth, business: business);
 }
+
+/// Pagos en memoria con filtros de alcance y rango como Firestore.
+class FakePaymentRepository implements PaymentRepository {
+  FakePaymentRepository({DateTime Function()? clock})
+    : _clock = clock ?? DateTime.now;
+
+  final DateTime Function() _clock;
+  final payments = <String, Payment>{};
+  final _changes = StreamController<void>.broadcast();
+  int _seq = 0;
+
+  void seed(Payment p) {
+    payments[p.id] = p;
+    _changes.add(null);
+  }
+
+  Iterable<Payment> _scoped(PaymentScope s) => payments.values.where(
+    (p) => s.onlyCreatedBy == null || p.createdBy == s.onlyCreatedBy,
+  );
+
+  Stream<T> _live<T>(T Function() read) async* {
+    yield read();
+    yield* _changes.stream.map((_) => read());
+  }
+
+  List<Payment> _sorted(Iterable<Payment> it) =>
+      it.toList()..sort((a, b) => b.occurredAt.compareTo(a.occurredAt));
+
+  @override
+  Stream<List<Payment>> watchRange(
+    PaymentScope scope, {
+    required DateTime from,
+    required DateTime to,
+  }) => _live(
+    () => _sorted(
+      _scoped(
+        scope,
+      ).where((p) => !p.occurredAt.isBefore(from) && p.occurredAt.isBefore(to)),
+    ),
+  );
+
+  @override
+  Stream<List<Payment>> watchRecent(PaymentScope scope, {int limit = 10}) =>
+      _live(() => _sorted(_scoped(scope)).take(limit).toList());
+
+  @override
+  Stream<Payment?> watch(String businessId, String paymentId) =>
+      _live(() => payments[paymentId]);
+
+  @override
+  Future<Result<String>> create({
+    required String businessId,
+    required String userId,
+    required String userName,
+    required PaymentDraft draft,
+  }) async {
+    final id = 'pay-${++_seq}';
+    seed(
+      Payment(
+        id: id,
+        method: draft.method,
+        amount: draft.net,
+        received: draft.method == PaymentMethod.cash ? draft.received : null,
+        change: draft.method == PaymentMethod.cash ? draft.change : null,
+        description: draft.description?.trim().isEmpty ?? true
+            ? null
+            : draft.description,
+        operationNumber: draft.operationNumber?.trim().isEmpty ?? true
+            ? null
+            : draft.operationNumber,
+        occurredAt: draft.occurredAt,
+        createdBy: userId,
+        createdByName: userName,
+        source: draft.source,
+        verified: draft.verified,
+        items: draft.items,
+        createdAt: _clock(),
+      ),
+    );
+    return Ok(id);
+  }
+
+  @override
+  Future<Result<void>> voidPayment({
+    required String businessId,
+    required String paymentId,
+    required String userId,
+    required String reason,
+  }) async {
+    final p = payments[paymentId]!;
+    seed(
+      Payment(
+        id: p.id,
+        method: p.method,
+        amount: p.amount,
+        received: p.received,
+        change: p.change,
+        occurredAt: p.occurredAt,
+        createdBy: p.createdBy,
+        createdByName: p.createdByName,
+        status: PaymentStatus.voided,
+        voidReason: reason,
+        createdAt: p.createdAt,
+      ),
+    );
+    return const Ok(null);
+  }
+
+  @override
+  Future<bool> existsOperation(
+    PaymentScope scope, {
+    required String method,
+    required String operationNumber,
+  }) async => _scoped(
+    scope,
+  ).any((p) => p.method.id == method && p.operationNumber == operationNumber);
+}
+
+/// 2 nov 2026 21:46 en Lima (lunes).
+final fixedNow = DateTime.utc(2026, 11, 3, 2, 46);
+
+Payment fakePayment({
+  required String id,
+  required int cents,
+  PaymentMethod method = PaymentMethod.yape,
+  DateTime? at,
+  String createdBy = 'uid-owner',
+  String createdByName = 'Carlos',
+  int? receivedCents,
+  int? changeCents,
+}) => Payment(
+  id: id,
+  method: method,
+  amount: Money(cents),
+  received: receivedCents == null ? null : Money(receivedCents),
+  change: changeCents == null ? null : Money(changeCents),
+  occurredAt: at ?? fixedNow,
+  createdBy: createdBy,
+  createdByName: createdByName,
+  createdAt: at ?? fixedNow,
+);

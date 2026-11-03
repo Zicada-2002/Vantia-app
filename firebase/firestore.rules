@@ -35,6 +35,48 @@ service cloud.firestore {
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
     }
 
+    function cashClosed(bid, dayKey, uid) {
+      let path = /databases/$(database)/documents/businesses/$(bid)/cashSessions/$(dayKey + '_' + uid);
+      return exists(path) && get(path).data.status == 'closed';
+    }
+
+    function validNewPayment(d) {
+      return d.keys().hasOnly([
+          'method', 'amountCents', 'receivedCents', 'changeCents', 'description',
+          'operationNumber', 'payerName', 'occurredAt', 'dayKey', 'createdBy',
+          'createdByName', 'source', 'verified', 'status', 'items', 'createdAt'])
+        && d.method in ['yape', 'plin', 'bcp', 'interbank', 'bbva', 'scotiabank', 'cash']
+        && d.amountCents is int && d.amountCents > 0 && d.amountCents <= 100000000
+        && d.occurredAt is timestamp
+        && d.occurredAt < request.time + duration.value(10, 'm')
+        && d.dayKey is string && d.dayKey.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && d.createdBy == request.auth.uid
+        && d.createdByName is string && d.createdByName.size() <= 80
+        && d.source in ['manual', 'ocr', 'notification']
+        && d.verified is bool
+        && d.status == 'active'
+        && d.createdAt == request.time
+        && (!('description' in d) || (d.description is string && d.description.size() <= 200))
+        && (!('operationNumber' in d) || (d.operationNumber is string && d.operationNumber.size() <= 40))
+        && (!('payerName' in d) || (d.payerName is string && d.payerName.size() <= 80))
+        && (!('items' in d) || (d.items is list && d.items.size() <= 100))
+        && (d.method != 'cash'
+            || (d.receivedCents is int && d.changeCents is int
+                && d.changeCents >= 0
+                && d.receivedCents - d.changeCents == d.amountCents))
+        && (d.method == 'cash' || !('changeCents' in d));
+    }
+
+    function validVoid() {
+      let d = request.resource.data;
+      return resource.data.status == 'active'
+        && onlyChanges(['status', 'voidReason', 'voidedBy', 'voidedAt'])
+        && d.status == 'voided'
+        && d.voidReason is string && d.voidReason.size() >= 3 && d.voidReason.size() <= 200
+        && d.voidedBy == request.auth.uid
+        && d.voidedAt == request.time;
+    }
+
     // Perfil propio. Se puede leer sin verificar (lo necesita el arranque);
     // negocio y rol solo los asignan las Functions.
     match /users/{uid} {
@@ -61,8 +103,28 @@ service cloud.firestore {
         allow write: if false;
       }
 
-      // Colecciones de M2+ (payments, cashSessions, products, dailyStats,
-      // audit) se habilitan en sus milestones; hasta entonces, denegadas.
+      // ---------- Pagos (M2) ----------
+      match /payments/{pid} {
+        allow read: if isOwner(bid)
+          || (isMember(bid) && resource.data.createdBy == request.auth.uid);
+
+        allow create: if isMember(bid)
+          && validNewPayment(request.resource.data)
+          && !cashClosed(bid, request.resource.data.dayKey, request.auth.uid);
+
+        // Única edición permitida: anulación lógica.
+        allow update: if isMember(bid)
+          && validVoid()
+          && (isOwner(bid)
+              || (resource.data.createdBy == request.auth.uid
+                  && request.time < resource.data.createdAt + duration.value(15, 'm')))
+          && !cashClosed(bid, resource.data.dayKey, resource.data.createdBy);
+
+        allow delete: if false;
+      }
+
+      // Colecciones de M3+ (cashSessions, products, dailyStats, audit) se
+      // habilitan en sus milestones; hasta entonces, denegadas.
     }
 
     // Índice global de códigos: solo Functions.

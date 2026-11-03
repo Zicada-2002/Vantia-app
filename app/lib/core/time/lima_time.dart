@@ -63,6 +63,10 @@ abstract final class LimaTime {
   static String formatShortDate(DateTime instant) =>
       DateFormat('d MMM', 'es').format(toLima(instant)).replaceAll('.', '');
 
+  /// `lunes`
+  static String formatWeekday(DateTime instant) =>
+      DateFormat('EEEE', 'es').format(toLima(instant));
+
   /// `21:46`
   static String formatTime(DateTime instant) =>
       DateFormat('HH:mm').format(toLima(instant));

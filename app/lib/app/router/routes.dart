@@ -17,6 +17,9 @@ abstract final class Routes {
   static const reports = '/reports';
 
   static const newPayment = '/payment/new';
+  static String paymentForm(String methodId, {bool withProducts = false}) =>
+      '/payment/new/$methodId${withProducts ? '?products=1' : ''}';
+  static String paymentDetail(String id) => '/payments/$id';
   static const collaborators = '/collaborators';
   static const cashRegister = '/cash-register';
   static const settings = '/settings';

@@ -17,7 +17,10 @@ import 'package:vantia/features/home/presentation/home_screen.dart';
 import 'package:vantia/features/onboarding/presentation/create_business_screen.dart';
 import 'package:vantia/features/onboarding/presentation/join_business_screen.dart';
 import 'package:vantia/features/onboarding/presentation/role_screen.dart';
+import 'package:vantia/features/payments/domain/payment_method.dart';
 import 'package:vantia/features/payments/presentation/new_payment_screen.dart';
+import 'package:vantia/features/payments/presentation/payment_detail_screen.dart';
+import 'package:vantia/features/payments/presentation/payment_form_screen.dart';
 import 'package:vantia/features/payments/presentation/payments_screen.dart';
 import 'package:vantia/features/products/presentation/products_screen.dart';
 import 'package:vantia/features/reports/presentation/reports_screen.dart';
@@ -82,6 +85,15 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: Routes.payments,
                 builder: (_, _) => const PaymentsScreen(),
+                routes: [
+                  GoRoute(
+                    path: ':id',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => PaymentDetailScreen(
+                      paymentId: state.pathParameters['id']!,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -107,6 +119,19 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.newPayment,
         parentNavigatorKey: _rootKey,
         builder: (_, _) => const NewPaymentScreen(),
+        routes: [
+          GoRoute(
+            path: ':method',
+            parentNavigatorKey: _rootKey,
+            redirect: (_, state) =>
+                PaymentMethod.fromId(state.pathParameters['method']!) == null
+                ? Routes.newPayment
+                : null,
+            builder: (_, state) => PaymentFormScreen(
+              method: PaymentMethod.fromId(state.pathParameters['method']!)!,
+            ),
+          ),
+        ],
       ),
       GoRoute(
         path: Routes.collaborators,

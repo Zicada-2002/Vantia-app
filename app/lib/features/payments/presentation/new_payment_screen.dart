@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vantia/app/router/routes.dart';
 import 'package:vantia/app/theme/tokens.dart';
 import 'package:vantia/core/widgets/payment_method_icon.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
 import 'package:vantia/l10n/l10n.dart';
 
-/// Selector "¿Cómo pagó el cliente?". En M0 solo la UI; la navegación a los
-/// formularios llega con F-20/F-21/F-22.
+/// F-20: "¿Cómo pagó el cliente?"
 class NewPaymentScreen extends StatefulWidget {
   const NewPaymentScreen({super.key});
 
@@ -55,9 +56,8 @@ class _NewPaymentScreenState extends State<NewPaymentScreen> {
               for (final method in PaymentMethod.values)
                 PaymentMethodTile(
                   method: method,
-                  // TODO(F-20): navegar al formulario según el método.
-                  onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(l10n.comingSoon('F-20'))),
+                  onTap: () => context.pushReplacement(
+                    Routes.paymentForm(method.id, withProducts: _withProducts),
                   ),
                 ),
             ],

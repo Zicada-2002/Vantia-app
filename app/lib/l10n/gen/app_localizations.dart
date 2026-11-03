@@ -789,6 +789,414 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Revisa los datos ingresados'**
   String get errInvalidData;
+
+  /// No description provided for @homeSummary.
+  ///
+  /// In es, this message translates to:
+  /// **'Resumen del día'**
+  String get homeSummary;
+
+  /// No description provided for @homeIncomeToday.
+  ///
+  /// In es, this message translates to:
+  /// **'INGRESOS DE HOY'**
+  String get homeIncomeToday;
+
+  /// No description provided for @homePaymentsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'PAGOS'**
+  String get homePaymentsCount;
+
+  /// No description provided for @homeCash.
+  ///
+  /// In es, this message translates to:
+  /// **'EFECTIVO'**
+  String get homeCash;
+
+  /// No description provided for @homeDigital.
+  ///
+  /// In es, this message translates to:
+  /// **'DIGITAL'**
+  String get homeDigital;
+
+  /// No description provided for @homeLatest.
+  ///
+  /// In es, this message translates to:
+  /// **'Últimos pagos'**
+  String get homeLatest;
+
+  /// No description provided for @homeNoPayments.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay pagos hoy. Toca + para registrar el primero.'**
+  String get homeNoPayments;
+
+  /// No description provided for @homeMyIncomeToday.
+  ///
+  /// In es, this message translates to:
+  /// **'MIS INGRESOS DE HOY'**
+  String get homeMyIncomeToday;
+
+  /// No description provided for @paymentBy.
+  ///
+  /// In es, this message translates to:
+  /// **'Pago por {method}'**
+  String paymentBy(String method);
+
+  /// No description provided for @paymentByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Tú'**
+  String get paymentByMe;
+
+  /// No description provided for @paymentPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente de sincronizar'**
+  String get paymentPending;
+
+  /// No description provided for @paymentVoided.
+  ///
+  /// In es, this message translates to:
+  /// **'Anulado'**
+  String get paymentVoided;
+
+  /// No description provided for @paymentVerified.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificado'**
+  String get paymentVerified;
+
+  /// No description provided for @offlineBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión. Tus cobros se guardan y se sincronizarán al volver.'**
+  String get offlineBanner;
+
+  /// No description provided for @paymentsWeekIncome.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingreso semanal'**
+  String get paymentsWeekIncome;
+
+  /// No description provided for @paymentsToday.
+  ///
+  /// In es, this message translates to:
+  /// **'HOY, {date}'**
+  String paymentsToday(String date);
+
+  /// No description provided for @paymentsYesterday.
+  ///
+  /// In es, this message translates to:
+  /// **'AYER, {date}'**
+  String paymentsYesterday(String date);
+
+  /// No description provided for @paymentsEmptyWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay pagos en esta semana'**
+  String get paymentsEmptyWeek;
+
+  /// No description provided for @paymentsPrevWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana anterior'**
+  String get paymentsPrevWeek;
+
+  /// No description provided for @paymentsNextWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana siguiente'**
+  String get paymentsNextWeek;
+
+  /// No description provided for @paymentsExport.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar'**
+  String get paymentsExport;
+
+  /// No description provided for @confirmPaymentTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar pago'**
+  String get confirmPaymentTitle;
+
+  /// No description provided for @fieldDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get fieldDate;
+
+  /// No description provided for @fieldTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Hora'**
+  String get fieldTime;
+
+  /// No description provided for @fieldAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'Monto'**
+  String get fieldAmount;
+
+  /// No description provided for @fieldAmountReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'Monto recibido'**
+  String get fieldAmountReceived;
+
+  /// No description provided for @hintAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa el monto'**
+  String get hintAmount;
+
+  /// No description provided for @fieldChange.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambio'**
+  String get fieldChange;
+
+  /// No description provided for @hintChange.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelto entregado'**
+  String get hintChange;
+
+  /// No description provided for @fieldDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Descripción'**
+  String get fieldDescription;
+
+  /// No description provided for @hintDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Opcional'**
+  String get hintDescription;
+
+  /// No description provided for @fieldOperation.
+  ///
+  /// In es, this message translates to:
+  /// **'Nº de operación'**
+  String get fieldOperation;
+
+  /// No description provided for @fieldPayer.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre del cliente'**
+  String get fieldPayer;
+
+  /// No description provided for @hintOptional.
+  ///
+  /// In es, this message translates to:
+  /// **'Opcional'**
+  String get hintOptional;
+
+  /// No description provided for @netSale.
+  ///
+  /// In es, this message translates to:
+  /// **'Venta registrada'**
+  String get netSale;
+
+  /// No description provided for @registerPayment.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar pago'**
+  String get registerPayment;
+
+  /// No description provided for @paymentRegistered.
+  ///
+  /// In es, this message translates to:
+  /// **'Pago registrado: {amount}'**
+  String paymentRegistered(String amount);
+
+  /// No description provided for @errAmountRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa un monto mayor a 0'**
+  String get errAmountRequired;
+
+  /// No description provided for @errChangeInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'El cambio no es válido'**
+  String get errChangeInvalid;
+
+  /// No description provided for @errChangeTooBig.
+  ///
+  /// In es, this message translates to:
+  /// **'El cambio debe ser menor al monto recibido'**
+  String get errChangeTooBig;
+
+  /// No description provided for @errFutureDate.
+  ///
+  /// In es, this message translates to:
+  /// **'La fecha no puede ser futura'**
+  String get errFutureDate;
+
+  /// No description provided for @errInvalidAmount.
+  ///
+  /// In es, this message translates to:
+  /// **'Monto no válido (máx. 2 decimales)'**
+  String get errInvalidAmount;
+
+  /// No description provided for @duplicateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Pago duplicado?'**
+  String get duplicateTitle;
+
+  /// No description provided for @duplicateBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya existe un pago por {method} con el nº de operación {number}. ¿Registrarlo de todos modos?'**
+  String duplicateBody(String method, String number);
+
+  /// No description provided for @registerAnyway.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar igual'**
+  String get registerAnyway;
+
+  /// No description provided for @scanReceipt.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanear comprobante'**
+  String get scanReceipt;
+
+  /// No description provided for @paymentDetail.
+  ///
+  /// In es, this message translates to:
+  /// **'Detalle del pago'**
+  String get paymentDetail;
+
+  /// No description provided for @detailMethod.
+  ///
+  /// In es, this message translates to:
+  /// **'Medio de pago'**
+  String get detailMethod;
+
+  /// No description provided for @detailDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha y hora'**
+  String get detailDate;
+
+  /// No description provided for @detailRegisteredBy.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrado por'**
+  String get detailRegisteredBy;
+
+  /// No description provided for @detailReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'Recibido'**
+  String get detailReceived;
+
+  /// No description provided for @detailChange.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambio'**
+  String get detailChange;
+
+  /// No description provided for @detailSource.
+  ///
+  /// In es, this message translates to:
+  /// **'Origen'**
+  String get detailSource;
+
+  /// No description provided for @sourceManual.
+  ///
+  /// In es, this message translates to:
+  /// **'Manual'**
+  String get sourceManual;
+
+  /// No description provided for @sourceOcr.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprobante escaneado'**
+  String get sourceOcr;
+
+  /// No description provided for @sourceNotification.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificación automática'**
+  String get sourceNotification;
+
+  /// No description provided for @detailProducts.
+  ///
+  /// In es, this message translates to:
+  /// **'Productos'**
+  String get detailProducts;
+
+  /// No description provided for @detailVoidReason.
+  ///
+  /// In es, this message translates to:
+  /// **'Motivo de anulación'**
+  String get detailVoidReason;
+
+  /// No description provided for @voidPayment.
+  ///
+  /// In es, this message translates to:
+  /// **'Anular pago'**
+  String get voidPayment;
+
+  /// No description provided for @voidTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Anular pago'**
+  String get voidTitle;
+
+  /// No description provided for @voidBody.
+  ///
+  /// In es, this message translates to:
+  /// **'El pago no se borra: queda registrado como anulado y no suma en los totales.'**
+  String get voidBody;
+
+  /// No description provided for @voidReasonLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Motivo'**
+  String get voidReasonLabel;
+
+  /// No description provided for @voidReasonHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej. Registrado por error'**
+  String get voidReasonHint;
+
+  /// No description provided for @voidConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Anular'**
+  String get voidConfirm;
+
+  /// No description provided for @voidDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Pago anulado'**
+  String get voidDone;
+
+  /// No description provided for @voidNotAllowed.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes permiso para anular este pago'**
+  String get voidNotAllowed;
+
+  /// No description provided for @voidWindowExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo puedes anular tus pagos durante los primeros 15 minutos'**
+  String get voidWindowExpired;
+
+  /// No description provided for @notFound.
+  ///
+  /// In es, this message translates to:
+  /// **'No encontramos este pago'**
+  String get notFound;
 }
 
 class _AppLocalizationsDelegate
