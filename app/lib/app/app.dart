@@ -5,6 +5,7 @@ import 'package:vantia/app/bootstrap.dart';
 import 'package:vantia/app/router/app_router.dart';
 import 'package:vantia/app/theme/app_theme.dart';
 import 'package:vantia/app/theme/theme_mode_controller.dart';
+import 'package:vantia/features/notifications/push_service.dart';
 import 'package:vantia/l10n/gen/app_localizations.dart';
 
 class VantiaApp extends ConsumerWidget {
@@ -13,6 +14,7 @@ class VantiaApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flavor = ref.watch(flavorProvider);
+    ref.watch(pushRegistrationProvider);
     return MaterialApp.router(
       title: flavor.appTitle,
       debugShowCheckedModeBanner: flavor.isDev,

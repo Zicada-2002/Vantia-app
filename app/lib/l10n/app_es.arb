@@ -242,5 +242,86 @@
   "voidDone": "Pago anulado",
   "voidNotAllowed": "No tienes permiso para anular este pago",
   "voidWindowExpired": "Solo puedes anular tus pagos durante los primeros 15 minutos",
-  "notFound": "No encontramos este pago"
+  "notFound": "No encontramos este pago",
+  "collabGenerate": "Generar código de invitación",
+  "collabEmptyInvites": "Aún no has generado códigos de invitación",
+  "collabInvites": "Códigos de invitación",
+  "collabMembers": "Equipo",
+  "collabNoMembers": "Todavía no hay colaboradores. Comparte un código para invitar.",
+  "collabCodeTitle": "Código de invitación",
+  "collabCodeBody": "Compártelo con tu colaborador. Vence en 48 horas y sirve una sola vez.",
+  "collabCopy": "Copiar",
+  "collabCopied": "Código copiado",
+  "collabShare": "Compartir",
+  "collabShareText": "Únete a {business} en Vantia con el código {code}. Descarga la app, crea tu cuenta y elige \"Colaborador\".",
+  "@collabShareText": {
+    "placeholders": {
+      "business": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteActive": "Vigente · vence en {hours} h",
+  "@inviteActive": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteUsedBy": "Usado por {name}",
+  "@inviteUsedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteUsed": "Usado",
+  "inviteExpired": "Vencido",
+  "inviteRevoked": "Revocado",
+  "inviteRevoke": "Revocar",
+  "inviteRevokeTitle": "¿Revocar el código {code}?",
+  "@inviteRevokeTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteRevokeBody": "Nadie podrá usarlo para unirse a tu negocio.",
+  "inviteRevoked2": "Código revocado",
+  "memberOwner": "Dueño",
+  "memberSince": "Desde {date}",
+  "@memberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "memberTodaySales": "Hoy: {amount}",
+  "@memberTodaySales": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "memberInactive": "Desactivado",
+  "memberDeactivate": "Desactivar",
+  "memberActivate": "Reactivar",
+  "memberDeactivateTitle": "¿Desactivar a {name}?",
+  "@memberDeactivateTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memberDeactivateBody": "Perderá el acceso al negocio. Sus pagos registrados se conservan.",
+  "memberUpdated": "Colaborador actualizado"
 }

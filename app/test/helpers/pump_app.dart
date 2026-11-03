@@ -10,6 +10,9 @@ import 'package:vantia/app/theme/theme_mode_controller.dart';
 import 'package:vantia/core/time/clock.dart';
 import 'package:vantia/features/auth/domain/auth_repository.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
+import 'package:vantia/features/collaborators/application/collaborator_providers.dart';
+import 'package:vantia/features/collaborators/domain/collaborators.dart';
+import 'package:vantia/features/notifications/push_service.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment_repository.dart';
 
@@ -22,6 +25,7 @@ extension PumpApp on WidgetTester {
     AuthRepository? auth,
     BusinessRepository? business,
     PaymentRepository? payments,
+    CollaboratorRepository? collaborators,
     DateTime? now,
     Map<String, Object> prefs = const {},
     List<Override> extraOverrides = const [],
@@ -43,6 +47,10 @@ extension PumpApp on WidgetTester {
         ),
         clockProvider.overrideWithValue(() => now ?? fixedNow),
         offlineProvider.overrideWith((ref) => Stream.value(false)),
+        pushServiceProvider.overrideWithValue(const NoopPushService()),
+        collaboratorRepositoryProvider.overrideWithValue(
+          collaborators ?? FakeCollaboratorRepository(),
+        ),
         ...extraOverrides,
       ],
     );

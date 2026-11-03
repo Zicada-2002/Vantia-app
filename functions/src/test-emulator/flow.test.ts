@@ -163,6 +163,35 @@ describe("onboarding con Cloud Functions", () => {
     assert.equal((await call("redeemInvite", luis, { code: expiredCode })).error?.details?.reason, "invite-expired");
   });
 
+  test("revocar invitación: el código deja de servir", async () => {
+    const gen = await call("generateInvite", owner, {});
+    const revoked = gen.result!.code as string;
+    assert.equal((await call("revokeInvite", ana, { code: revoked })).error?.details?.reason, "not-owner");
+    assert.ok((await call("revokeInvite", owner, { code: revoked })).result);
+    assert.equal((await call("redeemInvite", luis, { code: revoked })).error?.details?.reason, "invite-invalid");
+    const inv = await getFirestore(admin).doc(`businesses/${businessId}/invites/${revoked}`).get();
+    assert.equal(inv.get("status"), "revoked");
+  });
+
+  test("desactivar y reactivar colaborador", async () => {
+    const db = getFirestore(admin);
+    assert.ok((await call("setMemberActive", owner, { uid: ana.uid, active: false })).result);
+    assert.equal((await db.doc(`users/${ana.uid}`).get()).get("activeBusinessId"), null);
+    assert.equal((await db.doc(`businesses/${businessId}/members/${ana.uid}`).get()).get("active"), false);
+    const anaDb = rules.authenticatedContext(ana.uid, { email_verified: true }).firestore();
+    await assertFails(anaDb.doc(`businesses/${businessId}`).get());
+
+    assert.ok((await call("setMemberActive", owner, { uid: ana.uid, active: true })).result);
+    assert.equal((await db.doc(`users/${ana.uid}`).get()).get("activeBusinessId"), businessId);
+    await assertSucceeds(anaDb.doc(`businesses/${businessId}`).get());
+
+    assert.equal(
+      (await call("setMemberActive", owner, { uid: owner.uid, active: false })).error?.details?.reason,
+      "invalid-data",
+    );
+    assert.equal((await call("setMemberActive", ana, { uid: owner.uid, active: false })).error?.details?.reason, "not-owner");
+  });
+
   describe("reglas de Firestore", () => {
     const verified = { email_verified: true };
 

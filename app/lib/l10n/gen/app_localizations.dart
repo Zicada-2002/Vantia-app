@@ -1197,6 +1197,180 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No encontramos este pago'**
   String get notFound;
+
+  /// No description provided for @collabGenerate.
+  ///
+  /// In es, this message translates to:
+  /// **'Generar código de invitación'**
+  String get collabGenerate;
+
+  /// No description provided for @collabEmptyInvites.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no has generado códigos de invitación'**
+  String get collabEmptyInvites;
+
+  /// No description provided for @collabInvites.
+  ///
+  /// In es, this message translates to:
+  /// **'Códigos de invitación'**
+  String get collabInvites;
+
+  /// No description provided for @collabMembers.
+  ///
+  /// In es, this message translates to:
+  /// **'Equipo'**
+  String get collabMembers;
+
+  /// No description provided for @collabNoMembers.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no hay colaboradores. Comparte un código para invitar.'**
+  String get collabNoMembers;
+
+  /// No description provided for @collabCodeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de invitación'**
+  String get collabCodeTitle;
+
+  /// No description provided for @collabCodeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Compártelo con tu colaborador. Vence en 48 horas y sirve una sola vez.'**
+  String get collabCodeBody;
+
+  /// No description provided for @collabCopy.
+  ///
+  /// In es, this message translates to:
+  /// **'Copiar'**
+  String get collabCopy;
+
+  /// No description provided for @collabCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Código copiado'**
+  String get collabCopied;
+
+  /// No description provided for @collabShare.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir'**
+  String get collabShare;
+
+  /// No description provided for @collabShareText.
+  ///
+  /// In es, this message translates to:
+  /// **'Únete a {business} en Vantia con el código {code}. Descarga la app, crea tu cuenta y elige \"Colaborador\".'**
+  String collabShareText(String business, String code);
+
+  /// No description provided for @inviteActive.
+  ///
+  /// In es, this message translates to:
+  /// **'Vigente · vence en {hours} h'**
+  String inviteActive(int hours);
+
+  /// No description provided for @inviteUsedBy.
+  ///
+  /// In es, this message translates to:
+  /// **'Usado por {name}'**
+  String inviteUsedBy(String name);
+
+  /// No description provided for @inviteUsed.
+  ///
+  /// In es, this message translates to:
+  /// **'Usado'**
+  String get inviteUsed;
+
+  /// No description provided for @inviteExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'Vencido'**
+  String get inviteExpired;
+
+  /// No description provided for @inviteRevoked.
+  ///
+  /// In es, this message translates to:
+  /// **'Revocado'**
+  String get inviteRevoked;
+
+  /// No description provided for @inviteRevoke.
+  ///
+  /// In es, this message translates to:
+  /// **'Revocar'**
+  String get inviteRevoke;
+
+  /// No description provided for @inviteRevokeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Revocar el código {code}?'**
+  String inviteRevokeTitle(String code);
+
+  /// No description provided for @inviteRevokeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Nadie podrá usarlo para unirse a tu negocio.'**
+  String get inviteRevokeBody;
+
+  /// No description provided for @inviteRevoked2.
+  ///
+  /// In es, this message translates to:
+  /// **'Código revocado'**
+  String get inviteRevoked2;
+
+  /// No description provided for @memberOwner.
+  ///
+  /// In es, this message translates to:
+  /// **'Dueño'**
+  String get memberOwner;
+
+  /// No description provided for @memberSince.
+  ///
+  /// In es, this message translates to:
+  /// **'Desde {date}'**
+  String memberSince(String date);
+
+  /// No description provided for @memberTodaySales.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy: {amount}'**
+  String memberTodaySales(String amount);
+
+  /// No description provided for @memberInactive.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactivado'**
+  String get memberInactive;
+
+  /// No description provided for @memberDeactivate.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactivar'**
+  String get memberDeactivate;
+
+  /// No description provided for @memberActivate.
+  ///
+  /// In es, this message translates to:
+  /// **'Reactivar'**
+  String get memberActivate;
+
+  /// No description provided for @memberDeactivateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Desactivar a {name}?'**
+  String memberDeactivateTitle(String name);
+
+  /// No description provided for @memberDeactivateBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Perderá el acceso al negocio. Sus pagos registrados se conservan.'**
+  String get memberDeactivateBody;
+
+  /// No description provided for @memberUpdated.
+  ///
+  /// In es, this message translates to:
+  /// **'Colaborador actualizado'**
+  String get memberUpdated;
 }
 
 class _AppLocalizationsDelegate

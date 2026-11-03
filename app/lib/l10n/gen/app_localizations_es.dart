@@ -598,4 +598,108 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notFound => 'No encontramos este pago';
+
+  @override
+  String get collabGenerate => 'Generar código de invitación';
+
+  @override
+  String get collabEmptyInvites => 'Aún no has generado códigos de invitación';
+
+  @override
+  String get collabInvites => 'Códigos de invitación';
+
+  @override
+  String get collabMembers => 'Equipo';
+
+  @override
+  String get collabNoMembers =>
+      'Todavía no hay colaboradores. Comparte un código para invitar.';
+
+  @override
+  String get collabCodeTitle => 'Código de invitación';
+
+  @override
+  String get collabCodeBody =>
+      'Compártelo con tu colaborador. Vence en 48 horas y sirve una sola vez.';
+
+  @override
+  String get collabCopy => 'Copiar';
+
+  @override
+  String get collabCopied => 'Código copiado';
+
+  @override
+  String get collabShare => 'Compartir';
+
+  @override
+  String collabShareText(String business, String code) {
+    return 'Únete a $business en Vantia con el código $code. Descarga la app, crea tu cuenta y elige \"Colaborador\".';
+  }
+
+  @override
+  String inviteActive(int hours) {
+    return 'Vigente · vence en $hours h';
+  }
+
+  @override
+  String inviteUsedBy(String name) {
+    return 'Usado por $name';
+  }
+
+  @override
+  String get inviteUsed => 'Usado';
+
+  @override
+  String get inviteExpired => 'Vencido';
+
+  @override
+  String get inviteRevoked => 'Revocado';
+
+  @override
+  String get inviteRevoke => 'Revocar';
+
+  @override
+  String inviteRevokeTitle(String code) {
+    return '¿Revocar el código $code?';
+  }
+
+  @override
+  String get inviteRevokeBody => 'Nadie podrá usarlo para unirse a tu negocio.';
+
+  @override
+  String get inviteRevoked2 => 'Código revocado';
+
+  @override
+  String get memberOwner => 'Dueño';
+
+  @override
+  String memberSince(String date) {
+    return 'Desde $date';
+  }
+
+  @override
+  String memberTodaySales(String amount) {
+    return 'Hoy: $amount';
+  }
+
+  @override
+  String get memberInactive => 'Desactivado';
+
+  @override
+  String get memberDeactivate => 'Desactivar';
+
+  @override
+  String get memberActivate => 'Reactivar';
+
+  @override
+  String memberDeactivateTitle(String name) {
+    return '¿Desactivar a $name?';
+  }
+
+  @override
+  String get memberDeactivateBody =>
+      'Perderá el acceso al negocio. Sus pagos registrados se conservan.';
+
+  @override
+  String get memberUpdated => 'Colaborador actualizado';
 }

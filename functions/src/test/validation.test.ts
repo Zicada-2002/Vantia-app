@@ -45,3 +45,10 @@ test("generateInviteCode usa solo el alfabeto permitido", () => {
   for (const ch of code) assert.ok(INVITE_ALPHABET.includes(ch));
   assert.doesNotMatch(INVITE_ALPHABET, /[01OIL]/);
 });
+
+import { paymentPushText } from "../collaborators.js";
+
+test("paymentPushText", () => {
+  assert.equal(paymentPushText("Ana", 2500, "yape"), "Ana registró S/ 25.00 por Yape");
+  assert.equal(paymentPushText("", 123456, "cash"), "Un colaborador registró S/ 1,234.56 por efectivo");
+});

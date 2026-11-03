@@ -3,6 +3,7 @@ import { FieldValue, Timestamp, getFirestore } from "firebase-admin/firestore";
 import { onCall } from "firebase-functions/v2/https";
 import { requireVerified } from "./auth.js";
 import { fail } from "./errors.js";
+import { requireOwner } from "./owner.js";
 import { generateInviteCode, parseCreateBusiness, parseInviteCode } from "./validation.js";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -56,13 +57,9 @@ export const createBusiness = onCall(async (req) => {
 
 /** F-30 (base, necesaria para probar F-17): el dueño genera un código. */
 export const generateInvite = onCall(async (req) => {
-  const caller = requireVerified(req);
+  const caller = await requireOwner(req);
   const db = getFirestore();
-  const user = await db.doc(`users/${caller.uid}`).get();
-  const bid = user.get("activeBusinessId") as string | undefined;
-  if (!bid || user.get("role") !== "owner") {
-    throw fail("permission-denied", "not-owner", "Solo el dueño puede invitar");
-  }
+  const bid = caller.businessId;
 
   const expiresAt = Timestamp.fromMillis(Date.now() + INVITE_TTL_HOURS * 60 * 60 * 1000);
   for (let attempt = 0; attempt < 5; attempt++) {

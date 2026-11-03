@@ -9,6 +9,7 @@ import 'package:vantia/features/auth/domain/auth_user.dart';
 import 'package:vantia/features/business/domain/business.dart';
 import 'package:vantia/features/business/domain/business_failure.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
+import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
 import 'package:vantia/features/payments/domain/payment_repository.dart';
@@ -360,3 +361,68 @@ Payment fakePayment({
   createdByName: createdByName,
   createdAt: at ?? fixedNow,
 );
+
+class FakeCollaboratorRepository implements CollaboratorRepository {
+  final invites = <Invite>[];
+  final members = <Member>[];
+  final _changes = StreamController<void>.broadcast();
+  int _seq = 0;
+  final setActiveCalls = <(String, bool)>[];
+
+  void _notify() => _changes.add(null);
+
+  Stream<T> _live<T>(T Function() read) async* {
+    yield read();
+    yield* _changes.stream.map((_) => read());
+  }
+
+  @override
+  Stream<List<Invite>> watchInvites(String businessId) =>
+      _live(() => List.of(invites.reversed));
+
+  @override
+  Stream<List<Member>> watchMembers(String businessId) =>
+      _live(() => List.of(members));
+
+  @override
+  Future<Result<({String code, DateTime expiresAt})>> generateInvite() async {
+    final code = 'ABC23${++_seq}';
+    final expiresAt = fixedNow.add(const Duration(hours: 48));
+    invites.add(
+      Invite(code: code, status: InviteStatus.active, expiresAt: expiresAt),
+    );
+    _notify();
+    return Ok((code: code, expiresAt: expiresAt));
+  }
+
+  @override
+  Future<Result<void>> revokeInvite(String code) async {
+    final i = invites.indexWhere((x) => x.code == code);
+    invites[i] = Invite(
+      code: code,
+      status: InviteStatus.revoked,
+      expiresAt: invites[i].expiresAt,
+    );
+    _notify();
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> setMemberActive(
+    String uid, {
+    required bool active,
+  }) async {
+    setActiveCalls.add((uid, active));
+    final i = members.indexWhere((m) => m.uid == uid);
+    final m = members[i];
+    members[i] = Member(
+      uid: m.uid,
+      displayName: m.displayName,
+      role: m.role,
+      active: active,
+      joinedAt: m.joinedAt,
+    );
+    _notify();
+    return const Ok(null);
+  }
+}
