@@ -10,6 +10,8 @@ import 'package:vantia/app/theme/theme_mode_controller.dart';
 import 'package:vantia/core/time/clock.dart';
 import 'package:vantia/features/auth/domain/auth_repository.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
+import 'package:vantia/features/cash_register/application/cash_providers.dart';
+import 'package:vantia/features/cash_register/domain/cash_session.dart';
 import 'package:vantia/features/collaborators/application/collaborator_providers.dart';
 import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/notifications/push_service.dart';
@@ -26,6 +28,7 @@ extension PumpApp on WidgetTester {
     BusinessRepository? business,
     PaymentRepository? payments,
     CollaboratorRepository? collaborators,
+    CashRepository? cash,
     DateTime? now,
     Map<String, Object> prefs = const {},
     List<Override> extraOverrides = const [],
@@ -33,6 +36,8 @@ extension PumpApp on WidgetTester {
     SharedPreferences.setMockInitialValues(prefs);
     await initializeDateFormatting('es');
     final defaults = readyOwnerRepos();
+    final paymentRepo =
+        payments ?? FakePaymentRepository(clock: () => now ?? fixedNow);
     final container = ProviderContainer(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(
@@ -42,8 +47,14 @@ extension PumpApp on WidgetTester {
         businessRepositoryProvider.overrideWithValue(
           business ?? defaults.business,
         ),
-        paymentRepositoryProvider.overrideWithValue(
-          payments ?? FakePaymentRepository(clock: () => now ?? fixedNow),
+        paymentRepositoryProvider.overrideWithValue(paymentRepo),
+        cashRepositoryProvider.overrideWithValue(
+          cash ??
+              FakeCashRepository(
+                paymentRepo is FakePaymentRepository
+                    ? paymentRepo
+                    : FakePaymentRepository(),
+              ),
         ),
         clockProvider.overrideWithValue(() => now ?? fixedNow),
         offlineProvider.overrideWith((ref) => Stream.value(false)),

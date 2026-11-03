@@ -1371,6 +1371,198 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Colaborador actualizado'**
   String get memberUpdated;
+
+  /// No description provided for @cashViewing.
+  ///
+  /// In es, this message translates to:
+  /// **'Viendo: {date}'**
+  String cashViewing(String date);
+
+  /// No description provided for @cashMine.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi caja'**
+  String get cashMine;
+
+  /// No description provided for @cashGeneral.
+  ///
+  /// In es, this message translates to:
+  /// **'Resumen general'**
+  String get cashGeneral;
+
+  /// No description provided for @cashToday.
+  ///
+  /// In es, this message translates to:
+  /// **'(hoy)'**
+  String get cashToday;
+
+  /// No description provided for @cashPickDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir fecha'**
+  String get cashPickDate;
+
+  /// No description provided for @cashShiftTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total de tu turno'**
+  String get cashShiftTotal;
+
+  /// No description provided for @cashGeneralTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total del negocio'**
+  String get cashGeneralTotal;
+
+  /// No description provided for @cashPhysical.
+  ///
+  /// In es, this message translates to:
+  /// **'Caja física'**
+  String get cashPhysical;
+
+  /// No description provided for @cashOpening.
+  ///
+  /// In es, this message translates to:
+  /// **'Fondo inicial'**
+  String get cashOpening;
+
+  /// No description provided for @cashReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'+ Efectivo recibido'**
+  String get cashReceived;
+
+  /// No description provided for @cashChangeGiven.
+  ///
+  /// In es, this message translates to:
+  /// **'− Cambios dados'**
+  String get cashChangeGiven;
+
+  /// No description provided for @cashExpected.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperado en caja'**
+  String get cashExpected;
+
+  /// No description provided for @cashCounted.
+  ///
+  /// In es, this message translates to:
+  /// **'Total contado'**
+  String get cashCounted;
+
+  /// No description provided for @cashDifference.
+  ///
+  /// In es, this message translates to:
+  /// **'Diferencia'**
+  String get cashDifference;
+
+  /// No description provided for @cashClose.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar caja'**
+  String get cashClose;
+
+  /// No description provided for @cashCloseTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cerrar la caja?'**
+  String get cashCloseTitle;
+
+  /// No description provided for @cashCloseBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Diferencia: {difference}. Después de cerrar no podrás registrar ni anular pagos de este día.'**
+  String cashCloseBody(String difference);
+
+  /// No description provided for @cashClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'Caja cerrada'**
+  String get cashClosed;
+
+  /// No description provided for @cashClosedAt.
+  ///
+  /// In es, this message translates to:
+  /// **'Caja cerrada el {date}'**
+  String cashClosedAt(String date);
+
+  /// No description provided for @cashReopened.
+  ///
+  /// In es, this message translates to:
+  /// **'Caja reabierta: {reason}'**
+  String cashReopened(String reason);
+
+  /// No description provided for @cashReopen.
+  ///
+  /// In es, this message translates to:
+  /// **'Reabrir caja'**
+  String get cashReopen;
+
+  /// No description provided for @cashReopenTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Reabrir caja'**
+  String get cashReopenTitle;
+
+  /// No description provided for @cashReopenReason.
+  ///
+  /// In es, this message translates to:
+  /// **'Motivo'**
+  String get cashReopenReason;
+
+  /// No description provided for @cashReopenDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Caja reabierta'**
+  String get cashReopenDone;
+
+  /// No description provided for @cashNoPayments.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin pagos'**
+  String get cashNoPayments;
+
+  /// No description provided for @cashStatusOpen.
+  ///
+  /// In es, this message translates to:
+  /// **'Abierta'**
+  String get cashStatusOpen;
+
+  /// No description provided for @cashStatusClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrada'**
+  String get cashStatusClosed;
+
+  /// No description provided for @cashStatusNone.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin abrir'**
+  String get cashStatusNone;
+
+  /// No description provided for @cashTeam.
+  ///
+  /// In es, this message translates to:
+  /// **'Cajas del equipo'**
+  String get cashTeam;
+
+  /// No description provided for @cashOver.
+  ///
+  /// In es, this message translates to:
+  /// **'Sobra'**
+  String get cashOver;
+
+  /// No description provided for @cashShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta'**
+  String get cashShort;
+
+  /// No description provided for @cashExact.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuadra'**
+  String get cashExact;
 }
 
 class _AppLocalizationsDelegate

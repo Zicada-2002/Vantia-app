@@ -9,6 +9,7 @@ import 'package:vantia/features/auth/domain/auth_user.dart';
 import 'package:vantia/features/business/domain/business.dart';
 import 'package:vantia/features/business/domain/business_failure.dart';
 import 'package:vantia/features/business/domain/business_repository.dart';
+import 'package:vantia/features/cash_register/domain/cash_session.dart';
 import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
@@ -423,6 +424,104 @@ class FakeCollaboratorRepository implements CollaboratorRepository {
       joinedAt: m.joinedAt,
     );
     _notify();
+    return const Ok(null);
+  }
+}
+
+class FakeCashRepository implements CashRepository {
+  FakeCashRepository(this.payments);
+
+  final FakePaymentRepository payments;
+  final sessions = <String, CashSession>{};
+  final _changes = StreamController<void>.broadcast();
+  final drafts = <({Money? opening, Money? counted})>[];
+
+  void seed(CashSession s) {
+    sessions[CashSession.idFor(s.dayKey, s.uid)] = s;
+    _changes.add(null);
+  }
+
+  Stream<T> _live<T>(T Function() read) async* {
+    yield read();
+    yield* _changes.stream.map((_) => read());
+  }
+
+  @override
+  Stream<CashSession?> watchSession(String b, String dayKey, String uid) =>
+      _live(() => sessions[CashSession.idFor(dayKey, uid)]);
+
+  @override
+  Stream<List<CashSession>> watchDay(String b, String dayKey) =>
+      _live(() => sessions.values.where((s) => s.dayKey == dayKey).toList());
+
+  String uid = 'uid-owner';
+
+  @override
+  Future<Result<void>> saveDraft({
+    required String businessId,
+    required String dayKey,
+    required String uid,
+    required String displayName,
+    required bool exists,
+    Money? opening,
+    Money? counted,
+  }) async {
+    drafts.add((opening: opening, counted: counted));
+    return const Ok(null);
+  }
+
+  @override
+  Future<Result<void>> close({
+    required String dayKey,
+    required Money opening,
+    required Money counted,
+  }) async {
+    final mine = payments.payments.values.where(
+      (p) => p.createdBy == uid && p.dayKey == dayKey,
+    );
+    final count = CashCount.from(
+      PaymentSummary.of(mine),
+      opening: opening,
+      counted: counted,
+    );
+    seed(
+      CashSession(
+        dayKey: dayKey,
+        uid: uid,
+        displayName: 'Carlos',
+        status: CashStatus.closed,
+        opening: opening,
+        counted: counted,
+        total: PaymentSummary.of(mine).total,
+        expected: count.expected,
+        difference: count.difference,
+        closedAt: fixedNow,
+      ),
+    );
+    return const Ok(null);
+  }
+
+  final reopened = <(String, String, String)>[];
+
+  @override
+  Future<Result<void>> reopen({
+    required String dayKey,
+    required String uid,
+    required String reason,
+  }) async {
+    reopened.add((dayKey, uid, reason));
+    final s = sessions[CashSession.idFor(dayKey, uid)]!;
+    seed(
+      CashSession(
+        dayKey: dayKey,
+        uid: uid,
+        displayName: s.displayName,
+        status: CashStatus.reopened,
+        opening: s.opening,
+        counted: s.counted,
+        reopenReason: reason,
+      ),
+    );
     return const Ok(null);
   }
 }

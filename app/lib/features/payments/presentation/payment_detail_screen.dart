@@ -12,6 +12,7 @@ import 'package:vantia/core/widgets/empty_state.dart';
 import 'package:vantia/core/widgets/error_messages.dart';
 import 'package:vantia/core/widgets/money_text.dart';
 import 'package:vantia/core/widgets/payment_method_icon.dart';
+import 'package:vantia/core/widgets/reason_dialog.dart';
 import 'package:vantia/core/widgets/v_button.dart';
 import 'package:vantia/core/widgets/v_card.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
@@ -164,9 +165,13 @@ class _Detail extends ConsumerWidget {
 
   Future<void> _void(BuildContext context, WidgetRef ref) async {
     final l10n = context.l10n;
-    final reason = await showDialog<String>(
-      context: context,
-      builder: (_) => const _VoidDialog(),
+    final reason = await showReasonDialog(
+      context,
+      title: l10n.voidTitle,
+      body: l10n.voidBody,
+      label: l10n.voidReasonLabel,
+      hint: l10n.voidReasonHint,
+      confirm: l10n.voidConfirm,
     );
     if (reason == null || !context.mounted) return;
     final session = ref.read(sessionProvider) as SessionReady;
@@ -186,58 +191,5 @@ class _Detail extends ConsumerWidget {
       case Err(:final failure):
         showSnack(context, failureMessage(l10n, failure));
     }
-  }
-}
-
-class _VoidDialog extends StatefulWidget {
-  const _VoidDialog();
-
-  @override
-  State<_VoidDialog> createState() => _VoidDialogState();
-}
-
-class _VoidDialogState extends State<_VoidDialog> {
-  final _reason = TextEditingController();
-
-  @override
-  void dispose() {
-    _reason.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final valid = _reason.text.trim().length >= 3;
-    return AlertDialog(
-      title: Text(l10n.voidTitle),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(l10n.voidBody),
-          const SizedBox(height: VantiaSpacing.md),
-          TextField(
-            controller: _reason,
-            autofocus: true,
-            decoration: InputDecoration(
-              labelText: l10n.voidReasonLabel,
-              hintText: l10n.voidReasonHint,
-            ),
-            onChanged: (_) => setState(() {}),
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
-        ),
-        FilledButton(
-          onPressed: valid ? () => Navigator.pop(context, _reason.text) : null,
-          child: Text(l10n.voidConfirm),
-        ),
-      ],
-    );
   }
 }

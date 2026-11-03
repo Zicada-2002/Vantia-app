@@ -702,4 +702,108 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get memberUpdated => 'Colaborador actualizado';
+
+  @override
+  String cashViewing(String date) {
+    return 'Viendo: $date';
+  }
+
+  @override
+  String get cashMine => 'Mi caja';
+
+  @override
+  String get cashGeneral => 'Resumen general';
+
+  @override
+  String get cashToday => '(hoy)';
+
+  @override
+  String get cashPickDate => 'Elegir fecha';
+
+  @override
+  String get cashShiftTotal => 'Total de tu turno';
+
+  @override
+  String get cashGeneralTotal => 'Total del negocio';
+
+  @override
+  String get cashPhysical => 'Caja física';
+
+  @override
+  String get cashOpening => 'Fondo inicial';
+
+  @override
+  String get cashReceived => '+ Efectivo recibido';
+
+  @override
+  String get cashChangeGiven => '− Cambios dados';
+
+  @override
+  String get cashExpected => 'Esperado en caja';
+
+  @override
+  String get cashCounted => 'Total contado';
+
+  @override
+  String get cashDifference => 'Diferencia';
+
+  @override
+  String get cashClose => 'Cerrar caja';
+
+  @override
+  String get cashCloseTitle => '¿Cerrar la caja?';
+
+  @override
+  String cashCloseBody(String difference) {
+    return 'Diferencia: $difference. Después de cerrar no podrás registrar ni anular pagos de este día.';
+  }
+
+  @override
+  String get cashClosed => 'Caja cerrada';
+
+  @override
+  String cashClosedAt(String date) {
+    return 'Caja cerrada el $date';
+  }
+
+  @override
+  String cashReopened(String reason) {
+    return 'Caja reabierta: $reason';
+  }
+
+  @override
+  String get cashReopen => 'Reabrir caja';
+
+  @override
+  String get cashReopenTitle => 'Reabrir caja';
+
+  @override
+  String get cashReopenReason => 'Motivo';
+
+  @override
+  String get cashReopenDone => 'Caja reabierta';
+
+  @override
+  String get cashNoPayments => 'Sin pagos';
+
+  @override
+  String get cashStatusOpen => 'Abierta';
+
+  @override
+  String get cashStatusClosed => 'Cerrada';
+
+  @override
+  String get cashStatusNone => 'Sin abrir';
+
+  @override
+  String get cashTeam => 'Cajas del equipo';
+
+  @override
+  String get cashOver => 'Sobra';
+
+  @override
+  String get cashShort => 'Falta';
+
+  @override
+  String get cashExact => 'Cuadra';
 }

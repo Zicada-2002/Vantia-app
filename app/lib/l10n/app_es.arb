@@ -323,5 +323,65 @@
     }
   },
   "memberDeactivateBody": "Perderá el acceso al negocio. Sus pagos registrados se conservan.",
-  "memberUpdated": "Colaborador actualizado"
+  "memberUpdated": "Colaborador actualizado",
+  "cashViewing": "Viendo: {date}",
+  "@cashViewing": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cashMine": "Mi caja",
+  "cashGeneral": "Resumen general",
+  "cashToday": "(hoy)",
+  "cashPickDate": "Elegir fecha",
+  "cashShiftTotal": "Total de tu turno",
+  "cashGeneralTotal": "Total del negocio",
+  "cashPhysical": "Caja física",
+  "cashOpening": "Fondo inicial",
+  "cashReceived": "+ Efectivo recibido",
+  "cashChangeGiven": "− Cambios dados",
+  "cashExpected": "Esperado en caja",
+  "cashCounted": "Total contado",
+  "cashDifference": "Diferencia",
+  "cashClose": "Cerrar caja",
+  "cashCloseTitle": "¿Cerrar la caja?",
+  "cashCloseBody": "Diferencia: {difference}. Después de cerrar no podrás registrar ni anular pagos de este día.",
+  "@cashCloseBody": {
+    "placeholders": {
+      "difference": {
+        "type": "String"
+      }
+    }
+  },
+  "cashClosed": "Caja cerrada",
+  "cashClosedAt": "Caja cerrada el {date}",
+  "@cashClosedAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cashReopened": "Caja reabierta: {reason}",
+  "@cashReopened": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "cashReopen": "Reabrir caja",
+  "cashReopenTitle": "Reabrir caja",
+  "cashReopenReason": "Motivo",
+  "cashReopenDone": "Caja reabierta",
+  "cashNoPayments": "Sin pagos",
+  "cashStatusOpen": "Abierta",
+  "cashStatusClosed": "Cerrada",
+  "cashStatusNone": "Sin abrir",
+  "cashTeam": "Cajas del equipo",
+  "cashOver": "Sobra",
+  "cashShort": "Falta",
+  "cashExact": "Cuadra"
 }

@@ -67,6 +67,12 @@ service cloud.firestore {
         && (d.method == 'cash' || !('changeCents' in d));
     }
 
+    function validCashDraft(d) {
+      return d.dayKey is string && d.dayKey.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && (!('openingCents' in d) || (d.openingCents is int && d.openingCents >= 0))
+        && (!('countedCents' in d) || (d.countedCents is int && d.countedCents >= 0));
+    }
+
     function validVoid() {
       let d = request.resource.data;
       return resource.data.status == 'active'
@@ -132,8 +138,35 @@ service cloud.firestore {
         allow delete: if false;
       }
 
-      // Colecciones de M3+ (cashSessions, products, dailyStats, audit) se
-      // habilitan en sus milestones; hasta entonces, denegadas.
+      // ---------- Cuadre de caja (M4) ----------
+      // id = {dayKey}_{uid}. El cliente solo guarda el borrador (fondo y
+      // contado); el cierre y la reapertura los hacen las Functions.
+      match /cashSessions/{sid} {
+        allow read: if isOwner(bid)
+          || (isMember(bid) && sid.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}_' + request.auth.uid + '$'));
+
+        allow create: if isMember(bid)
+          && sid == request.resource.data.dayKey + '_' + request.auth.uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == 'open'
+          && validCashDraft(request.resource.data);
+
+        allow update: if isMember(bid)
+          && resource.data.uid == request.auth.uid
+          && resource.data.status != 'closed'
+          && onlyChanges(['openingCents', 'countedCents', 'displayName', 'updatedAt'])
+          && validCashDraft(request.resource.data);
+
+        allow delete: if false;
+      }
+
+      match /audit/{id} {
+        allow read: if isOwner(bid);
+        allow write: if false;
+      }
+
+      // Colecciones de M5+ (products, dailyStats) se habilitan en sus
+      // milestones; hasta entonces, denegadas.
     }
 
     // Índice global de códigos: solo Functions.
