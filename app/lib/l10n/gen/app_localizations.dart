@@ -279,6 +279,516 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No encontramos esta pantalla'**
   String get routeNotFound;
+
+  /// No description provided for @appName.
+  ///
+  /// In es, this message translates to:
+  /// **'Vantia'**
+  String get appName;
+
+  /// No description provided for @fieldName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre completo'**
+  String get fieldName;
+
+  /// No description provided for @fieldEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico'**
+  String get fieldEmail;
+
+  /// No description provided for @fieldPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña'**
+  String get fieldPassword;
+
+  /// No description provided for @fieldConfirmPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar contraseña'**
+  String get fieldConfirmPassword;
+
+  /// No description provided for @hintName.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej. Carlos Vásquez'**
+  String get hintName;
+
+  /// No description provided for @hintEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'tucorreo@ejemplo.com'**
+  String get hintEmail;
+
+  /// No description provided for @hintPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínimo 8 caracteres y 1 número'**
+  String get hintPassword;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar contraseña'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocultar contraseña'**
+  String get hidePassword;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Bienvenido a Vantia'**
+  String get loginTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa para registrar tus cobros y cuadrar tu caja.'**
+  String get loginSubtitle;
+
+  /// No description provided for @loginButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresar'**
+  String get loginButton;
+
+  /// No description provided for @loginForgot.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Olvidaste tu contraseña?'**
+  String get loginForgot;
+
+  /// No description provided for @loginNoAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'¿No tienes cuenta?'**
+  String get loginNoAccount;
+
+  /// No description provided for @loginCreateAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear cuenta'**
+  String get loginCreateAccount;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Crea tu cuenta'**
+  String get registerTitle;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Te enviaremos un correo para verificar tu dirección.'**
+  String get registerSubtitle;
+
+  /// No description provided for @registerAcceptTerms.
+  ///
+  /// In es, this message translates to:
+  /// **'Acepto los Términos y condiciones y la Política de privacidad'**
+  String get registerAcceptTerms;
+
+  /// No description provided for @registerTermsRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Debes aceptar los términos para continuar'**
+  String get registerTermsRequired;
+
+  /// No description provided for @registerButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear cuenta'**
+  String get registerButton;
+
+  /// No description provided for @registerHaveAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Ya tienes cuenta?'**
+  String get registerHaveAccount;
+
+  /// No description provided for @registerSignIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresar'**
+  String get registerSignIn;
+
+  /// No description provided for @verifyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa tu correo'**
+  String get verifyTitle;
+
+  /// No description provided for @verifyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviamos un enlace de verificación a {email}. Ábrelo para activar tu cuenta.'**
+  String verifyBody(String email);
+
+  /// No description provided for @verifyHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Si no lo ves, revisa la carpeta de spam o promociones.'**
+  String get verifyHint;
+
+  /// No description provided for @verifyCheck.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya verifiqué mi correo'**
+  String get verifyCheck;
+
+  /// No description provided for @verifyResend.
+  ///
+  /// In es, this message translates to:
+  /// **'Reenviar correo'**
+  String get verifyResend;
+
+  /// No description provided for @verifyResendIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Reenviar en {seconds} s'**
+  String verifyResendIn(int seconds);
+
+  /// No description provided for @verifyResent.
+  ///
+  /// In es, this message translates to:
+  /// **'Te enviamos un nuevo correo de verificación'**
+  String get verifyResent;
+
+  /// No description provided for @verifyStillPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu correo aún no está verificado. Abre el enlace que te enviamos.'**
+  String get verifyStillPending;
+
+  /// No description provided for @verifyUseOtherEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Usar otro correo'**
+  String get verifyUseOtherEmail;
+
+  /// No description provided for @forgotTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Recupera tu contraseña'**
+  String get forgotTitle;
+
+  /// No description provided for @forgotSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa tu correo y te enviaremos un enlace para crear una nueva contraseña.'**
+  String get forgotSubtitle;
+
+  /// No description provided for @forgotButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar enlace'**
+  String get forgotButton;
+
+  /// No description provided for @forgotSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.'**
+  String get forgotSent;
+
+  /// No description provided for @forgotBackToLogin.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a ingresar'**
+  String get forgotBackToLogin;
+
+  /// No description provided for @roleTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo usarás la aplicación?'**
+  String get roleTitle;
+
+  /// No description provided for @roleSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona tu rol para personalizar tu experiencia en Vantia.'**
+  String get roleSubtitle;
+
+  /// No description provided for @roleOwnerTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Dueño de negocio'**
+  String get roleOwnerTitle;
+
+  /// No description provided for @roleOwnerBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Gestiona tu negocio, colaboradores, pagos y reportes desde un solo lugar.'**
+  String get roleOwnerBody;
+
+  /// No description provided for @roleCollaboratorTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Colaborador'**
+  String get roleCollaboratorTitle;
+
+  /// No description provided for @roleCollaboratorBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Colabora en un negocio registrando ventas y cerrando tu caja.'**
+  String get roleCollaboratorBody;
+
+  /// No description provided for @continueButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar'**
+  String get continueButton;
+
+  /// No description provided for @businessTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos de tu negocio'**
+  String get businessTitle;
+
+  /// No description provided for @businessSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezarás con 7 días de prueba gratis del plan Pro.'**
+  String get businessSubtitle;
+
+  /// No description provided for @fieldBusinessName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre del negocio'**
+  String get fieldBusinessName;
+
+  /// No description provided for @hintBusinessName.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej. Bodega Don Carlos'**
+  String get hintBusinessName;
+
+  /// No description provided for @fieldPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'Celular'**
+  String get fieldPhone;
+
+  /// No description provided for @hintPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'987 654 321'**
+  String get hintPhone;
+
+  /// No description provided for @fieldDepartment.
+  ///
+  /// In es, this message translates to:
+  /// **'Departamento'**
+  String get fieldDepartment;
+
+  /// No description provided for @fieldProvince.
+  ///
+  /// In es, this message translates to:
+  /// **'Provincia'**
+  String get fieldProvince;
+
+  /// No description provided for @hintProvince.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej. Lima'**
+  String get hintProvince;
+
+  /// No description provided for @businessCreate.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear negocio'**
+  String get businessCreate;
+
+  /// No description provided for @joinTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Únete a un negocio'**
+  String get joinTitle;
+
+  /// No description provided for @joinSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Pídele al dueño del negocio el código de invitación de 6 caracteres.'**
+  String get joinSubtitle;
+
+  /// No description provided for @fieldInviteCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de invitación'**
+  String get fieldInviteCode;
+
+  /// No description provided for @joinButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Unirme'**
+  String get joinButton;
+
+  /// No description provided for @signOutTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cerrar sesión?'**
+  String get signOutTitle;
+
+  /// No description provided for @signOutBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Tendrás que volver a ingresar con tu correo y contraseña.'**
+  String get signOutBody;
+
+  /// No description provided for @cancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
+
+  /// No description provided for @back.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver'**
+  String get back;
+
+  /// No description provided for @errRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Este campo es obligatorio'**
+  String get errRequired;
+
+  /// No description provided for @errInvalidEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa un correo válido'**
+  String get errInvalidEmail;
+
+  /// No description provided for @errPasswordTooShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Debe tener al menos 8 caracteres'**
+  String get errPasswordTooShort;
+
+  /// No description provided for @errPasswordNeedsNumber.
+  ///
+  /// In es, this message translates to:
+  /// **'Debe incluir al menos un número'**
+  String get errPasswordNeedsNumber;
+
+  /// No description provided for @errPasswordsDontMatch.
+  ///
+  /// In es, this message translates to:
+  /// **'Las contraseñas no coinciden'**
+  String get errPasswordsDontMatch;
+
+  /// No description provided for @errInvalidPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa un celular de 9 dígitos que empiece con 9'**
+  String get errInvalidPhone;
+
+  /// No description provided for @errInvalidInviteCode.
+  ///
+  /// In es, this message translates to:
+  /// **'El código tiene 6 caracteres (letras y números)'**
+  String get errInvalidInviteCode;
+
+  /// No description provided for @errTooShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Es demasiado corto'**
+  String get errTooShort;
+
+  /// No description provided for @errAuthInvalidCredentials.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo o contraseña incorrectos'**
+  String get errAuthInvalidCredentials;
+
+  /// No description provided for @errAuthEmailInUse.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya existe una cuenta con este correo'**
+  String get errAuthEmailInUse;
+
+  /// No description provided for @errAuthWeakPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'La contraseña es muy débil'**
+  String get errAuthWeakPassword;
+
+  /// No description provided for @errAuthInvalidEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'El correo no es válido'**
+  String get errAuthInvalidEmail;
+
+  /// No description provided for @errAuthUserDisabled.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta cuenta está deshabilitada'**
+  String get errAuthUserDisabled;
+
+  /// No description provided for @errAuthTooManyRequests.
+  ///
+  /// In es, this message translates to:
+  /// **'Demasiados intentos. Espera unos minutos e inténtalo de nuevo'**
+  String get errAuthTooManyRequests;
+
+  /// No description provided for @errNetwork.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión. Revisa tu internet e inténtalo de nuevo'**
+  String get errNetwork;
+
+  /// No description provided for @errAuthRecentLogin.
+  ///
+  /// In es, this message translates to:
+  /// **'Por seguridad, vuelve a iniciar sesión'**
+  String get errAuthRecentLogin;
+
+  /// No description provided for @errUnknown.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error inesperado. Inténtalo de nuevo'**
+  String get errUnknown;
+
+  /// No description provided for @errInviteInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'El código no existe o fue revocado'**
+  String get errInviteInvalid;
+
+  /// No description provided for @errInviteExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'El código venció. Pide uno nuevo al dueño'**
+  String get errInviteExpired;
+
+  /// No description provided for @errInviteUsed.
+  ///
+  /// In es, this message translates to:
+  /// **'Este código ya fue usado'**
+  String get errInviteUsed;
+
+  /// No description provided for @errAlreadyMember.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuenta ya pertenece a un negocio'**
+  String get errAlreadyMember;
+
+  /// No description provided for @errEmailNotVerified.
+  ///
+  /// In es, this message translates to:
+  /// **'Primero verifica tu correo'**
+  String get errEmailNotVerified;
+
+  /// No description provided for @errInvalidData.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa los datos ingresados'**
+  String get errInvalidData;
 }
 
 class _AppLocalizationsDelegate

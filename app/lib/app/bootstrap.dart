@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vantia/app/app.dart';
+import 'package:vantia/app/firebase/firebase_env.dart';
 import 'package:vantia/app/flavor.dart';
 import 'package:vantia/app/theme/theme_mode_controller.dart';
 import 'package:vantia/core/observability/analytics.dart';
@@ -20,9 +21,10 @@ Future<void> bootstrap(Flavor flavor) async {
   Intl.defaultLocale = 'es';
   await initializeDateFormatting('es');
   final prefs = await SharedPreferences.getInstance();
+  await FirebaseEnv.initialize();
 
-  // TODO(F-06): inicializar Firebase (por flavor) y usar la implementación
-  // de Analytics/Crashlytics en lugar de DebugAnalytics.
+  // TODO(F-06): usar Firebase Analytics/Crashlytics cuando exista el
+  // proyecto real (requiere google-services.json).
   const Analytics analytics = DebugAnalytics();
 
   FlutterError.onError = (details) {

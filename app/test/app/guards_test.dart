@@ -4,8 +4,16 @@ import 'package:vantia/app/router/routes.dart';
 import 'package:vantia/app/router/session.dart';
 
 void main() {
-  const owner = SessionReady(role: MemberRole.owner);
-  const collaborator = SessionReady(role: MemberRole.collaborator);
+  const owner = SessionReady(
+    uid: 'u1',
+    businessId: 'b1',
+    role: MemberRole.owner,
+  );
+  const collaborator = SessionReady(
+    uid: 'u2',
+    businessId: 'b1',
+    role: MemberRole.collaborator,
+  );
 
   test('cargando → splash', () {
     expect(resolveRedirect(const SessionLoading(), Routes.home), Routes.splash);

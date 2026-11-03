@@ -27,11 +27,114 @@
   "newPaymentWithProducts": "Registrar productos vendidos",
   "comingSoon": "Disponible pronto ({featureId})",
   "@comingSoon": {
-    "placeholders": { "featureId": { "type": "String" } }
+    "placeholders": {
+      "featureId": {
+        "type": "String"
+      }
+    }
   },
   "themeLight": "Claro",
   "themeSystem": "Sistema",
   "themeDark": "Oscuro",
   "settingsTheme": "Tema",
-  "routeNotFound": "No encontramos esta pantalla"
+  "routeNotFound": "No encontramos esta pantalla",
+  "appName": "Vantia",
+  "fieldName": "Nombre completo",
+  "fieldEmail": "Correo electrónico",
+  "fieldPassword": "Contraseña",
+  "fieldConfirmPassword": "Confirmar contraseña",
+  "hintName": "Ej. Carlos Vásquez",
+  "hintEmail": "tucorreo@ejemplo.com",
+  "hintPassword": "Mínimo 8 caracteres y 1 número",
+  "showPassword": "Mostrar contraseña",
+  "hidePassword": "Ocultar contraseña",
+  "loginTitle": "Bienvenido a Vantia",
+  "loginSubtitle": "Ingresa para registrar tus cobros y cuadrar tu caja.",
+  "loginButton": "Ingresar",
+  "loginForgot": "¿Olvidaste tu contraseña?",
+  "loginNoAccount": "¿No tienes cuenta?",
+  "loginCreateAccount": "Crear cuenta",
+  "registerTitle": "Crea tu cuenta",
+  "registerSubtitle": "Te enviaremos un correo para verificar tu dirección.",
+  "registerAcceptTerms": "Acepto los Términos y condiciones y la Política de privacidad",
+  "registerTermsRequired": "Debes aceptar los términos para continuar",
+  "registerButton": "Crear cuenta",
+  "registerHaveAccount": "¿Ya tienes cuenta?",
+  "registerSignIn": "Ingresar",
+  "verifyTitle": "Revisa tu correo",
+  "verifyBody": "Enviamos un enlace de verificación a {email}. Ábrelo para activar tu cuenta.",
+  "@verifyBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyHint": "Si no lo ves, revisa la carpeta de spam o promociones.",
+  "verifyCheck": "Ya verifiqué mi correo",
+  "verifyResend": "Reenviar correo",
+  "verifyResendIn": "Reenviar en {seconds} s",
+  "@verifyResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "verifyResent": "Te enviamos un nuevo correo de verificación",
+  "verifyStillPending": "Tu correo aún no está verificado. Abre el enlace que te enviamos.",
+  "verifyUseOtherEmail": "Usar otro correo",
+  "forgotTitle": "Recupera tu contraseña",
+  "forgotSubtitle": "Ingresa tu correo y te enviaremos un enlace para crear una nueva contraseña.",
+  "forgotButton": "Enviar enlace",
+  "forgotSent": "Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.",
+  "forgotBackToLogin": "Volver a ingresar",
+  "roleTitle": "¿Cómo usarás la aplicación?",
+  "roleSubtitle": "Selecciona tu rol para personalizar tu experiencia en Vantia.",
+  "roleOwnerTitle": "Dueño de negocio",
+  "roleOwnerBody": "Gestiona tu negocio, colaboradores, pagos y reportes desde un solo lugar.",
+  "roleCollaboratorTitle": "Colaborador",
+  "roleCollaboratorBody": "Colabora en un negocio registrando ventas y cerrando tu caja.",
+  "continueButton": "Continuar",
+  "businessTitle": "Datos de tu negocio",
+  "businessSubtitle": "Empezarás con 7 días de prueba gratis del plan Pro.",
+  "fieldBusinessName": "Nombre del negocio",
+  "hintBusinessName": "Ej. Bodega Don Carlos",
+  "fieldPhone": "Celular",
+  "hintPhone": "987 654 321",
+  "fieldDepartment": "Departamento",
+  "fieldProvince": "Provincia",
+  "hintProvince": "Ej. Lima",
+  "businessCreate": "Crear negocio",
+  "joinTitle": "Únete a un negocio",
+  "joinSubtitle": "Pídele al dueño del negocio el código de invitación de 6 caracteres.",
+  "fieldInviteCode": "Código de invitación",
+  "joinButton": "Unirme",
+  "signOutTitle": "¿Cerrar sesión?",
+  "signOutBody": "Tendrás que volver a ingresar con tu correo y contraseña.",
+  "cancel": "Cancelar",
+  "back": "Volver",
+  "errRequired": "Este campo es obligatorio",
+  "errInvalidEmail": "Ingresa un correo válido",
+  "errPasswordTooShort": "Debe tener al menos 8 caracteres",
+  "errPasswordNeedsNumber": "Debe incluir al menos un número",
+  "errPasswordsDontMatch": "Las contraseñas no coinciden",
+  "errInvalidPhone": "Ingresa un celular de 9 dígitos que empiece con 9",
+  "errInvalidInviteCode": "El código tiene 6 caracteres (letras y números)",
+  "errTooShort": "Es demasiado corto",
+  "errAuthInvalidCredentials": "Correo o contraseña incorrectos",
+  "errAuthEmailInUse": "Ya existe una cuenta con este correo",
+  "errAuthWeakPassword": "La contraseña es muy débil",
+  "errAuthInvalidEmail": "El correo no es válido",
+  "errAuthUserDisabled": "Esta cuenta está deshabilitada",
+  "errAuthTooManyRequests": "Demasiados intentos. Espera unos minutos e inténtalo de nuevo",
+  "errNetwork": "Sin conexión. Revisa tu internet e inténtalo de nuevo",
+  "errAuthRecentLogin": "Por seguridad, vuelve a iniciar sesión",
+  "errUnknown": "Ocurrió un error inesperado. Inténtalo de nuevo",
+  "errInviteInvalid": "El código no existe o fue revocado",
+  "errInviteExpired": "El código venció. Pide uno nuevo al dueño",
+  "errInviteUsed": "Este código ya fue usado",
+  "errAlreadyMember": "Tu cuenta ya pertenece a un negocio",
+  "errEmailNotVerified": "Primero verifica tu correo",
+  "errInvalidData": "Revisa los datos ingresados"
 }

@@ -4,19 +4,32 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vantia/app/app.dart';
+import 'package:vantia/app/providers.dart';
 import 'package:vantia/app/theme/theme_mode_controller.dart';
+import 'package:vantia/features/auth/domain/auth_repository.dart';
+import 'package:vantia/features/business/domain/business_repository.dart';
+
+import 'fakes.dart';
 
 extension PumpApp on WidgetTester {
-  /// Monta la app completa con dependencias falsas.
+  /// Monta la app completa con repositorios falsos. Por defecto, un dueño
+  /// logueado con negocio.
   Future<ProviderContainer> pumpVantiaApp({
+    AuthRepository? auth,
+    BusinessRepository? business,
     Map<String, Object> prefs = const {},
   }) async {
     SharedPreferences.setMockInitialValues(prefs);
     await initializeDateFormatting('es');
+    final defaults = readyOwnerRepos();
     final container = ProviderContainer(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(
           await SharedPreferences.getInstance(),
+        ),
+        authRepositoryProvider.overrideWithValue(auth ?? defaults.auth),
+        businessRepositoryProvider.overrideWithValue(
+          business ?? defaults.business,
         ),
       ],
     );

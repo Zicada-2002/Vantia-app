@@ -44,3 +44,7 @@ ios/build/
 *.log
 .idea/
 .vscode/
+
+# Configuración real de Firebase por entorno (ver env/dev.json.example)
+env/*.json
+!env/emulator.json

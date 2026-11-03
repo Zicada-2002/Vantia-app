@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vantia/app/providers.dart';
 import 'package:vantia/app/router/routes.dart';
 import 'package:vantia/app/shell/app_drawer.dart';
 import 'package:vantia/app/theme/tokens.dart';
@@ -132,18 +134,19 @@ class _BottomNav extends StatelessWidget {
   }
 }
 
-class _AvatarButton extends StatelessWidget {
+class _AvatarButton extends ConsumerWidget {
   const _AvatarButton();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final initials = ref.watch(currentBusinessProvider).value?.initials ?? '';
     return IconButton(
       tooltip: context.l10n.titleUser,
       onPressed: () => context.push(Routes.user),
       icon: CircleAvatar(
         backgroundColor: context.colors.primaryContainer,
         child: Text(
-          'VP',
+          initials,
           style: context.text.labelLarge?.copyWith(
             color: context.colors.onPrimaryContainer,
             fontWeight: FontWeight.w600,

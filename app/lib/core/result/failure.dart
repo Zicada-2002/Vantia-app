@@ -1,5 +1,5 @@
 /// Error de dominio tipado. Nunca expone excepciones de infraestructura a la UI.
-sealed class Failure {
+abstract class Failure {
   const Failure(this.message);
 
   /// Mensaje técnico (para logs). La UI traduce el tipo a un texto es-PE.
