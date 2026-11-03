@@ -28,6 +28,11 @@ android {
         versionName = flutter.versionName
     }
 
+    buildFeatures {
+        // Necesario para resValue("string", "app_name", …) por flavor.
+        resValues = true
+    }
+
     flavorDimensions += "env"
     productFlavors {
         create("dev") {
