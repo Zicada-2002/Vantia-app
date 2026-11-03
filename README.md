@@ -32,7 +32,7 @@ docs/       Plan, arquitectura y convenciones
 
 ## Requisitos
 
-- Flutter 3.24 o superior (Dart 3.5 o superior)
+- Flutter 3.47 o superior (Dart 3.9 o superior); el CI usa 3.47.9
 - Node.js 20 y Firebase CLI (`npm i -g firebase-tools`)
 - JDK 17 y Android Studio
 - Un proyecto de Firebase para cada flavor (`vantia-dev`, `vantia-prod`)
