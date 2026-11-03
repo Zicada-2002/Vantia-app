@@ -1,0 +1,18 @@
+name: Bug
+description: Reportar un error
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: Qué pasó }
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes: { label: Pasos para reproducir, value: "1. \n2. \n3. " }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Qué esperabas }
+  - type: input
+    id: device
+    attributes: { label: Dispositivo / Android / versión de la app }

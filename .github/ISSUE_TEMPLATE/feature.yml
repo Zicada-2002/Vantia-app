@@ -1,0 +1,24 @@
+name: Feature
+description: Funcionalidad del plan (F-xx)
+title: "F-xx: "
+labels: ["type:feature"]
+body:
+  - type: input
+    id: id
+    attributes: { label: ID del plan, placeholder: F-21 }
+    validations: { required: true }
+  - type: textarea
+    id: story
+    attributes:
+      label: Historia de usuario
+      placeholder: Como <rol> quiero <acción> para <beneficio>.
+    validations: { required: true }
+  - type: textarea
+    id: ac
+    attributes:
+      label: Criterios de aceptación
+      value: "- [ ] \n- [ ] "
+    validations: { required: true }
+  - type: textarea
+    id: notes
+    attributes: { label: Notas técnicas / diseño }

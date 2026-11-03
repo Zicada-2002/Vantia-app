@@ -1,0 +1,36 @@
+# ---------- SO / editores ----------
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# ---------- Secretos / entorno ----------
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+key.properties
+service-account*.json
+*-firebase-adminsdk-*.json
+
+# ---------- Firebase ----------
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+database-debug.log*
+pubsub-debug.log*
+emulator-data/
+
+# ---------- Logs ----------
+*.log
+coverage/
