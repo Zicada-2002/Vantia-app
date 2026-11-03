@@ -8,3 +8,4 @@ export { createBusiness, generateInvite, redeemInvite } from "./business.js";
 export { notifyOwnerOnPayment, revokeInvite, setMemberActive } from "./collaborators.js";
 export { closeCashSession, reopenCashSession } from "./cash.js";
 export { onPaymentWrite } from "./stats.js";
+export { decrementStockOnSale } from "./products.js";

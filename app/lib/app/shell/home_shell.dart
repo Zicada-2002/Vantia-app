@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vantia/app/providers.dart';
 import 'package:vantia/app/router/routes.dart';
+import 'package:vantia/app/router/session.dart';
 import 'package:vantia/app/shell/app_drawer.dart';
 import 'package:vantia/app/theme/tokens.dart';
 import 'package:vantia/core/widgets/offline_banner.dart';
+import 'package:vantia/features/products/application/product_providers.dart';
 import 'package:vantia/l10n/l10n.dart';
 
 /// Shell principal: menú lateral, AppBar por pestaña, barra inferior con
@@ -163,12 +165,29 @@ class _AvatarButton extends ConsumerWidget {
   }
 }
 
-class _ProductsMenu extends StatelessWidget {
+class _ProductsMenu extends ConsumerWidget {
   const _ProductsMenu();
 
+  Future<void> _scan(BuildContext context, WidgetRef ref) async {
+    final code = await ref.read(barcodeScannerProvider)(context);
+    if (code == null || !context.mounted) return;
+    final s = ref.read(sessionProvider) as SessionReady;
+    final existing = await ref
+        .read(productRepositoryProvider)
+        .findByBarcode(s.businessId, code);
+    if (!context.mounted) return;
+    await context.push(
+      existing != null
+          ? Routes.productEdit(existing.id)
+          : Routes.productNewWithBarcode(code),
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final s = ref.watch(sessionProvider);
+    if (s is! SessionReady || !s.isOwner) return const SizedBox.shrink();
     return PopupMenuButton<String>(
       icon: const Icon(Icons.more_vert_rounded),
       itemBuilder: (_) => [
@@ -187,8 +206,9 @@ class _ProductsMenu extends StatelessWidget {
           ),
         ),
       ],
-      // TODO(F-61): abrir escáner (y formulario sin código, F-62).
-      onSelected: (_) {},
+      onSelected: (v) => v == 'barcode'
+          ? _scan(context, ref)
+          : context.push(Routes.productNew),
     );
   }
 }

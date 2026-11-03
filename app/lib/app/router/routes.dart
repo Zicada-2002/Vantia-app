@@ -20,6 +20,10 @@ abstract final class Routes {
   static String paymentForm(String methodId, {bool withProducts = false}) =>
       '/payment/new/$methodId${withProducts ? '?products=1' : ''}';
   static String paymentDetail(String id) => '/payments/$id';
+  static const productNew = '/products/new';
+  static String productNewWithBarcode(String code) =>
+      '/products/new?barcode=${Uri.encodeQueryComponent(code)}';
+  static String productEdit(String id) => '/products/$id';
   static const collaborators = '/collaborators';
   static const cashRegister = '/cash-register';
   static const settings = '/settings';

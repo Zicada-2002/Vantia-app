@@ -14,6 +14,7 @@ import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/payments/domain/payment.dart';
 import 'package:vantia/features/payments/domain/payment_method.dart';
 import 'package:vantia/features/payments/domain/payment_repository.dart';
+import 'package:vantia/features/products/domain/product.dart';
 import 'package:vantia/features/reports/data/reports_repository.dart';
 import 'package:vantia/features/reports/domain/report.dart';
 
@@ -563,4 +564,56 @@ class FakeReportsRepository implements ReportsRepository {
     for (final s in stats)
       if (s.dayKey.compareTo(fromKey) >= 0 && s.dayKey.compareTo(toKey) < 0) s,
   ]);
+}
+
+class FakeProductRepository implements ProductRepository {
+  final products = <String, Product>{};
+  final _changes = StreamController<void>.broadcast();
+  int _seq = 0;
+
+  void seed(Product p) {
+    products[p.id] = p;
+    _changes.add(null);
+  }
+
+  @override
+  Stream<List<Product>> watchActive(String businessId) async* {
+    List<Product> read() =>
+        products.values.where((p) => p.active).toList()
+          ..sort((a, b) => a.name.compareTo(b.name));
+    yield read();
+    yield* _changes.stream.map((_) => read());
+  }
+
+  @override
+  Future<Product?> findByBarcode(String businessId, String barcode) async =>
+      products.values.where((p) => p.barcode == barcode).firstOrNull;
+
+  @override
+  Future<Result<String>> save(
+    String businessId,
+    ProductDraft draft, {
+    String? id,
+  }) async {
+    final pid = id ?? 'prod-${++_seq}';
+    seed(
+      Product(
+        id: pid,
+        name: draft.name.trim(),
+        price: draft.price,
+        barcode: draft.barcode?.trim().isEmpty ?? true ? null : draft.barcode,
+        category: draft.category?.trim().isEmpty ?? true
+            ? null
+            : draft.category,
+        stock: draft.stock,
+      ),
+    );
+    return Ok(pid);
+  }
+
+  @override
+  Future<Result<void>> deactivate(String businessId, String id) async {
+    seed(products[id]!.copyWith(active: false));
+    return const Ok(null);
+  }
 }

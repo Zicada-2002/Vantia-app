@@ -880,4 +880,100 @@ class AppLocalizationsEs extends AppLocalizations {
   String exportSubject(String range) {
     return 'Pagos $range';
   }
+
+  @override
+  String get productsSearch => 'Buscar producto';
+
+  @override
+  String get productsNoResults => 'Sin resultados';
+
+  @override
+  String get productNew => 'Nuevo producto';
+
+  @override
+  String get productEdit => 'Editar producto';
+
+  @override
+  String get fieldProductName => 'Nombre';
+
+  @override
+  String get hintProductName => 'Ej. Gaseosa 500 ml';
+
+  @override
+  String get fieldPrice => 'Precio';
+
+  @override
+  String get fieldBarcode => 'Código de barras';
+
+  @override
+  String get fieldCategory => 'Categoría';
+
+  @override
+  String get fieldStock => 'Stock';
+
+  @override
+  String get hintStock => 'Vacío = sin control de stock';
+
+  @override
+  String get productSave => 'Guardar';
+
+  @override
+  String get productSaved => 'Producto guardado';
+
+  @override
+  String get productDeactivate => 'Desactivar producto';
+
+  @override
+  String get productDeactivated => 'Producto desactivado';
+
+  @override
+  String productStock(int count) {
+    return 'Stock: $count';
+  }
+
+  @override
+  String get productNoStock => 'Sin control de stock';
+
+  @override
+  String get productReadOnly => 'Solo el dueño puede crear o editar productos.';
+
+  @override
+  String get scanTitle => 'Escanea el código';
+
+  @override
+  String get scanHint => 'Apunta la cámara al código de barras';
+
+  @override
+  String get scanTorch => 'Linterna';
+
+  @override
+  String get scanPermission => 'Necesitamos permiso de cámara para escanear';
+
+  @override
+  String get cartTitle => 'Productos vendidos';
+
+  @override
+  String get cartAdd => 'Agregar';
+
+  @override
+  String get cartScan => 'Escanear';
+
+  @override
+  String get cartEmpty => 'Agrega los productos que vendiste';
+
+  @override
+  String get cartTotal => 'Total';
+
+  @override
+  String get cartContinue => 'Continuar';
+
+  @override
+  String cartUnknownBarcode(String code) {
+    return 'No hay un producto con el código $code';
+  }
+
+  @override
+  String cartOutOfStock(String name) {
+    return 'Sin stock suficiente de $name';
+  }
 }

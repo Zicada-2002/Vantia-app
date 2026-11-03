@@ -420,5 +420,56 @@
         "type": "String"
       }
     }
+  },
+  "productsSearch": "Buscar producto",
+  "productsNoResults": "Sin resultados",
+  "productNew": "Nuevo producto",
+  "productEdit": "Editar producto",
+  "fieldProductName": "Nombre",
+  "hintProductName": "Ej. Gaseosa 500 ml",
+  "fieldPrice": "Precio",
+  "fieldBarcode": "Código de barras",
+  "fieldCategory": "Categoría",
+  "fieldStock": "Stock",
+  "hintStock": "Vacío = sin control de stock",
+  "productSave": "Guardar",
+  "productSaved": "Producto guardado",
+  "productDeactivate": "Desactivar producto",
+  "productDeactivated": "Producto desactivado",
+  "productStock": "Stock: {count}",
+  "@productStock": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productNoStock": "Sin control de stock",
+  "productReadOnly": "Solo el dueño puede crear o editar productos.",
+  "scanTitle": "Escanea el código",
+  "scanHint": "Apunta la cámara al código de barras",
+  "scanTorch": "Linterna",
+  "scanPermission": "Necesitamos permiso de cámara para escanear",
+  "cartTitle": "Productos vendidos",
+  "cartAdd": "Agregar",
+  "cartScan": "Escanear",
+  "cartEmpty": "Agrega los productos que vendiste",
+  "cartTotal": "Total",
+  "cartContinue": "Continuar",
+  "cartUnknownBarcode": "No hay un producto con el código {code}",
+  "@cartUnknownBarcode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "cartOutOfStock": "Sin stock suficiente de {name}",
+  "@cartOutOfStock": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

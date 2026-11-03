@@ -22,6 +22,8 @@ import 'package:vantia/features/payments/presentation/new_payment_screen.dart';
 import 'package:vantia/features/payments/presentation/payment_detail_screen.dart';
 import 'package:vantia/features/payments/presentation/payment_form_screen.dart';
 import 'package:vantia/features/payments/presentation/payments_screen.dart';
+import 'package:vantia/features/products/presentation/cart_screen.dart';
+import 'package:vantia/features/products/presentation/product_form_screen.dart';
 import 'package:vantia/features/products/presentation/products_screen.dart';
 import 'package:vantia/features/reports/presentation/reports_screen.dart';
 import 'package:vantia/features/settings/presentation/settings_screen.dart';
@@ -102,6 +104,22 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: Routes.products,
                 builder: (_, _) => const ProductsScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'new',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => ProductFormScreen(
+                      barcode: state.uri.queryParameters['barcode'],
+                    ),
+                  ),
+                  GoRoute(
+                    path: ':id',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => ProductFormScreen(
+                      productId: state.pathParameters['id'],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -127,9 +145,14 @@ final routerProvider = Provider<GoRouter>((ref) {
                 PaymentMethod.fromId(state.pathParameters['method']!) == null
                 ? Routes.newPayment
                 : null,
-            builder: (_, state) => PaymentFormScreen(
-              method: PaymentMethod.fromId(state.pathParameters['method']!)!,
-            ),
+            builder: (_, state) {
+              final method = PaymentMethod.fromId(
+                state.pathParameters['method']!,
+              )!;
+              return state.uri.queryParameters['products'] == '1'
+                  ? CartScreen(method: method)
+                  : PaymentFormScreen(method: method);
+            },
           ),
         ],
       ),

@@ -1701,6 +1701,186 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Pagos {range}'**
   String exportSubject(String range);
+
+  /// No description provided for @productsSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar producto'**
+  String get productsSearch;
+
+  /// No description provided for @productsNoResults.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin resultados'**
+  String get productsNoResults;
+
+  /// No description provided for @productNew.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo producto'**
+  String get productNew;
+
+  /// No description provided for @productEdit.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar producto'**
+  String get productEdit;
+
+  /// No description provided for @fieldProductName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get fieldProductName;
+
+  /// No description provided for @hintProductName.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej. Gaseosa 500 ml'**
+  String get hintProductName;
+
+  /// No description provided for @fieldPrice.
+  ///
+  /// In es, this message translates to:
+  /// **'Precio'**
+  String get fieldPrice;
+
+  /// No description provided for @fieldBarcode.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de barras'**
+  String get fieldBarcode;
+
+  /// No description provided for @fieldCategory.
+  ///
+  /// In es, this message translates to:
+  /// **'Categoría'**
+  String get fieldCategory;
+
+  /// No description provided for @fieldStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Stock'**
+  String get fieldStock;
+
+  /// No description provided for @hintStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Vacío = sin control de stock'**
+  String get hintStock;
+
+  /// No description provided for @productSave.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get productSave;
+
+  /// No description provided for @productSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Producto guardado'**
+  String get productSaved;
+
+  /// No description provided for @productDeactivate.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactivar producto'**
+  String get productDeactivate;
+
+  /// No description provided for @productDeactivated.
+  ///
+  /// In es, this message translates to:
+  /// **'Producto desactivado'**
+  String get productDeactivated;
+
+  /// No description provided for @productStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Stock: {count}'**
+  String productStock(int count);
+
+  /// No description provided for @productNoStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin control de stock'**
+  String get productNoStock;
+
+  /// No description provided for @productReadOnly.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo el dueño puede crear o editar productos.'**
+  String get productReadOnly;
+
+  /// No description provided for @scanTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea el código'**
+  String get scanTitle;
+
+  /// No description provided for @scanHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta la cámara al código de barras'**
+  String get scanHint;
+
+  /// No description provided for @scanTorch.
+  ///
+  /// In es, this message translates to:
+  /// **'Linterna'**
+  String get scanTorch;
+
+  /// No description provided for @scanPermission.
+  ///
+  /// In es, this message translates to:
+  /// **'Necesitamos permiso de cámara para escanear'**
+  String get scanPermission;
+
+  /// No description provided for @cartTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Productos vendidos'**
+  String get cartTitle;
+
+  /// No description provided for @cartAdd.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar'**
+  String get cartAdd;
+
+  /// No description provided for @cartScan.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanear'**
+  String get cartScan;
+
+  /// No description provided for @cartEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Agrega los productos que vendiste'**
+  String get cartEmpty;
+
+  /// No description provided for @cartTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get cartTotal;
+
+  /// No description provided for @cartContinue.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar'**
+  String get cartContinue;
+
+  /// No description provided for @cartUnknownBarcode.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay un producto con el código {code}'**
+  String cartUnknownBarcode(String code);
+
+  /// No description provided for @cartOutOfStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin stock suficiente de {name}'**
+  String cartOutOfStock(String name);
 }
 
 class _AppLocalizationsDelegate

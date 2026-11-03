@@ -37,3 +37,17 @@ test("crear y anular pagos actualiza dailyStats", { skip: process.env.VANTIA_SKI
   stats = await waitFor(() => statsRef.get(), (s) => s.get("totalCents") === 1000);
   assert.equal(stats.get("cashCount"), 0);
 });
+
+test("una venta con productos descuenta stock", { skip: process.env.VANTIA_SKIP_TRIGGERS === "1" }, async () => {
+  const db = getFirestore(admin);
+  await db.doc(`businesses/${BID}/products/p1`).set({ name: "Gaseosa", priceCents: 250, stock: 10, active: true });
+  await db.doc(`businesses/${BID}/products/p2`).set({ name: "Pan", priceCents: 50, active: true }); // sin stock
+  await db.doc(`businesses/${BID}/payments/sale`).set({
+    dayKey: DAY, createdBy: "u1", status: "active", occurredAt: Timestamp.now(),
+    method: "cash", amountCents: 800,
+    items: [{ productId: "p1", qty: 3, name: "Gaseosa", unitPriceCents: 250 }, { productId: "p2", qty: 1, name: "Pan", unitPriceCents: 50 }],
+  });
+  const p1 = await waitFor(() => db.doc(`businesses/${BID}/products/p1`).get(), (s) => s.get("stock") === 7);
+  assert.equal(p1.get("stock"), 7);
+  assert.equal((await db.doc(`businesses/${BID}/products/p2`).get()).get("stock"), undefined);
+});

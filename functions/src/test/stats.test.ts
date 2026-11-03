@@ -17,3 +17,19 @@ test("aggregateDay suma por método y usuario, ignora anulados", () => {
   assert.deepEqual(s.byMethod, { cash: { cents: 3750, count: 1 }, yape: { cents: 1500, count: 2 } });
   assert.deepEqual(s.byUser, { a: { cents: 4750, count: 2 }, b: { cents: 500, count: 1 } });
 });
+
+import { stockDeltas } from "../products.js";
+
+test("stockDeltas agrupa por producto e ignora inválidos", () => {
+  const d = stockDeltas([
+    { productId: "a", qty: 2 },
+    { productId: "a", qty: 1 },
+    { productId: "b", qty: 0 },
+    { productId: "", qty: 3 },
+    { qty: 1 },
+    { productId: "c", qty: 1.5 },
+    { productId: "d", qty: 4 },
+  ]);
+  assert.deepEqual([...d.entries()], [["a", 3], ["d", 4]]);
+  assert.equal(stockDeltas(undefined).size, 0);
+});

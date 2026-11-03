@@ -17,6 +17,8 @@ import 'package:vantia/features/collaborators/domain/collaborators.dart';
 import 'package:vantia/features/notifications/push_service.dart';
 import 'package:vantia/features/payments/application/payment_providers.dart';
 import 'package:vantia/features/payments/domain/payment_repository.dart';
+import 'package:vantia/features/products/application/product_providers.dart';
+import 'package:vantia/features/products/domain/product.dart';
 import 'package:vantia/features/reports/application/report_providers.dart';
 import 'package:vantia/features/reports/data/reports_repository.dart';
 
@@ -32,6 +34,8 @@ extension PumpApp on WidgetTester {
     CollaboratorRepository? collaborators,
     CashRepository? cash,
     ReportsRepository? reports,
+    ProductRepository? products,
+    Future<String?> Function()? scan,
     DateTime? now,
     Map<String, Object> prefs = const {},
     List<Override> extraOverrides = const [],
@@ -67,6 +71,12 @@ extension PumpApp on WidgetTester {
         ),
         reportsRepositoryProvider.overrideWithValue(
           reports ?? FakeReportsRepository(),
+        ),
+        productRepositoryProvider.overrideWithValue(
+          products ?? FakeProductRepository(),
+        ),
+        barcodeScannerProvider.overrideWithValue(
+          (_) async => scan == null ? null : await scan(),
         ),
         ...extraOverrides,
       ],
