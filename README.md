@@ -2,7 +2,7 @@
 
 App móvil para negocios en Perú que registra cobros por **Yape, Plin, transferencias bancarias y efectivo**, cuadra la caja diaria, gestiona colaboradores y productos, y genera reportes.
 
-> Estado: **M0 y M1 implementados** (login con verificación de correo y onboarding). Seguimiento en los [issues](https://github.com/Zicada-2002/Vantia-app/issues) (épicos #1–#10). Alcance y roadmap en [`docs/PLAN.md`](docs/PLAN.md). Decisiones técnicas en [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md).
+> Estado: **plan M0–M9 implementado** (ver [`docs/INFORME_AVANCE.md`](docs/INFORME_AVANCE.md)); pendiente la configuración de cuentas reales y la publicación ([`docs/RELEASE.md`](docs/RELEASE.md)). Seguimiento en los [issues](https://github.com/Zicada-2002/Vantia-app/issues) (épicos #1–#10). Alcance y roadmap en [`docs/PLAN.md`](docs/PLAN.md). Decisiones técnicas en [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md).
 
 ## Funcionalidades
 
@@ -19,7 +19,7 @@ App móvil para negocios en Perú que registra cobros por **Yape, Plin, transfer
 
 ## Stack
 
-Flutter 3 · Riverpod · go_router · Firebase (Auth, Firestore, Functions, Storage, FCM, Crashlytics) · ML Kit · RevenueCat
+Flutter 3 · Riverpod 3 · go_router · Firebase (Auth, Firestore, Functions, Storage, FCM, Analytics, Crashlytics, App Check) · ML Kit · mobile_scanner · fl_chart · RevenueCat · Kotlin (NotificationListenerService)
 
 ## Estructura
 
@@ -67,7 +67,8 @@ cd firebase && firebase deploy --project dev --only firestore:rules,functions
 ## Tests
 
 ```bash
-cd app && flutter analyze && flutter test        # app
+cd app && flutter analyze && flutter test        # app (unitarios, widget, accesibilidad)
+cd app && flutter test integration_test --flavor dev   # E2E en dispositivo/emulador
 cd functions && npm test                          # unit tests de Functions
 cd functions && npm run test:emulator             # integración + reglas de seguridad
 ```

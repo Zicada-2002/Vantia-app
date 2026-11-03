@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -71,6 +72,18 @@ abstract final class FirebaseEnv {
         region: functionsRegion,
       ).useFunctionsEmulator(emulatorHost, 5001);
       await FirebaseStorage.instance.useStorageEmulator(emulatorHost, 9199);
+    }
+    if (!useEmulator) {
+      // F-92: App Check (Play Integrity en release, proveedor de depuración
+      // en builds debug; registrar el token debug en la consola).
+      await FirebaseAppCheck.instance.activate(
+        providerAndroid: kReleaseMode
+            ? const AndroidPlayIntegrityProvider()
+            : const AndroidDebugProvider(),
+        providerApple: kReleaseMode
+            ? const AppleAppAttestProvider()
+            : const AppleDebugProvider(),
+      );
     }
     FirebaseFirestore.instance.settings = const Settings(
       persistenceEnabled: true,

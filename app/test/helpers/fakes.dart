@@ -562,7 +562,8 @@ class FakeCashRepository implements CashRepository {
   Stream<List<CashSession>> watchDay(String b, String dayKey) =>
       _live(() => sessions.values.where((s) => s.dayKey == dayKey).toList());
 
-  String uid = 'uid-owner';
+  /// Usuario que cierra la caja (por defecto, el dueño de ejemplo).
+  String? uid;
 
   @override
   Future<Result<void>> saveDraft({
@@ -584,8 +585,10 @@ class FakeCashRepository implements CashRepository {
     required Money opening,
     required Money counted,
   }) async {
+    final who =
+        uid ?? payments.payments.values.firstOrNull?.createdBy ?? 'uid-owner';
     final mine = payments.payments.values.where(
-      (p) => p.createdBy == uid && p.dayKey == dayKey,
+      (p) => p.createdBy == who && p.dayKey == dayKey,
     );
     final count = CashCount.from(
       PaymentSummary.of(mine),
@@ -595,7 +598,7 @@ class FakeCashRepository implements CashRepository {
     seed(
       CashSession(
         dayKey: dayKey,
-        uid: uid,
+        uid: who,
         displayName: 'Carlos',
         status: CashStatus.closed,
         opening: opening,

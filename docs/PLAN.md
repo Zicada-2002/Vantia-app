@@ -2,6 +2,8 @@
 
 > App móvil para negocios en Perú: registro de cobros (Yape, Plin, bancos y efectivo), cuadre de caja, colaboradores, productos y reportes.
 > Este documento es la fuente de verdad del alcance. Cada feature tiene un ID (`F-xx`) que se usa en issues, ramas y commits.
+>
+> **Estado (3 nov 2026):** M0–M9 implementados en código, salvo F-14 (login con Google, opcional). Lo pendiente para publicar está en [`RELEASE.md`](RELEASE.md) e [`INFORME_AVANCE.md`](INFORME_AVANCE.md).
 
 ---
 
@@ -135,7 +137,7 @@ Cada milestone es un **Milestone de GitHub**. Cada `F-xx` es un **issue** con cr
 | F-51 | Reportes Semana / Mes / Año | Tarjeta de total, gráfico de barras con `fl_chart` (días, semanas o meses), con variación respecto al periodo anterior |
 | F-52 | KPIs | Nº en efectivo, nº digitales, mejor día, ticket promedio |
 | F-53 | Métodos de pago | Barra apilada con los colores de cada marca y una lista con monto y % |
-| F-54 | Exportar | Rango de fechas, luego **Excel (.xlsx)** o **PDF**, compartido con `share_plus`. Rangos mayores a 31 días se generan en una Cloud Function |
+| F-54 | Exportar | Rango de fechas, luego **Excel (.xlsx)** o **PDF**, compartido con `share_plus`. Decisión: se genera en el dispositivo, con rango máximo de 1 año |
 
 ### M6 — Productos (≈5 d)
 
@@ -153,7 +155,7 @@ Cada milestone es un **Milestone de GitHub**. Cada `F-xx` es un **issue** con cr
 | F-70 | Escaneo de comprobante (OCR) | Cámara o galería, `google_mlkit_text_recognition` en el dispositivo, parsers por banco (monto, fecha, nº de operación, nombre). Prellena el formulario y el usuario confirma. La imagen se guarda en Storage |
 | F-71 | Verificación automática Yape/Plin (Android) | `NotificationListenerService` nativo (Kotlin) con un MethodChannel. Lee las notificaciones de Yape y Plin, las parsea y registra el pago con `source: notification` y `verified: true`. Se deduplica por hash. Pantalla de permisos guiada |
 | F-72 | Anuncio por voz | `flutter_tts` es-PE: "Yape: recibiste diez soles de Juan P." Se activa con el toggle de Ajustes |
-| F-73 | Servicio en primer plano | Mantiene vivo el listener (requisitos de Android 14). Guía para excluir la app de la optimización de batería (Xiaomi, Huawei, etc.) |
+| F-73 | Persistencia del listener | ~~Servicio en primer plano~~ → decisión: el sistema mantiene vinculado el `NotificationListenerService`; guía para excluir la app de la optimización de batería (Xiaomi, Huawei, etc.) |
 
 ### M8 — Usuario, ajustes y suscripción (≈5 d)
 

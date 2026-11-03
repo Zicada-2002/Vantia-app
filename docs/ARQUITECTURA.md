@@ -107,12 +107,14 @@ businesses/{bid}/audit/{id}                     # solo lo escriben las Functions
 | `createBusiness` ✅ | callable | Crea el negocio y el miembro dueño, e inicia la prueba (`plan.tier = trial`, 7 días) |
 | `generateInvite` ✅ / `revokeInvite` | callable | Solo el dueño. Código único con reintentos; índice global `inviteCodes/{code}` → `businessId` |
 | `redeemInvite` ✅ | callable | Transacción: valida el código (vigente, no usado, no revocado) y crea el miembro colaborador |
-| `onPaymentWrite` | Firestore | Actualiza `dailyStats` (idempotente por `eventId`), envía FCM al dueño y escribe la auditoría |
-| `closeCashSession` / `reopenCashSession` | callable | Calcula los totales en el servidor (no confía en el cliente) y congela el snapshot |
-| `exportPayments` | callable | Genera el XLSX o PDF en Storage y devuelve una URL firmada |
-| `revenuecatWebhook` | HTTPS | Actualiza `business.plan` |
-| `deleteAccount` | callable | Borra o anonimiza los datos del usuario |
-| `expireTrials` | scheduler diario | Pasa a `free` los negocios con la prueba vencida |
+| `revokeInvite` ✅ / `setMemberActive` ✅ | callable | Solo el dueño. Revocar códigos y activar o desactivar colaboradores |
+| `onPaymentWrite` ✅ | Firestore | Recalcula `dailyStats/{dayKey}` (idempotente) |
+| `notifyOwnerOnPayment` ✅ | Firestore | Push FCM al dueño cuando un colaborador cobra |
+| `decrementStockOnSale` ✅ | Firestore | Descuenta el stock de los productos vendidos |
+| `closeCashSession` ✅ / `reopenCashSession` ✅ | callable | Totales calculados en el servidor; snapshot congelado; auditoría al reabrir |
+| `revenuecatWebhook` ✅ | HTTPS (secreto) | Actualiza `business.plan` |
+| `deleteAccount` ✅ | callable | Anonimiza los pagos, cierra el negocio si es dueño y borra perfil y Auth |
+| `expireTrials` ✅ | scheduler 00:05 Lima | Pasa a `free` los negocios con la prueba vencida |
 
 ## 5. Seguridad
 
@@ -147,7 +149,11 @@ NotificationListenerService (Kotlin)
        └─ PaymentDraft ─► dedupe ─► PaymentRepository.create(source: notification, verified: true)
        └─ TTS: "Yape: recibiste S/ 10.00 de Juan P."
 ```
-Los parsers se testean con fixtures reales anonimizados (`test/fixtures/notifications/*.txt`).
+Los parsers se testean con fixtures (`test/fixtures/notifications/*.txt`). Los actuales son ejemplos construidos y deben complementarse con textos reales anonimizados.
+
+- La cola persistente (`SharedPreferences` nativo) guarda las notificaciones si la app está cerrada; Flutter la vacía al abrir o volver a primer plano.
+- El id del pago es un hash de la notificación, y las reglas impiden reescribirlo, así que no se generan duplicados.
+- La voz es nativa (`TextToSpeech`), así que funciona con la app cerrada.
 
 ## 8. Desarrollo local con emuladores
 

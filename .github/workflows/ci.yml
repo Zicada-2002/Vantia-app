@@ -45,6 +45,8 @@ jobs:
       - run: dart format --output=none --set-exit-if-changed lib test
       - run: flutter analyze
       - run: flutter test --coverage
+      - name: Cobertura de módulos críticos (≥ 90 %)
+        run: dart run tool/coverage_gate.dart
 
   apk-dev:
     needs: [detect, flutter]
