@@ -104,20 +104,23 @@ businesses/{bid}/audit/{id}                     # solo lo escriben las Functions
 
 | Función | Trigger | Responsabilidad |
 |---|---|---|
-| `createBusiness` | callable | Crea el negocio y el miembro dueño, inicia la prueba y fija los custom claims `{bid, role}` |
-| `generateInvite` / `revokeInvite` | callable | Solo el dueño. Código único con reintentos |
-| `redeemInvite` | callable | Transacción: valida el código y crea el miembro. Fija los claims |
-| `onPaymentWrite` | Firestore | Actualiza `dailyStats` (idempotente por `eventId`), envía FCM al dueño y escribe la auditoría |
-| `closeCashSession` / `reopenCashSession` | callable | Calcula los totales en el servidor (no confía en el cliente) y congela el snapshot |
-| `exportPayments` | callable | Genera el XLSX o PDF en Storage y devuelve una URL firmada |
-| `revenuecatWebhook` | HTTPS | Actualiza `business.plan` |
-| `deleteAccount` | callable | Borra o anonimiza los datos del usuario |
-| `expireTrials` | scheduler diario | Pasa a `free` los negocios con la prueba vencida |
+| `createBusiness` ✅ | callable | Crea el negocio y el miembro dueño, e inicia la prueba (`plan.tier = trial`, 7 días) |
+| `generateInvite` ✅ / `revokeInvite` | callable | Solo el dueño. Código único con reintentos; índice global `inviteCodes/{code}` → `businessId` |
+| `redeemInvite` ✅ | callable | Transacción: valida el código (vigente, no usado, no revocado) y crea el miembro colaborador |
+| `revokeInvite` ✅ / `setMemberActive` ✅ | callable | Solo el dueño. Revocar códigos y activar o desactivar colaboradores |
+| `onPaymentWrite` ✅ | Firestore | Recalcula `dailyStats/{dayKey}` (idempotente) |
+| `notifyOwnerOnPayment` ✅ | Firestore | Push FCM al dueño cuando un colaborador cobra |
+| `decrementStockOnSale` ✅ | Firestore | Descuenta el stock de los productos vendidos |
+| `closeCashSession` ✅ / `reopenCashSession` ✅ | callable | Totales calculados en el servidor; snapshot congelado; auditoría al reabrir |
+| `revenuecatWebhook` ✅ | HTTPS (secreto) | Actualiza `business.plan` |
+| `deleteAccount` ✅ | callable | Anonimiza los pagos, cierra el negocio si es dueño y borra perfil y Auth |
+| `expireTrials` ✅ | scheduler 00:05 Lima | Pasa a `free` los negocios con la prueba vencida |
 
 ## 5. Seguridad
 
 - **Toda** lectura y escritura exige `request.auth != null && request.auth.token.email_verified == true`.
-- La pertenencia al negocio se valida con custom claims (`bid`, `role`) y un fallback a `members/{uid}`.
+- La pertenencia y el rol se validan leyendo `businesses/{bid}/members/{uid}`, que solo escriben las Functions. No se usan custom claims, para evitar tokens desactualizados.
+- Excepción: el propio `users/{uid}` se puede leer sin verificar el correo, porque lo necesita el arranque. Negocio y rol solo los asignan las Functions.
 - `payments`:
   - Crear: solo si `createdBy == auth.uid` y el negocio coincide.
   - Leer: el dueño lee todo; el colaborador solo `createdBy == auth.uid`.
@@ -130,11 +133,11 @@ businesses/{bid}/audit/{id}                     # solo lo escriben las Functions
 ## 6. Flujo de verificación de correo
 
 ```
-Registro ─► createUserWithEmailAndPassword ─► sendEmailVerification(actionCodeSettings)
+Registro ─► createUserWithEmailAndPassword ─► updateDisplayName ─► sendEmailVerification (idioma es)
         ─► /auth/verify-email  (Reenviar con cooldown de 60 s · "Ya verifiqué" ─► user.reload())
-        ─► emailVerified == true ─► getIdToken(true) (refresca el claim) ─► /onboarding/role
+        ─► emailVerified == true ─► getIdToken(true) (refresca email_verified) ─► /onboarding/role
 ```
-- El enlace abre la app por App Links (`vantia.page.link` o un dominio propio). Si la app no está instalada, cae en una web de confirmación.
+- El enlace se abre en el navegador (página estándar de Firebase). Al volver a la app se detecta la verificación. Los App Links con dominio propio quedan para M9.
 - La app también revisa la verificación al volver a primer plano (`AppLifecycleState.resumed`).
 
 ## 7. Verificación automática Yape/Plin (Android)
@@ -146,9 +149,29 @@ NotificationListenerService (Kotlin)
        └─ PaymentDraft ─► dedupe ─► PaymentRepository.create(source: notification, verified: true)
        └─ TTS: "Yape: recibiste S/ 10.00 de Juan P."
 ```
-Los parsers se testean con fixtures reales anonimizados (`test/fixtures/notifications/*.txt`).
+Los parsers se testean con fixtures (`test/fixtures/notifications/*.txt`). Los actuales son ejemplos construidos y deben complementarse con textos reales anonimizados.
 
-## 8. Testing
+- La cola persistente (`SharedPreferences` nativo) guarda las notificaciones si la app está cerrada; Flutter la vacía al abrir o volver a primer plano.
+- El id del pago es un hash de la notificación, y las reglas impiden reescribirlo, así que no se generan duplicados.
+- La voz es nativa (`TextToSpeech`), así que funciona con la app cerrada.
+
+## 8. Desarrollo local con emuladores
+
+La app lee la configuración de Firebase de `--dart-define-from-file`:
+
+| Archivo | Uso |
+|---|---|
+| `app/env/emulator.json` (versionado) | Proyecto `demo-vantia` contra los emuladores locales. No requiere un proyecto real |
+| `app/env/dev.json` / `prod.json` (ignorados) | Valores reales de la consola de Firebase (plantilla en `env/dev.json.example`) |
+
+```bash
+cd functions && npm ci && npm run serve        # emuladores + UI en http://localhost:4000
+cd app && flutter run --flavor dev -t lib/main_dev.dart --dart-define-from-file=env/emulator.json
+```
+
+En el emulador de Auth no se envían correos reales. El enlace de verificación aparece en la consola del emulador y en la UI (pestaña Authentication).
+
+## 9. Testing
 
 - **Unit:** money, fechas en Lima, parsers, cálculos de caja, controllers.
 - **Widget:** formularios de pago, verify-email, cuadre de caja.

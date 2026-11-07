@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "demo-vantia",
+    "dev": "vantia-dev",
+    "prod": "vantia-prod"
+  }
+}

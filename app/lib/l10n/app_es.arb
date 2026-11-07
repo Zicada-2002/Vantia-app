@@ -1,0 +1,605 @@
+{
+  "@@locale": "es",
+  "navHome": "Inicio",
+  "navPayments": "Pagos",
+  "navProducts": "Productos",
+  "navReports": "Reportes",
+  "titleHome": "Inicio",
+  "titlePayments": "Todos mis pagos",
+  "titleProducts": "Productos",
+  "titleReports": "Mis reportes",
+  "titleCollaborators": "Colaboradores",
+  "titleCashRegister": "Cuadre de caja",
+  "titleSettings": "Ajustes",
+  "titleUser": "Mi cuenta",
+  "titleNewPayment": "Registrar pago",
+  "drawerHome": "Inicio",
+  "drawerCollaborators": "Colaboradores",
+  "drawerCashRegister": "Cuadre de caja",
+  "drawerSettings": "Ajustes",
+  "drawerSignOut": "Cerrar sesión",
+  "fabNewPayment": "Registrar pago",
+  "productsMenuBarcode": "Código de barras",
+  "productsMenuNoBarcode": "Producto sin código",
+  "productsEmpty": "Aún no has registrado productos",
+  "newPaymentQuestion": "¿Cómo pagó el cliente?",
+  "newPaymentSubtitle": "Selecciona el medio de pago para registrar el cobro.",
+  "newPaymentWithProducts": "Registrar productos vendidos",
+  "comingSoon": "Disponible pronto ({featureId})",
+  "@comingSoon": {
+    "placeholders": {
+      "featureId": {
+        "type": "String"
+      }
+    }
+  },
+  "themeLight": "Claro",
+  "themeSystem": "Sistema",
+  "themeDark": "Oscuro",
+  "settingsTheme": "Tema",
+  "routeNotFound": "No encontramos esta pantalla",
+  "appName": "Vantia",
+  "fieldName": "Nombre completo",
+  "fieldEmail": "Correo electrónico",
+  "fieldPassword": "Contraseña",
+  "fieldConfirmPassword": "Confirmar contraseña",
+  "hintName": "Ej. Carlos Vásquez",
+  "hintEmail": "tucorreo@ejemplo.com",
+  "hintPassword": "Mínimo 8 caracteres y 1 número",
+  "showPassword": "Mostrar contraseña",
+  "hidePassword": "Ocultar contraseña",
+  "loginTitle": "Bienvenido a Vantia",
+  "loginSubtitle": "Ingresa para registrar tus cobros y cuadrar tu caja.",
+  "loginButton": "Ingresar",
+  "loginForgot": "¿Olvidaste tu contraseña?",
+  "loginNoAccount": "¿No tienes cuenta?",
+  "loginCreateAccount": "Crear cuenta",
+  "registerTitle": "Crea tu cuenta",
+  "registerSubtitle": "Te enviaremos un correo para verificar tu dirección.",
+  "registerAcceptTerms": "Acepto los Términos y condiciones y la Política de privacidad",
+  "registerTermsRequired": "Debes aceptar los términos para continuar",
+  "registerButton": "Crear cuenta",
+  "registerHaveAccount": "¿Ya tienes cuenta?",
+  "registerSignIn": "Ingresar",
+  "verifyTitle": "Revisa tu correo",
+  "verifyBody": "Enviamos un enlace de verificación a {email}. Ábrelo para activar tu cuenta.",
+  "@verifyBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyHint": "Si no lo ves, revisa la carpeta de spam o promociones.",
+  "verifyCheck": "Ya verifiqué mi correo",
+  "verifyResend": "Reenviar correo",
+  "verifyResendIn": "Reenviar en {seconds} s",
+  "@verifyResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "verifyResent": "Te enviamos un nuevo correo de verificación",
+  "verifyStillPending": "Tu correo aún no está verificado. Abre el enlace que te enviamos.",
+  "verifyUseOtherEmail": "Usar otro correo",
+  "forgotTitle": "Recupera tu contraseña",
+  "forgotSubtitle": "Ingresa tu correo y te enviaremos un enlace para crear una nueva contraseña.",
+  "forgotButton": "Enviar enlace",
+  "forgotSent": "Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.",
+  "forgotBackToLogin": "Volver a ingresar",
+  "roleTitle": "¿Cómo usarás la aplicación?",
+  "roleSubtitle": "Selecciona tu rol para personalizar tu experiencia en Vantia.",
+  "roleOwnerTitle": "Dueño de negocio",
+  "roleOwnerBody": "Gestiona tu negocio, colaboradores, pagos y reportes desde un solo lugar.",
+  "roleCollaboratorTitle": "Colaborador",
+  "roleCollaboratorBody": "Colabora en un negocio registrando ventas y cerrando tu caja.",
+  "continueButton": "Continuar",
+  "businessTitle": "Datos de tu negocio",
+  "businessSubtitle": "Empezarás con 7 días de prueba gratis del plan Pro.",
+  "fieldBusinessName": "Nombre del negocio",
+  "hintBusinessName": "Ej. Bodega Don Carlos",
+  "fieldPhone": "Celular",
+  "hintPhone": "987 654 321",
+  "fieldDepartment": "Departamento",
+  "fieldProvince": "Provincia",
+  "hintProvince": "Ej. Lima",
+  "businessCreate": "Crear negocio",
+  "joinTitle": "Únete a un negocio",
+  "joinSubtitle": "Pídele al dueño del negocio el código de invitación de 6 caracteres.",
+  "fieldInviteCode": "Código de invitación",
+  "joinButton": "Unirme",
+  "signOutTitle": "¿Cerrar sesión?",
+  "signOutBody": "Tendrás que volver a ingresar con tu correo y contraseña.",
+  "cancel": "Cancelar",
+  "back": "Volver",
+  "errRequired": "Este campo es obligatorio",
+  "errInvalidEmail": "Ingresa un correo válido",
+  "errPasswordTooShort": "Debe tener al menos 8 caracteres",
+  "errPasswordNeedsNumber": "Debe incluir al menos un número",
+  "errPasswordsDontMatch": "Las contraseñas no coinciden",
+  "errInvalidPhone": "Ingresa un celular de 9 dígitos que empiece con 9",
+  "errInvalidInviteCode": "El código tiene 6 caracteres (letras y números)",
+  "errTooShort": "Es demasiado corto",
+  "errAuthInvalidCredentials": "Correo o contraseña incorrectos",
+  "errAuthEmailInUse": "Ya existe una cuenta con este correo",
+  "errAuthWeakPassword": "La contraseña es muy débil",
+  "errAuthInvalidEmail": "El correo no es válido",
+  "errAuthUserDisabled": "Esta cuenta está deshabilitada",
+  "errAuthTooManyRequests": "Demasiados intentos. Espera unos minutos e inténtalo de nuevo",
+  "errNetwork": "Sin conexión. Revisa tu internet e inténtalo de nuevo",
+  "errAuthRecentLogin": "Por seguridad, vuelve a iniciar sesión",
+  "errUnknown": "Ocurrió un error inesperado. Inténtalo de nuevo",
+  "errInviteInvalid": "El código no existe o fue revocado",
+  "errInviteExpired": "El código venció. Pide uno nuevo al dueño",
+  "errInviteUsed": "Este código ya fue usado",
+  "errAlreadyMember": "Tu cuenta ya pertenece a un negocio",
+  "errEmailNotVerified": "Primero verifica tu correo",
+  "errInvalidData": "Revisa los datos ingresados",
+  "homeSummary": "Resumen del día",
+  "homeIncomeToday": "INGRESOS DE HOY",
+  "homePaymentsCount": "PAGOS",
+  "homeCash": "EFECTIVO",
+  "homeDigital": "DIGITAL",
+  "homeLatest": "Últimos pagos",
+  "homeNoPayments": "Aún no hay pagos hoy. Toca + para registrar el primero.",
+  "homeMyIncomeToday": "MIS INGRESOS DE HOY",
+  "paymentBy": "Pago por {method}",
+  "@paymentBy": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentByMe": "Tú",
+  "paymentPending": "Pendiente de sincronizar",
+  "paymentVoided": "Anulado",
+  "paymentVerified": "Verificado",
+  "offlineBanner": "Sin conexión. Tus cobros se guardan y se sincronizarán al volver.",
+  "paymentsWeekIncome": "Ingreso semanal",
+  "paymentsToday": "HOY, {date}",
+  "@paymentsToday": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentsYesterday": "AYER, {date}",
+  "@paymentsYesterday": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentsEmptyWeek": "No hay pagos en esta semana",
+  "paymentsPrevWeek": "Semana anterior",
+  "paymentsNextWeek": "Semana siguiente",
+  "paymentsExport": "Exportar",
+  "confirmPaymentTitle": "Confirmar pago",
+  "fieldDate": "Fecha",
+  "fieldTime": "Hora",
+  "fieldAmount": "Monto",
+  "fieldAmountReceived": "Monto recibido",
+  "hintAmount": "Ingresa el monto",
+  "fieldChange": "Cambio",
+  "hintChange": "Vuelto entregado",
+  "fieldDescription": "Descripción",
+  "hintDescription": "Opcional",
+  "fieldOperation": "Nº de operación",
+  "fieldPayer": "Nombre del cliente",
+  "hintOptional": "Opcional",
+  "netSale": "Venta registrada",
+  "registerPayment": "Registrar pago",
+  "paymentRegistered": "Pago registrado: {amount}",
+  "@paymentRegistered": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "errAmountRequired": "Ingresa un monto mayor a 0",
+  "errChangeInvalid": "El cambio no es válido",
+  "errChangeTooBig": "El cambio debe ser menor al monto recibido",
+  "errFutureDate": "La fecha no puede ser futura",
+  "errInvalidAmount": "Monto no válido (máx. 2 decimales)",
+  "duplicateTitle": "¿Pago duplicado?",
+  "duplicateBody": "Ya existe un pago por {method} con el nº de operación {number}. ¿Registrarlo de todos modos?",
+  "@duplicateBody": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "registerAnyway": "Registrar igual",
+  "scanReceipt": "Escanear comprobante",
+  "paymentDetail": "Detalle del pago",
+  "detailMethod": "Medio de pago",
+  "detailDate": "Fecha y hora",
+  "detailRegisteredBy": "Registrado por",
+  "detailReceived": "Recibido",
+  "detailChange": "Cambio",
+  "detailSource": "Origen",
+  "sourceManual": "Manual",
+  "sourceOcr": "Comprobante escaneado",
+  "sourceNotification": "Notificación automática",
+  "detailProducts": "Productos",
+  "detailVoidReason": "Motivo de anulación",
+  "voidPayment": "Anular pago",
+  "voidTitle": "Anular pago",
+  "voidBody": "El pago no se borra: queda registrado como anulado y no suma en los totales.",
+  "voidReasonLabel": "Motivo",
+  "voidReasonHint": "Ej. Registrado por error",
+  "voidConfirm": "Anular",
+  "voidDone": "Pago anulado",
+  "voidNotAllowed": "No tienes permiso para anular este pago",
+  "voidWindowExpired": "Solo puedes anular tus pagos durante los primeros 15 minutos",
+  "notFound": "No encontramos este pago",
+  "collabGenerate": "Generar código de invitación",
+  "collabEmptyInvites": "Aún no has generado códigos de invitación",
+  "collabInvites": "Códigos de invitación",
+  "collabMembers": "Equipo",
+  "collabNoMembers": "Todavía no hay colaboradores. Comparte un código para invitar.",
+  "collabCodeTitle": "Código de invitación",
+  "collabCodeBody": "Compártelo con tu colaborador. Vence en 48 horas y sirve una sola vez.",
+  "collabCopy": "Copiar",
+  "collabCopied": "Código copiado",
+  "collabShare": "Compartir",
+  "collabShareText": "Únete a {business} en Vantia con el código {code}. Descarga la app, crea tu cuenta y elige \"Colaborador\".",
+  "@collabShareText": {
+    "placeholders": {
+      "business": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteActive": "Vigente · vence en {hours} h",
+  "@inviteActive": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteUsedBy": "Usado por {name}",
+  "@inviteUsedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteUsed": "Usado",
+  "inviteExpired": "Vencido",
+  "inviteRevoked": "Revocado",
+  "inviteRevoke": "Revocar",
+  "inviteRevokeTitle": "¿Revocar el código {code}?",
+  "@inviteRevokeTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteRevokeBody": "Nadie podrá usarlo para unirse a tu negocio.",
+  "inviteRevoked2": "Código revocado",
+  "memberOwner": "Dueño",
+  "memberSince": "Desde {date}",
+  "@memberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "memberTodaySales": "Hoy: {amount}",
+  "@memberTodaySales": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "memberInactive": "Desactivado",
+  "memberDeactivate": "Desactivar",
+  "memberActivate": "Reactivar",
+  "memberDeactivateTitle": "¿Desactivar a {name}?",
+  "@memberDeactivateTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memberDeactivateBody": "Perderá el acceso al negocio. Sus pagos registrados se conservan.",
+  "memberUpdated": "Colaborador actualizado",
+  "cashViewing": "Viendo: {date}",
+  "@cashViewing": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cashMine": "Mi caja",
+  "cashGeneral": "Resumen general",
+  "cashToday": "(hoy)",
+  "cashPickDate": "Elegir fecha",
+  "cashShiftTotal": "Total de tu turno",
+  "cashGeneralTotal": "Total del negocio",
+  "cashPhysical": "Caja física",
+  "cashOpening": "Fondo inicial",
+  "cashReceived": "+ Efectivo recibido",
+  "cashChangeGiven": "− Cambios dados",
+  "cashExpected": "Esperado en caja",
+  "cashCounted": "Total contado",
+  "cashDifference": "Diferencia",
+  "cashClose": "Cerrar caja",
+  "cashCloseTitle": "¿Cerrar la caja?",
+  "cashCloseBody": "Diferencia: {difference}. Después de cerrar no podrás registrar ni anular pagos de este día.",
+  "@cashCloseBody": {
+    "placeholders": {
+      "difference": {
+        "type": "String"
+      }
+    }
+  },
+  "cashClosed": "Caja cerrada",
+  "cashClosedAt": "Caja cerrada el {date}",
+  "@cashClosedAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cashReopened": "Caja reabierta: {reason}",
+  "@cashReopened": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "cashReopen": "Reabrir caja",
+  "cashReopenTitle": "Reabrir caja",
+  "cashReopenReason": "Motivo",
+  "cashReopenDone": "Caja reabierta",
+  "cashNoPayments": "Sin pagos",
+  "cashStatusOpen": "Abierta",
+  "cashStatusClosed": "Cerrada",
+  "cashStatusNone": "Sin abrir",
+  "cashTeam": "Cajas del equipo",
+  "cashOver": "Sobra",
+  "cashShort": "Falta",
+  "cashExact": "Cuadra",
+  "reportWeek": "Semana",
+  "reportMonth": "Mes",
+  "reportYear": "Año",
+  "reportThisWeek": "Esta semana",
+  "reportThisMonth": "Este mes",
+  "reportThisYear": "Este año",
+  "reportVsPrevious": "{percent} vs. periodo anterior",
+  "@reportVsPrevious": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "reportIncome": "Ingresos",
+  "reportCash": "EFECTIVO",
+  "reportDigital": "DIGITALES",
+  "reportBest": "MEJOR",
+  "reportAvgTicket": "Ticket promedio",
+  "reportMethods": "Métodos de pago",
+  "reportNoData": "Aún no hay ventas en este periodo",
+  "reportOwnerOnly": "Solo el dueño del negocio puede ver los reportes.",
+  "exportTitle": "Selecciona rango de fechas",
+  "exportButton": "Exportar",
+  "exportFormat": "¿En qué formato?",
+  "exportExcel": "Excel (.xlsx)",
+  "exportPdf": "PDF",
+  "exportEmpty": "No hay pagos en ese rango",
+  "exportTooLong": "El rango máximo es de 1 año",
+  "exportSubject": "Pagos {range}",
+  "@exportSubject": {
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "productsSearch": "Buscar producto",
+  "productsNoResults": "Sin resultados",
+  "productNew": "Nuevo producto",
+  "productEdit": "Editar producto",
+  "fieldProductName": "Nombre",
+  "hintProductName": "Ej. Gaseosa 500 ml",
+  "fieldPrice": "Precio",
+  "fieldBarcode": "Código de barras",
+  "fieldCategory": "Categoría",
+  "fieldStock": "Stock",
+  "hintStock": "Vacío = sin control de stock",
+  "productSave": "Guardar",
+  "productSaved": "Producto guardado",
+  "productDeactivate": "Desactivar producto",
+  "productDeactivated": "Producto desactivado",
+  "productStock": "Stock: {count}",
+  "@productStock": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productNoStock": "Sin control de stock",
+  "productReadOnly": "Solo el dueño puede crear o editar productos.",
+  "scanTitle": "Escanea el código",
+  "scanHint": "Apunta la cámara al código de barras",
+  "scanTorch": "Linterna",
+  "scanPermission": "Necesitamos permiso de cámara para escanear",
+  "cartTitle": "Productos vendidos",
+  "cartAdd": "Agregar",
+  "cartScan": "Escanear",
+  "cartEmpty": "Agrega los productos que vendiste",
+  "cartTotal": "Total",
+  "cartContinue": "Continuar",
+  "cartUnknownBarcode": "No hay un producto con el código {code}",
+  "@cartUnknownBarcode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "cartOutOfStock": "Sin stock suficiente de {name}",
+  "@cartOutOfStock": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "ocrCamera": "Tomar foto",
+  "ocrGallery": "Elegir de la galería",
+  "ocrNoAmount": "No pudimos leer el monto. Ingrésalo manualmente.",
+  "ocrOtherMethod": "El comprobante parece de {method}. Revisa el medio de pago.",
+  "@ocrOtherMethod": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "autoTitle": "Verificación automática",
+  "autoIntro": "Vantia puede leer las notificaciones de Yape y de los bancos con Plin para registrar cada cobro automáticamente y anunciarlo por voz.",
+  "autoPrivacy": "Solo se leen las notificaciones de esas apps. El texto no sale de tu celular salvo el pago detectado.",
+  "autoStepPermission": "1. Permitir acceso a notificaciones",
+  "autoStepBattery": "2. Quitar restricciones de batería",
+  "autoGranted": "Concedido",
+  "autoPending": "Pendiente",
+  "autoOpenSettings": "Abrir ajustes",
+  "autoBatteryHelp": "En Xiaomi, Huawei, Oppo o Samsung activa además \"Inicio automático\" y elige \"Sin restricciones\" en Batería para Vantia.",
+  "autoEnable": "Registrar cobros automáticamente",
+  "autoVoice": "Anunciar cada cobro por voz",
+  "autoUnsupported": "La verificación automática solo está disponible en Android.",
+  "autoNeedsPermission": "Primero concede el acceso a notificaciones",
+  "settingsSound": "SONIDO",
+  "settingsPayNotifications": "Notificaciones de pago",
+  "settingsPayNotificationsSub": "Anunciar cada cobro",
+  "settingsAutoVerify": "Verificación automática",
+  "settingsAutoVerifySub": "Verificado Yape/Plin",
+  "userInfoPersonal": "Información personal",
+  "userInfoBusiness": "Información del negocio",
+  "userInfoAccount": "Cuenta",
+  "userInfoSupport": "Soporte",
+  "userName": "Nombre",
+  "userEmail": "Correo",
+  "userEmailVerified": "Verificado",
+  "userPhone": "Celular",
+  "userNoPhone": "Sin registrar",
+  "userBusinessName": "Negocio",
+  "userLocation": "Ubicación",
+  "userRuc": "RUC",
+  "userRole": "Rol",
+  "userPlan": "Plan",
+  "userMemberSince": "Miembro desde",
+  "userWhatsapp": "Escríbenos por WhatsApp",
+  "userFaq": "Preguntas frecuentes",
+  "userReport": "Reportar un problema",
+  "userVersion": "Versión {version} ({build})",
+  "@userVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "userEdit": "Editar perfil",
+  "userChangePassword": "Cambiar contraseña",
+  "userChangeEmail": "Cambiar correo",
+  "userDeleteAccount": "Eliminar cuenta",
+  "roleOwner": "Dueño",
+  "roleCollaborator": "Colaborador",
+  "editProfileTitle": "Editar perfil",
+  "editSaved": "Perfil actualizado",
+  "fieldCurrentPassword": "Contraseña actual",
+  "fieldNewPassword": "Nueva contraseña",
+  "fieldNewEmail": "Nuevo correo",
+  "passwordChanged": "Contraseña actualizada",
+  "emailChangeSent": "Te enviamos un enlace a {email}. El cambio se aplica al confirmarlo.",
+  "@emailChangeSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteTitle": "Eliminar cuenta",
+  "deleteBody": "Se borrarán tu perfil y tu acceso. Los pagos que registraste se conservan para el negocio, sin tu nombre. Esta acción no se puede deshacer.",
+  "deleteOwnerWarning": "Eres el dueño: el negocio se cerrará y todo tu equipo perderá el acceso.",
+  "deleteTypeConfirm": "Escribe ELIMINAR para confirmar",
+  "deleteConfirm": "Eliminar definitivamente",
+  "planFree": "Plan: Free",
+  "planTrial": "Plan: Prueba Pro",
+  "planPro": "Plan: Pro",
+  "planTrialDays": "{days, plural, =0{Tu prueba gratis termina hoy.} =1{Tu prueba gratis termina en 1 día.} other{Tu prueba gratis termina en {days} días.}}",
+  "@planTrialDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "planFreeBody": "Mejora a Pro para activar todas las funciones.",
+  "planProBody": "Tienes todas las funciones activas.",
+  "planBenefit1": "Registro automático de pagos de transferencias",
+  "planBenefit2": "Anuncio por voz de cada cobro al instante",
+  "planBenefit3": "Lectura de capturas de pago con un toque",
+  "planBenefit4": "Colaboradores ilimitados en tu negocio",
+  "planUpgrade": "Mejorar ahora",
+  "paywallTitle": "Vantia Pro",
+  "paywallMonthly": "Mensual",
+  "paywallAnnual": "Anual",
+  "paywallRestore": "Restaurar compras",
+  "paywallUnavailable": "Las suscripciones aún no están disponibles en esta versión. Escríbenos por WhatsApp para activar Pro.",
+  "paywallSuccess": "¡Listo! Ya tienes Vantia Pro",
+  "paywallOwnerOnly": "Solo el dueño puede gestionar el plan.",
+  "proRequired": "Función disponible en Vantia Pro",
+  "settingsAppearance": "APARIENCIA",
+  "settingsInfo": "INFORMACIÓN",
+  "settingsTerms": "Términos y condiciones",
+  "settingsPrivacy": "Política de privacidad",
+  "settingsRate": "Valorar Vantia",
+  "settingsVersion": "Versión de la app",
+  "settingsCollabPush": "Avisarme cuando mi equipo cobre",
+  "collabLimit": "El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados.",
+  "demoBanner": "Modo demo: los datos son de ejemplo y se reinician al cerrar la app.",
+  "demoCredentials": "Cuenta: {email} · Clave: {password}",
+  "@demoCredentials": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "password": {
+        "type": "String"
+      }
+    }
+  },
+  "demoEnter": "Entrar a la demo"
+}

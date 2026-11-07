@@ -34,3 +34,6 @@ emulator-data/
 # ---------- Logs ----------
 *.log
 coverage/
+
+# Paquetes de entrega (scripts/empaquetar.sh)
+dist/

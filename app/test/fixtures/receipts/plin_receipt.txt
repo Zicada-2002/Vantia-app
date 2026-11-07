@@ -1,0 +1,7 @@
+Interbank
+Plin exitoso
+S/ 120.00
+Destino
+Bodega Don Carlos
+02/11/2026 14:30
+Código de operación 12345678

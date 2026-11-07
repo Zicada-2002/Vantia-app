@@ -1,0 +1,202 @@
+rules_version = '2';
+
+// Reglas de Vantia (ver docs/ARQUITECTURA.md §5).
+// Principios:
+//  - Todo exige sesión; los datos del negocio exigen correo verificado.
+//  - La pertenencia y el rol se leen de businesses/{bid}/members/{uid},
+//    que solo escriben las Cloud Functions (Admin SDK ignora estas reglas).
+//  - Denegar por defecto: lo que no está explícito, no se permite.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function verified() {
+      return signedIn() && request.auth.token.email_verified == true;
+    }
+
+    function member(bid) {
+      return get(/databases/$(database)/documents/businesses/$(bid)/members/$(request.auth.uid)).data;
+    }
+
+    function isMember(bid) {
+      return verified()
+        && exists(/databases/$(database)/documents/businesses/$(bid)/members/$(request.auth.uid))
+        && member(bid).active == true;
+    }
+
+    function isOwner(bid) {
+      return isMember(bid) && member(bid).role == 'owner';
+    }
+
+    function onlyChanges(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    function cashClosed(bid, dayKey, uid) {
+      let path = /databases/$(database)/documents/businesses/$(bid)/cashSessions/$(dayKey + '_' + uid);
+      return exists(path) && get(path).data.status == 'closed';
+    }
+
+    function validNewPayment(bid, d) {
+      return d.keys().hasOnly([
+          'method', 'amountCents', 'receivedCents', 'changeCents', 'description',
+          'operationNumber', 'payerName', 'occurredAt', 'dayKey', 'createdBy',
+          'createdByName', 'source', 'verified', 'status', 'items', 'receiptPath', 'createdAt'])
+        && d.method in ['yape', 'plin', 'bcp', 'interbank', 'bbva', 'scotiabank', 'cash']
+        && d.amountCents is int && d.amountCents > 0 && d.amountCents <= 100000000
+        && d.occurredAt is timestamp
+        && d.occurredAt < request.time + duration.value(10, 'm')
+        && d.dayKey is string && d.dayKey.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && d.createdBy == request.auth.uid
+        && d.createdByName is string && d.createdByName.size() <= 80
+        && d.source in ['manual', 'ocr', 'notification']
+        && d.verified is bool
+        && d.status == 'active'
+        && d.createdAt == request.time
+        && (!('description' in d) || (d.description is string && d.description.size() <= 200))
+        && (!('operationNumber' in d) || (d.operationNumber is string && d.operationNumber.size() <= 40))
+        && (!('payerName' in d) || (d.payerName is string && d.payerName.size() <= 80))
+        && (!('items' in d) || (d.items is list && d.items.size() <= 100))
+        && (!('receiptPath' in d) || (d.receiptPath is string
+            && d.receiptPath.matches('^receipts/' + bid + '/[A-Za-z0-9_-]+[.]jpg$')))
+        && (d.method != 'cash'
+            || (d.receivedCents is int && d.changeCents is int
+                && d.changeCents >= 0
+                && d.receivedCents - d.changeCents == d.amountCents))
+        && (d.method == 'cash' || !('changeCents' in d));
+    }
+
+    function validCashDraft(d) {
+      return d.dayKey is string && d.dayKey.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && (!('openingCents' in d) || (d.openingCents is int && d.openingCents >= 0))
+        && (!('countedCents' in d) || (d.countedCents is int && d.countedCents >= 0));
+    }
+
+    function validProduct(d) {
+      return d.keys().hasOnly(['name', 'barcode', 'priceCents', 'category', 'stock', 'active', 'createdAt', 'updatedAt'])
+        && d.name is string && d.name.size() >= 1 && d.name.size() <= 80
+        && d.priceCents is int && d.priceCents >= 0 && d.priceCents <= 100000000
+        && d.active is bool
+        && (!('barcode' in d) || (d.barcode is string && d.barcode.size() <= 32))
+        && (!('category' in d) || (d.category is string && d.category.size() <= 40))
+        && (!('stock' in d) || d.stock == null || d.stock is int);
+    }
+
+    function validVoid() {
+      let d = request.resource.data;
+      return resource.data.status == 'active'
+        && onlyChanges(['status', 'voidReason', 'voidedBy', 'voidedAt'])
+        && d.status == 'voided'
+        && d.voidReason is string && d.voidReason.size() >= 3 && d.voidReason.size() <= 200
+        && d.voidedBy == request.auth.uid
+        && d.voidedAt == request.time;
+    }
+
+    // Perfil propio. Se puede leer sin verificar (lo necesita el arranque);
+    // negocio y rol solo los asignan las Functions.
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow update: if verified()
+        && request.auth.uid == uid
+        && onlyChanges(['displayName', 'phone', 'prefs', 'updatedAt']);
+      allow create, delete: if false;
+
+      // Tokens FCM del dispositivo (F-33).
+      match /devices/{deviceId} {
+        allow read, delete: if signedIn() && request.auth.uid == uid;
+        allow create, update: if signedIn() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['token', 'platform', 'updatedAt'])
+          && request.resource.data.token is string
+          && request.resource.data.token.size() < 4096;
+      }
+    }
+
+    match /businesses/{bid} {
+      allow read: if isMember(bid);
+      allow update: if isOwner(bid)
+        && onlyChanges(['name', 'phone', 'department', 'province', 'ruc', 'updatedAt']);
+      allow create, delete: if false;
+
+      match /members/{uid} {
+        allow read: if isMember(bid);
+        allow write: if false;
+      }
+
+      match /invites/{code} {
+        allow read: if isOwner(bid);
+        allow write: if false;
+      }
+
+      // ---------- Pagos (M2) ----------
+      match /payments/{pid} {
+        allow read: if isOwner(bid)
+          || (isMember(bid) && resource.data.createdBy == request.auth.uid);
+
+        allow create: if isMember(bid)
+          && validNewPayment(bid, request.resource.data)
+          && !cashClosed(bid, request.resource.data.dayKey, request.auth.uid);
+
+        // Única edición permitida: anulación lógica.
+        allow update: if isMember(bid)
+          && validVoid()
+          && (isOwner(bid)
+              || (resource.data.createdBy == request.auth.uid
+                  && request.time < resource.data.createdAt + duration.value(15, 'm')))
+          && !cashClosed(bid, resource.data.dayKey, resource.data.createdBy);
+
+        allow delete: if false;
+      }
+
+      // ---------- Cuadre de caja (M4) ----------
+      // id = {dayKey}_{uid}. El cliente solo guarda el borrador (fondo y
+      // contado); el cierre y la reapertura los hacen las Functions.
+      match /cashSessions/{sid} {
+        allow read: if isOwner(bid)
+          || (isMember(bid) && sid.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}_' + request.auth.uid + '$'));
+
+        allow create: if isMember(bid)
+          && sid == request.resource.data.dayKey + '_' + request.auth.uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == 'open'
+          && validCashDraft(request.resource.data);
+
+        allow update: if isMember(bid)
+          && resource.data.uid == request.auth.uid
+          && resource.data.status != 'closed'
+          && onlyChanges(['openingCents', 'countedCents', 'displayName', 'updatedAt'])
+          && validCashDraft(request.resource.data);
+
+        allow delete: if false;
+      }
+
+      match /audit/{id} {
+        allow read: if isOwner(bid);
+        allow write: if false;
+      }
+
+      // ---------- Reportes (M5) ----------
+      match /dailyStats/{dayKey} {
+        allow read: if isOwner(bid);
+        allow write: if false;
+      }
+
+      // ---------- Productos (M6) ----------
+      // Lectura para todo el equipo; alta/edición solo el dueño. El stock lo
+      // descuenta la Function decrementStockOnSale.
+      match /products/{productId} {
+        allow read: if isMember(bid);
+        allow create: if isOwner(bid) && validProduct(request.resource.data);
+        allow update: if isOwner(bid) && validProduct(request.resource.data);
+        allow delete: if false;
+      }
+    }
+
+    // Índice global de códigos: solo Functions.
+    match /inviteCodes/{code} {
+      allow read, write: if false;
+    }
+  }
+}
