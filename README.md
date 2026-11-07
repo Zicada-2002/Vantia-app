@@ -73,6 +73,12 @@ cd functions && npm test                          # unit tests de Functions
 cd functions && npm run test:emulator             # integración + reglas de seguridad
 ```
 
+## Entrega a clientes
+
+- Guía para el comprador: [`docs/ENTREGA.md`](docs/ENTREGA.md)
+- Licencias de terceros: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)
+- Generar el `.zip` de entrega: `scripts/empaquetar.sh` (solo archivos versionados, sin claves)
+
 ## Contribuir
 
 Lee [`CONTRIBUTING.md`](CONTRIBUTING.md). Resumen:
