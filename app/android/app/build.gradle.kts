@@ -76,6 +76,10 @@ android {
 
     buildTypes {
         release {
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
             // Sin key.properties (CI, desarrollo) se firma con la clave debug.
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
