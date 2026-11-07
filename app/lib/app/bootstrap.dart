@@ -14,26 +14,30 @@ import 'package:vantia/app/flavor.dart';
 import 'package:vantia/app/theme/theme_mode_controller.dart';
 import 'package:vantia/core/observability/analytics.dart';
 import 'package:vantia/core/observability/firebase_analytics_impl.dart';
+import 'package:vantia/demo/demo_backend.dart';
 
 final flavorProvider = Provider<Flavor>((ref) => Flavor.dev);
 
 /// Punto de arranque común a todos los flavors.
-Future<void> bootstrap(Flavor flavor) async {
+///
+/// Con [demo] la app no usa Firebase: corre con un backend en memoria y datos
+/// de ejemplo (ver `lib/demo/`).
+Future<void> bootstrap(Flavor flavor, {bool demo = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Intl.defaultLocale = 'es';
   await initializeDateFormatting('es');
   final prefs = await SharedPreferences.getInstance();
-  await FirebaseEnv.initialize();
+  if (!demo) await FirebaseEnv.initialize();
 
-  // F-06: con emuladores (proyecto demo) se usa el logger de depuración.
-  final analytics = FirebaseEnv.useEmulator
+  // F-06: en demo o con emuladores se usa el logger de depuración.
+  final analytics = demo || FirebaseEnv.useEmulator
       ? const DebugAnalytics()
       : FirebaseAnalyticsImpl(
           FirebaseAnalytics.instance,
           FirebaseCrashlytics.instance,
         );
-  if (!FirebaseEnv.useEmulator) {
+  if (!demo && !FirebaseEnv.useEmulator) {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
       !kDebugMode,
     );
@@ -54,6 +58,7 @@ Future<void> bootstrap(Flavor flavor) async {
         flavorProvider.overrideWithValue(flavor),
         sharedPreferencesProvider.overrideWithValue(prefs),
         analyticsProvider.overrideWithValue(analytics),
+        if (demo) ...demoOverrides(),
       ],
       child: const VantiaApp(),
     ),

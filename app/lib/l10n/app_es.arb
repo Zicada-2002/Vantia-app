@@ -588,5 +588,18 @@
   "settingsRate": "Valorar Vantia",
   "settingsVersion": "Versión de la app",
   "settingsCollabPush": "Avisarme cuando mi equipo cobre",
-  "collabLimit": "El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados."
+  "collabLimit": "El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados.",
+  "demoBanner": "Modo demo: los datos son de ejemplo y se reinician al cerrar la app.",
+  "demoCredentials": "Cuenta: {email} · Clave: {password}",
+  "@demoCredentials": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "password": {
+        "type": "String"
+      }
+    }
+  },
+  "demoEnter": "Entrar a la demo"
 }

@@ -35,7 +35,7 @@
 - F-14 (Google) pendiente: es opcional y requiere el proyecto real.
 
 ### M2 — Pagos ✅
-- Selector de medio. Efectivo con cambio (**venta = recibido − cambio**). Digital con nº de operación y aviso de duplicado.
+- Selector de medio. Efectivo con cambio (**venta = recibido − cambio**, regla confirmada por el dueño). Digital con nº de operación y aviso de duplicado.
 - Inicio con el resumen del día y los últimos pagos, lista semanal, detalle y anulación con motivo.
 - Offline-first.
 - Reglas que validan el esquema y los montos.
@@ -101,7 +101,6 @@
 | 4 | Juntar **notificaciones y comprobantes reales anonimizados** y agregarlos como fixtures | Dueño → dev |
 | 5 | Revisión legal de términos y privacidad; publicar la política y el enlace web para eliminar cuenta | Dueño / abogado |
 | 6 | Play Console (pruebas internas y cerradas), RevenueCat (productos y webhook), ícono y capturas finales | Dueño |
-| 7 | Confirmar la regla del efectivo (venta = recibido − cambio) | Dueño |
 
 ---
 

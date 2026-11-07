@@ -30,6 +30,12 @@ firebase/   Reglas, índices y configuración de emuladores
 docs/       Plan, arquitectura y convenciones
 ```
 
+## Probar sin instalar nada (APK demo)
+
+El CI genera en cada PR el artifact **`vantia-demo-apk`** (*Actions → CI → Artifacts*): una versión que funciona sin Firebase, con datos de ejemplo que se reinician al cerrar la app. En el login, toca **"Entrar a la demo"** (`demo@vantia.pe` / `demo1234`).
+
+Compilarlo localmente: `cd app && flutter build apk --flavor demo -t lib/main_demo.dart --release`.
+
 ## Requisitos
 
 - Flutter 3.47 o superior (Dart 3.9 o superior); el CI usa 3.47.9

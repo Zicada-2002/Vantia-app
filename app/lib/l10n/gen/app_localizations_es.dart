@@ -1258,4 +1258,16 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get collabLimit =>
       'El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados.';
+
+  @override
+  String get demoBanner =>
+      'Modo demo: los datos son de ejemplo y se reinician al cerrar la app.';
+
+  @override
+  String demoCredentials(String email, String password) {
+    return 'Cuenta: $email · Clave: $password';
+  }
+
+  @override
+  String get demoEnter => 'Entrar a la demo';
 }

@@ -54,6 +54,13 @@ android {
             dimension = "env"
             resValue("string", "app_name", "Vantia")
         }
+        // Demo sin Firebase (lib/main_demo.dart): se instala junto a las otras.
+        create("demo") {
+            dimension = "env"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
+            resValue("string", "app_name", "Vantia Demo")
+        }
     }
 
     signingConfigs {

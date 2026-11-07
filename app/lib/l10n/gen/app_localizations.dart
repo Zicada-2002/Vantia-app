@@ -2397,6 +2397,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'El plan Free permite 1 colaborador. Mejora a Pro para tener colaboradores ilimitados.'**
   String get collabLimit;
+
+  /// No description provided for @demoBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo demo: los datos son de ejemplo y se reinician al cerrar la app.'**
+  String get demoBanner;
+
+  /// No description provided for @demoCredentials.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta: {email} · Clave: {password}'**
+  String demoCredentials(String email, String password);
+
+  /// No description provided for @demoEnter.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar a la demo'**
+  String get demoEnter;
 }
 
 class _AppLocalizationsDelegate

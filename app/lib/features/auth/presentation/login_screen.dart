@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +10,9 @@ import 'package:vantia/core/result/result.dart';
 import 'package:vantia/core/validation/validators.dart';
 import 'package:vantia/core/widgets/error_messages.dart';
 import 'package:vantia/core/widgets/v_button.dart';
+import 'package:vantia/core/widgets/v_card.dart';
 import 'package:vantia/core/widgets/v_text_field.dart';
+import 'package:vantia/demo/demo_backend.dart';
 import 'package:vantia/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:vantia/features/auth/presentation/widgets/password_field.dart';
 import 'package:vantia/l10n/l10n.dart';
@@ -50,10 +54,43 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final demo = ref.watch(demoModeProvider);
     return AuthScaffold(
       title: l10n.loginTitle,
       subtitle: l10n.loginSubtitle,
       children: [
+        if (demo) ...[
+          VCard(
+            highlight: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(l10n.demoBanner),
+                const SizedBox(height: VantiaSpacing.sm),
+                Text(
+                  l10n.demoCredentials(demoEmail, demoPassword),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: VantiaSpacing.md),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: context.vColors.onHighlight,
+                    foregroundColor: context.vColors.highlight,
+                  ),
+                  onPressed: _loading
+                      ? null
+                      : () {
+                          _email.text = demoEmail;
+                          _password.text = demoPassword;
+                          unawaited(_submit());
+                        },
+                  child: Text(l10n.demoEnter),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: VantiaSpacing.lg),
+        ],
         AutofillGroup(
           child: Form(
             key: _form,
