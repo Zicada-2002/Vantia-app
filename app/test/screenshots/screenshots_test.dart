@@ -136,6 +136,6 @@ void main() {
   };
 
   for (final e in cases.entries) {
-    testWidgets(e.key, (t) => e.value(t), skip: !_enabled);
+    testWidgets(e.key, e.value, skip: !_enabled);
   }
 }
