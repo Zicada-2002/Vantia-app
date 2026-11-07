@@ -63,6 +63,8 @@ flutter run --flavor dev -t lib/main_dev.dart --dart-define-from-file=env/emulat
 
 ### Con un proyecto real de Firebase
 
+Guía completa paso a paso: [`docs/FIREBASE_SETUP.md`](docs/FIREBASE_SETUP.md). Resumen:
+
 Copia `app/env/dev.json.example` a `app/env/dev.json` (no se versiona) y completa los valores de la consola de Firebase. Luego ejecuta:
 
 ```bash

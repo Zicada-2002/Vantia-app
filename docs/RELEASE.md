@@ -4,6 +4,8 @@ Pasos para publicar en Google Play. Lo marcado con 🧑 requiere acceso a cuenta
 
 ## 1. Firebase de producción 🧑
 
+> Paso a paso: [`FIREBASE_SETUP.md`](FIREBASE_SETUP.md).
+
 1. Crear `vantia-prod` (y `vantia-dev`) en la consola de Firebase, con plan **Blaze** (lo requieren Functions y Scheduler).
 2. **Authentication** → Correo/contraseña. Plantillas de correo en español: verificación y restablecimiento.
 3. **Firestore** en `southamerica-east1` y **Storage** en la misma región.
